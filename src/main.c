@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
+/*   Updated: 2023/06/23 15:51:47 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/minirt.h"
+
+int main(int argc, char **argv)
+{
+    int status;
+    t_scene *scene;
+
+    if (argc != 2)
+        handle_error(ARGUMENTS_COUNT_ERROR);
+    scene = parse_file(argv[1]);
+
+    (void)scene;
+    return (0);
+}
