@@ -19,6 +19,11 @@ static bool is_valid_value(char **data)
 	return (true);
 }
 
+/*
+ * @ Description: Transform string from format `255,255,255` to struct t_color
+ * @ Input: char * in format `255.255.255`
+ * @ Output:
+ */
 t_color *new_color_from_string(const char *data)
 {
 	char **splitted;
