@@ -33,12 +33,14 @@ vpath %.c src/
 vpath %.c src/parser/
 vpath %.c src/figures/
 vpath %.c src/scene/
-vpath %.c src/utils
+vpath %.c src/utils/
+vpath %.c src/vector/
+
 
 SRCS += main.c
 
-SRCS += error.c
-SRCS += vector.c
+SRCS += error.c ft_atof.c
+SRCS += vector.c vector_operations.c
 
 # Scene
 SRCS += camera.c
@@ -48,7 +50,7 @@ SRCS += scene.c
 SRCS += sphere.c
 
 # Parser
-SRCS += parser.c
+SRCS += parser.c camera_parser.c
 
 # Tests
 SRCS += parser_tests.c

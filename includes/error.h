@@ -18,9 +18,11 @@ typedef enum e_error
     MEMORY_ERROR = 3,
     ARGUMENTS_COUNT_ERROR,
     FILE_NAME_ERROR,
-    FILE_EXTENSION_ERROR
+    FILE_EXTENSION_ERROR,
+	PARSER_ERROR,
+	PARSER_FLOAT_ERROR,
 } t_error;
 
-void    handle_error(t_error error);
+void    handle_error(t_error error, void *data);
 
 #endif

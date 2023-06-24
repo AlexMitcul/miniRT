@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 t_sphere    *new_sphere(t_vector *center, float radius)
 {
@@ -18,7 +18,7 @@ t_sphere    *new_sphere(t_vector *center, float radius)
 
     sphere = (t_sphere *) malloc(sizeof(t_sphere));
     if (!sphere)
-        handle_error(MEMORY_ERROR);
+        handle_error(MEMORY_ERROR, NULL);
     sphere->center = center;
     sphere->radius = radius;
     return (sphere);

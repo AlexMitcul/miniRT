@@ -30,4 +30,6 @@
 
 # include "tests.h"
 
+int ft_atof(float *to_return, const char *s);
+
 #endif

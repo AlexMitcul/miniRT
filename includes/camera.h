@@ -22,6 +22,6 @@ typedef struct s_camera
     float fov;
 } t_camera;
 
-t_camera *new_camera(t_vector *, t_vector *, float);
+t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov);
 
 #endif

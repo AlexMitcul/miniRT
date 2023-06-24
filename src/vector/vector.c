@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 t_vector    *new_vector(float x, float y, float z)
 {
@@ -18,43 +18,39 @@ t_vector    *new_vector(float x, float y, float z)
 
     vector = (t_vector *) malloc(sizeof(t_vector));
     if (!vector)
-        handle_error(MEMORY_ERROR);
+        handle_error(MEMORY_ERROR, NULL);
     vector->x = x;
     vector->y = y;
     vector->z = z;
     return (vector);
 }
 
-t_vector    *vec_substract(t_vector *a, t_vector *b)
+t_vector *new_vector_from_strings(const char *xs, const char *ys, const char *zs)
 {
-    t_vector    *result;
+	float x;
+	float y;
+	float z;
 
-    result = new_vector(a->x - b->x, a->y - b->y, a->z - b->z);
-    return (result);
+	if (ft_atof(&x, xs) == EXIT_FAILURE)
+		return (NULL);
+	if (ft_atof(&y, ys) == EXIT_FAILURE)
+		return (NULL);
+	if (ft_atof(&z, zs) == EXIT_FAILURE)
+		return (NULL);
+	return (new_vector(x, y, z));
 }
 
-float   vec_length(t_vector *v)
+t_vector *parse_vector(const char *str)
 {
-    float   result;
+	char **s;
+	size_t	count;
 
-    result = sqrt((v->x * v->x) + (v->y * v->y) + (v->z * v->z));
-    return (result);
+	s = ft_split(str, ',');
+	count = 0;
+	while (s[count])
+		count++;
+	if (count != 3)
+		return (NULL);
+	return (new_vector_from_strings(s[0], s[1], s[2]));
 }
 
-void    vec_normalize(t_vector *v)
-{
-    float   length;
-
-    length = vec_length(v);
-    v->x /= length;
-    v->y /= length;
-    v->z /= length;
-}
-
-float   vec_product(t_vector *a, t_vector *b)
-{
-    float   result;
-
-    result = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
-    return (result);
-}

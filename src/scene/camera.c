@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "../../includes/minirt.h"
 
 t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov)
 {
@@ -18,7 +18,7 @@ t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov)
 
     camera = (t_camera *) malloc(sizeof(t_camera));
     if (!camera)
-        handle_error(MEMORY_ERROR);
+        handle_error(MEMORY_ERROR, NULL);
     camera->origin = origin;
     camera->direction = direction;
     camera->fov = fov;

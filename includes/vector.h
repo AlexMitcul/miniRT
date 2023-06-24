@@ -21,6 +21,8 @@ typedef struct  s_vector
 } t_vector;
 
 t_vector    *new_vector(float, float, float);
+t_vector *parse_vector(const char *str);
+
 t_vector    *vec_substract(t_vector *, t_vector *);
 float       vec_length(t_vector *);
 void        vec_normalize(t_vector *);

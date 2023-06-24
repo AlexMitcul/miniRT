@@ -17,8 +17,8 @@ int main(int argc, char **argv)
     t_scene *scene;
 
     if (argc != 2)
-        handle_error(ARGUMENTS_COUNT_ERROR);
-    scene = parse_file(argv[1]);
+        handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+    scene = parser(argv[1]);
 	free_scene(scene);
 
     return (0);
