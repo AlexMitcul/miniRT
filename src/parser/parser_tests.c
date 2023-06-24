@@ -93,7 +93,7 @@ void test_is_valid_line_items_count(void)
 	printf("\n");
 }
 
-#define test_parse_ambient_light_COUNT 18
+#define test_parse_ambient_light_COUNT 17
 void test_parse_ambient_light(void)
 {
 	char *data[test_parse_ambient_light_COUNT] = {
@@ -112,6 +112,8 @@ void test_parse_ambient_light(void)
 			"A 0,2 255,255,255",	// false,
 			"a 0.2 255,255,255",	// false,
 			"A -0.2 255,255,255",	// false,
+			"A 0. 255,255,255",	// false,
+			"A -0. 255,255,255",	// false,
 			"A 1.00000000000001 255,255,255", // false
 	};
 	bool results[test_parse_ambient_light_COUNT] = {
@@ -120,6 +122,8 @@ void test_parse_ambient_light(void)
 			true,
 			true,
 			true,
+			false,
+			false,
 			false,
 			false,
 			false,

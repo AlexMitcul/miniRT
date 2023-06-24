@@ -21,6 +21,7 @@ typedef enum e_error
     FILE_EXTENSION_ERROR,
 	PARSER_ERROR,
 	PARSER_FLOAT_ERROR,
+	BAD_VALUE_ERROR,
 } t_error;
 
 void    handle_error(t_error error, void *data);
