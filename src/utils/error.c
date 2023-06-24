@@ -35,6 +35,5 @@ void    handle_error(t_error error, void *data)
 		ft_putstr_fd("Error\n\tFile extension error.\n", STDERR_FILENO);
 	else if (error == PARSER_ERROR)
 		parser_error_handler(*((size_t *) data));
-    exit(EXIT_FAILURE);
-
+//    exit(EXIT_FAILURE);
 }
