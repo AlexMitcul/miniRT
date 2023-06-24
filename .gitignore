@@ -54,4 +54,6 @@ dkms.conf
 .idea/
 .cache*
 
+miniRT
+
 !.gitignore

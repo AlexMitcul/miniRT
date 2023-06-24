@@ -28,4 +28,6 @@
 # include "scene.h"
 # include "parser.h"
 
+# include "tests.h"
+
 #endif

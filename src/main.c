@@ -14,13 +14,12 @@
 
 int main(int argc, char **argv)
 {
-    int status;
     t_scene *scene;
 
     if (argc != 2)
         handle_error(ARGUMENTS_COUNT_ERROR);
     scene = parse_file(argv[1]);
+	free_scene(scene);
 
-    (void)scene;
     return (0);
 }

@@ -29,6 +29,12 @@ HEADER += $(INCLUDES)sphere.h
 HEADER += $(INCLUDES)camera.h
 HEADER += $(INCLUDES)scene.h
 
+vpath %.c src/
+vpath %.c src/parser/
+vpath %.c src/figures/
+vpath %.c src/scene/
+vpath %.c src/utils
+
 SRCS += main.c
 
 SRCS += error.c
@@ -41,9 +47,13 @@ SRCS += scene.c
 # Figures
 SRCS += sphere.c
 
-OBJ_DIR = ./obj/
+# Parser
+SRCS += parser.c
 
-vpath %.c src/
+# Tests
+SRCS += parser_tests.c
+
+OBJ_DIR = ./obj/
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRCS))
 
@@ -55,7 +65,7 @@ $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	@echo $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) -L./libft -lft -o $@ -fPIE
+	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) -L./libft -lft -lm -o $@ -fPIE
 
 $(OBJ_DIR):
 	mkdir $@

@@ -17,12 +17,13 @@
 
 typedef struct s_scene
 {
-    t_camera *cameras;
+    t_camera *camera;
     t_sphere *spheres;
     float width;
     float height;
 } t_scene;
 
 t_scene *new_scene(float, float);
+void	free_scene(t_scene *);
 
 #endif

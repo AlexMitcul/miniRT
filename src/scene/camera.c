@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "minirt.h"
 
 t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov)
 {

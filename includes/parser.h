@@ -15,4 +15,9 @@
 
 t_scene *parse_file(char *);
 
+/*
+ * Validation funcs
+*/
+bool is_valid_file_extension(char *filename);
+
 #endif
