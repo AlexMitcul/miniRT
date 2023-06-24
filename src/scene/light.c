@@ -7,6 +7,7 @@ t_ambient_light *new_ambient_light(void)
 	t_ambient_light *light;
 
 	light = (t_ambient_light *) malloc(sizeof(t_ambient_light));
+	light->color = (t_color *) malloc(sizeof(t_color));
 	light->color->r = 0;
 	light->color->g = 0;
 	light->color->b = 0;
