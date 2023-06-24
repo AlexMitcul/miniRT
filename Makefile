@@ -28,6 +28,10 @@ HEADER += $(INCLUDES)error.h
 HEADER += $(INCLUDES)sphere.h
 HEADER += $(INCLUDES)camera.h
 HEADER += $(INCLUDES)scene.h
+HEADER += $(INCLUDES)color.h
+HEADER += $(INCLUDES)light.h
+HEADER += $(INCLUDES)parser.h
+HEADER += $(INCLUDES)tests.h
 
 vpath %.c src/
 vpath %.c src/parser/
@@ -39,21 +43,22 @@ vpath %.c src/vector/
 
 SRCS += main.c
 
-SRCS += error.c ft_atof.c
+SRCS += error.c color.c
 SRCS += vector.c vector_operations.c
 
 # Scene
-SRCS += camera.c
-SRCS += scene.c
+SRCS += scene.c camera.c light.c
 
 # Figures
 SRCS += sphere.c
 
 # Parser
-SRCS += parser.c camera_parser.c
+SRCS += parser.c camera_parser.c light_parser.c
 
 # Tests
 SRCS += parser_tests.c
+
+SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c
 
 OBJ_DIR = ./obj/
 

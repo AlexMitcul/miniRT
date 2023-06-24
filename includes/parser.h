@@ -20,6 +20,8 @@ void parse_file(t_scene *, int);
  * Validation funcs
 */
 bool is_valid_file_extension(char *filename);
+
 void parse_camera(t_scene *scene, char **data, size_t line_index);
+void	parse_ambient_light(t_scene *scene, char **data, size_t line_index);
 
 #endif

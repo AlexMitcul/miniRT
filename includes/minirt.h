@@ -22,6 +22,8 @@
 # include "../libft/includes/get_next_line.h"
 
 # include "vector.h"
+# include "color.h"
+# include "light.h"
 # include "error.h"
 # include "sphere.h"
 # include "camera.h"
@@ -31,5 +33,7 @@
 # include "tests.h"
 
 int ft_atof(float *to_return, const char *s);
+void ft_free_strings(char** array);
+int	ft_isdecimal(const char *str);
 
 #endif
