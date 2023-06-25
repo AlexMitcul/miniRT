@@ -16,5 +16,7 @@ bool is_float(const char* str)
 		str++;
 	while (ft_isdigit(*str))
 		str++;
-	return digits_found && !(*str);
+	if (*(str - 1) == '.')
+		return (false);
+	return (digits_found && !(*str));
 }

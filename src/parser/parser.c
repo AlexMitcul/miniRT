@@ -12,7 +12,16 @@
 
 # include "../../includes/minirt.h"
 
-bool is_valid_file_extension(char *filename)
+/*
+ * @ Description:
+	 * Validate file extension. Valid file extension is '.rt'.
+	 * file.rt.rt is valid extension.
+ * @ Input:
+	 * const char *filename, which is path to file
+ * @ Return value:
+ 	* If extension is valid => true, otherwise => false
+ */
+bool is_valid_file_extension(const char *filename)
 {
 	char *file_extension;
 
@@ -29,15 +38,26 @@ bool is_valid_file_extension(char *filename)
 	return (false);
 }
 
-bool is_valid_line_items_count(char **splitted)
+/*
+ * @ Description:
+	* Validate that line conforms for element type like:
+	* A => 3 params, "A 0.2 255,255,255"
+	* C => 4 params, "C -50.0,0.20 0,0,1 70
+	* etc.
+ * @ Input:
+ 	* char **data, array of strings divided by ' '. Array need to be NULL-ended!
+ * @ Return value:
+ 	* If line is valid => true, otherwise => false
+ */
+bool is_valid_line_items_count(char **data)
 {
 	char *type;
 	size_t count;
 
 	count = 0;
-	while (splitted[count])
+	while (data[count])
 		count++;
-	type = splitted[0];
+	type = data[0];
 	if (ft_strncmp(type, "A", ft_strlen(type)) == 0 && count == 3)
 		return (true);
 	else if (ft_strncmp(type, "C", ft_strlen(type)) == 0 && count == 4)
@@ -104,7 +124,7 @@ int parse_file(t_scene *scene, int fd)
 	return (EXIT_SUCCESS);
 }
 
-t_scene *parser(char *filename)
+t_scene *parser(const char *filename)
 {
 	t_scene *scene;
 	int status;

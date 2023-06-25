@@ -52,7 +52,7 @@ static bool is_valid_string(const char *str)
  * Transform string from format `255,255,255` to struct t_color
  * @ Input:
  * char * in format `255.255.255`, NULL-ended
- * @ Output:
+ * @ Return value:
  * if string isn't in right format returns NULL
  * otherwise return t_color *;
  */
@@ -82,9 +82,9 @@ t_color *new_color_from_string(const char *data)
 
 /* @ Description:
  * Allocate t_color struct using
- * @ Params:
+ * @ Input:
  * int r, int g, int b => red, green, blue colors value in range [0, 255]
- * @Return value:
+ * @ Return value:
  * if one of param isn't in range [0, 255] return NULL
  * otherwise return t_color *;
  */

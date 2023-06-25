@@ -13,13 +13,13 @@
 # ifndef PARSER_H
 #define PARSER_H
 
-t_scene *parser(char *);
-int parse_file(t_scene *, int);
+t_scene *parser(const char *filename);
+int parse_file(t_scene *scene, int fd);
 
 /*
  * Validation funcs
 */
-bool is_valid_file_extension(char *filename);
+bool is_valid_file_extension(const char *filename);
 bool is_valid_line_items_count(char **splitted);
 
 void parse_camera(t_scene *scene, char **data, size_t line_index);

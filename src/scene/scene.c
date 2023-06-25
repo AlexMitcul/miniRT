@@ -19,6 +19,7 @@ t_scene *new_scene(float width, float height)
     scene = (t_scene *) malloc(sizeof(t_scene));
     scene->width = width;
     scene->height = height;
+	scene->ambient_light = NULL;
     scene->camera = NULL;
     scene->spheres = NULL;
     return (scene);

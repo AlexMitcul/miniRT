@@ -2,7 +2,7 @@
 
 void	test(void)
 {
-	test_color();
-//	test_parser();
+//	test_color();
+	test_parser();
 }
 

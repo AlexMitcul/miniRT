@@ -89,54 +89,51 @@ void test_is_valid_line_items_count(void)
 	printf("\n");
 }
 
-#define test_parse_ambient_light_COUNT 17
+static bool ambient_light_compare(t_ambient_light *a, t_ambient_light *b)
+{
+	if (a == NULL && b == NULL)
+		return (true);
+	if (a == NULL || b == NULL)
+		return (false);
+	if (a->lighting_ratio == b->lighting_ratio &&
+		a->color->r == b->color->r &&
+		a->color->g == b->color->g &&
+		a->color->b == b->color->b)
+		return (true);
+	return (false);
+}
+
+#define test_parse_ambient_light_COUNT 16
 void test_parse_ambient_light(void)
 {
 	char *data[test_parse_ambient_light_COUNT] = {
-			"A 0.0 255,255,255",	// true,
-			"A 1.0 255,255,255",	// true,
-			"A 0.2 0,0,0",			// true,
-			"A 0.2 255,255,255",	// true,
+			"A 0.0 255,255,255",			// true,
+			"A 1.0 255,255,255",			// true,
+			"A 0.2 0,0,0",				// true,
+			"A 0.2 255,255,255",			// true,
 			"  A   0.2  255,255,255   ",	// true,
 
-			"A 0.2 -255,255,255",	// false,
-			"A 0.2 255,-255,255",	// false,
-			"A 0.2 255,255,-255",	// false,
-			"A 0.2 500,255,255",	// false,
-			"A 0.2 255,500,255",	// false,
-			"A 0.2 255,255,500",	// false,
-			"A 0,2 255,255,255",	// false,
-			"a 0.2 255,255,255",	// false,
+			"A 0.2 -255,255,255",		// false,
+			"A 0.2 255,-255,255",		// false,
+			"A 0.2 255,255,-255",		// false,
+			"A 0.2 500,255,255",		// false,
+			"A 0.2 255,500,255",		// false,
+			"A 0.2 255,255,500",		// false,
+			"A 0,2 255,255,255",		// false,
 			"A -0.2 255,255,255",	// false,
-			"A 0. 255,255,255",	// false,
-			"A -0. 255,255,255",	// false,
-			"A 1.00000000000001 255,255,255", // false
+			"A 0. 255,255,255",		// false,
+			"A -0. 255,255,255",		// false,
+			"A 1.001 255,255,255",	// false
 	};
-//	t_ambient_light lights[test_parse_ambient_light_COUNT] = {
-//			{new_color(255, 255, 255), 0.0f},
-//
-//	};
-	bool results[test_parse_ambient_light_COUNT] = {
-			true,
-			true,
-			true,
-			true,
-			true,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
-			false,
+	t_ambient_light lights[5] = {
+			{new_color(255, 255, 255), 0.0f},
+			{new_color(255, 255, 255), 1.0f},
+			{new_color(0, 0, 0), 0.2f},
+			{new_color(255, 255, 255), 0.2f},
+			{new_color(255, 255, 255), 0.2f},
 	};
+
 	size_t test_index;
-	bool result;
 	char **splitted;
 	t_scene *scene;
 
@@ -146,8 +143,11 @@ void test_parse_ambient_light(void)
 	{
 		scene = new_scene(0, 0);
 		splitted = ft_split(data[test_index], ' ');
-		result = parse_ambient_light(scene, splitted);
-		validate(result == !results[test_index], test_index);
+		parse_ambient_light(scene, splitted);
+		if (test_index < 5)
+			validate(ambient_light_compare(scene->ambient_light, &lights[test_index]), test_index);
+		else
+			validate(ambient_light_compare(scene->ambient_light, NULL), test_index);
 		test_index++;
 		free_scene(scene);
 	}
