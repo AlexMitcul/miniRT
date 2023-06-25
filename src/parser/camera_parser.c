@@ -18,12 +18,10 @@ void parse_camera(t_scene *scene, char **data, size_t line_index)
 		free(origin);
 		handle_error(PARSER_ERROR, &line_index);
 	}
-	if (ft_atof(&fov, data[3]) == EXIT_FAILURE)
-	{
-		free(direction);
-		free(origin);
-		handle_error(PARSER_FLOAT_ERROR, &line_index);
-	}
+	fov = ft_atof(data[3]);
+	free(direction);
+	free(origin);
+	handle_error(PARSER_FLOAT_ERROR, &line_index);
 	camera = new_camera(origin, direction, fov);
 	scene->camera = camera;
 }

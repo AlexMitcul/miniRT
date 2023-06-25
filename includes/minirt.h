@@ -32,8 +32,10 @@
 
 # include "tests.h"
 
-int ft_atof(float *to_return, const char *s);
+float ft_atof(const char* str);
 void ft_free_strings(char** array);
 int	ft_isdecimal(const char *str);
+bool is_color(const char *line);
+bool is_float(const char* str);
 
 #endif

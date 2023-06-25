@@ -58,7 +58,7 @@ SRCS += parser.c camera_parser.c light_parser.c
 # Tests
 SRCS += parser_tests.c
 
-SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c
+SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c
 
 OBJ_DIR = ./obj/
 

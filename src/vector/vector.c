@@ -31,12 +31,9 @@ t_vector *new_vector_from_strings(const char *xs, const char *ys, const char *zs
 	float y;
 	float z;
 
-	if (ft_atof(&x, xs) == EXIT_FAILURE)
-		return (NULL);
-	if (ft_atof(&y, ys) == EXIT_FAILURE)
-		return (NULL);
-	if (ft_atof(&z, zs) == EXIT_FAILURE)
-		return (NULL);
+	x = ft_atof(xs);
+	y = ft_atof(ys);
+	z = ft_atof(zs);
 	return (new_vector(x, y, z));
 }
 

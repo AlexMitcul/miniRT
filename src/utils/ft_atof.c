@@ -1,31 +1,46 @@
-
 #include "../../includes/minirt.h"
 
-int ft_atof(float *result, const char* str) {
-	float fraction = 0.0f;
-	int sign = 1;
-	int divisor = 1;
+static double	ft_atodigit(const char *str)
+{
+	double	res;
+	int		i;
 
-	if (*str == '-')
+	if (str == NULL)
+		return (0);
+	res = 0;
+	i = 0;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
-		sign = -1;
-		str++;
+		res = res * 10;
+		res = res + (str[i] - '0');
+		i++;
 	}
-	else if (*str == '+')
-		str++;
-	while (ft_isdigit(*str))
-	{
-		*result = *result * 10 + (*str - '0');
-		str++;
-	}
-	if (*str == '.')
-		str++;
-	while (ft_isdigit(*str))
-	{
-		fraction = fraction * 10 + (*str - '0');
-		divisor *= 10;
-		str++;
-	}
-	*result += (fraction / divisor) * sign;
-	return (EXIT_SUCCESS);
+	return (res);
+}
+
+float			ft_atof(const char *nbr)
+{
+	double	res;
+	int		sign;
+	double	dec;
+	size_t	len;
+	int		i;
+
+	i = 0;
+	if (nbr == NULL)
+		return (0);
+	while (nbr[i] && ft_iswhitespace(nbr[i]))
+		i++;
+	sign = nbr[i] == '-' ? 1 : 0;
+	i += nbr[i] == '+' || nbr[i] == '-' ? 1 : 0;
+	res = ft_atodigit(nbr + i);
+	while (nbr[i] != '\0' && nbr[i] != '.')
+		i++;
+	len = nbr[i] != '\0' ? ft_strlen(nbr + i + 1) + 1 : 1;
+	dec = nbr[i] != '\0' ? ft_atodigit(nbr + i + 1) : 0;
+	while (--len > 0)
+		dec = dec / 10;
+	res += dec;
+	res = sign == 1 ? -res : res;
+	return (res);
 }
