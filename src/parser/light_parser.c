@@ -4,7 +4,7 @@
 /* A 0.2 255,255,255 */
 static bool validate_ambient_light_line(char **data)
 {
-	if (is_float(data[1]) == false || is_color(data[2]) == false)
+	if (is_float(data[1]) == false || is_color_string(data[2]) == false)
 		return (false);
 	return (true);
 }

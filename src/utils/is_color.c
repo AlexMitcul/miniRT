@@ -1,6 +1,6 @@
 #include "../../includes/minirt.h"
 
-bool is_color(const char *line)
+bool is_color_string(const char *line)
 {
 	char	**splitted;
 	size_t	count;
