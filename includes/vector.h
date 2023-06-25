@@ -13,6 +13,12 @@
 # ifndef VECTOR_H
 #define VECTOR_H
 
+typedef enum s_vector_type
+{
+	NORMAL,
+	NORMALIZED
+}	t_vector_type;
+
 typedef struct  s_vector
 {
     float   x;
@@ -21,11 +27,16 @@ typedef struct  s_vector
 } t_vector;
 
 t_vector    *new_vector(float, float, float);
-t_vector *parse_vector(const char *str);
+t_vector	*new_vector_from_strings(const char *str);
+t_vector 	*parse_vector(const char *str);
+bool 		is_vector(const char *data, t_vector_type type);
+void		free_vector(t_vector *vector);
 
 t_vector    *vec_substract(t_vector *, t_vector *);
 float       vec_length(t_vector *);
 void        vec_normalize(t_vector *);
 float       vec_product(t_vector *, t_vector *);
+
+bool is_valid_vector_string(const char *str);
 
 #endif

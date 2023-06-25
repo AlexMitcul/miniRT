@@ -87,8 +87,8 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
 	type = splitted[0];
 	if (ft_strncmp(type, "A", ft_strlen(type)) == 0)
 		status = parse_ambient_light(scene, splitted);
-//	if (ft_strncmp(type, "C", ft_strlen(type)) == 0)
-//		status = parse_camera(scene, splitted, line_index);
+	if (ft_strncmp(type, "C", ft_strlen(type)) == 0)
+		status = parse_camera(scene, splitted);
 //	else if (ft_strncmp(type, "L", ft_strlen(type)) == 0 && count == 4)
 //		return (true);
 //	else if (ft_strncmp(type, "sp", ft_strlen(type)) == 0 && count == 4)

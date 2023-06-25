@@ -35,7 +35,9 @@
 float ft_atof(const char* str);
 void ft_free_strings(char** array);
 int	ft_isdecimal(const char *str);
+int ft_is_decimal_in_range(const char *str, int low, int high);
 bool is_color_string(const char *line);
 bool is_float(const char* str);
+size_t	ft_count_chat(const char *str, char c);
 
 #endif

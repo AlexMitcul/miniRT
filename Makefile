@@ -45,7 +45,7 @@ vpath %.c src/tests/
 SRCS += main.c
 
 SRCS += error.c color.c
-SRCS += vector.c vector_operations.c
+SRCS += vector.c vector_operations.c vector_validation.c
 
 # Scene
 SRCS += scene.c camera.c light.c
@@ -59,7 +59,8 @@ SRCS += parser.c camera_parser.c light_parser.c
 # Tests
 SRCS += parser_tests.c color_tests.c test.c
 
-SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c
+SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
+		ft_count_char.c
 
 OBJ_DIR = ./obj/
 

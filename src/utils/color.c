@@ -22,7 +22,7 @@ static bool is_unsigned_char_datatype(char **data)
 /*
  * Tested
  */
-static bool is_valid_string(const char *str)
+static bool is_valid_color_string(const char *str)
 {
 	size_t	i;
 	size_t	commas;
@@ -61,7 +61,7 @@ t_color *new_color_from_string(const char *data)
 	char **splitted;
 	t_color *color;
 
-	if (is_valid_string(data) == false)
+	if (is_valid_color_string(data) == false)
 		return (NULL);
 	splitted = ft_split(data, ',');
 	if (!splitted)

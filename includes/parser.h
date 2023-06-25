@@ -14,15 +14,22 @@
 #define PARSER_H
 
 t_scene *parser(const char *filename);
-int parse_file(t_scene *scene, int fd);
 
 /*
- * Validation funcs
+ * File
 */
+int parse_file(t_scene *scene, int fd);
 bool is_valid_file_extension(const char *filename);
 bool is_valid_line_items_count(char **splitted);
 
-void parse_camera(t_scene *scene, char **data, size_t line_index);
+/*
+ * Camera
+ */
+int parse_camera(t_scene *scene, char **data);
+
+/*
+ * Light
+ */
 int	parse_ambient_light(t_scene *scene, char **data);
 
 #endif

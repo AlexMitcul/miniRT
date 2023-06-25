@@ -13,15 +13,17 @@
  */
 static bool validate_ambient_light_line(char **data)
 {
-	if (is_float(data[1]) == false || is_color_string(data[2]) == false)
-		return (false);
-	return (true);
+	if (is_float(data[1]) &&
+		is_color_string(data[2]))
+		return (true);
+	return (false);
 }
 
 /*
  * @ Description:
  	* Parse input strings array, create ambient light structure and assign it
- 	* to scene
+ 	* to scene. Where strings represents
+ 	* `char` `float` `color_string`
  * @ Input:
  	* t_scene *scene => scene with all data
  	* char **data => strings array represents ambient light data

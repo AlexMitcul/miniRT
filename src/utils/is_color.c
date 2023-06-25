@@ -1,5 +1,8 @@
 #include "../../includes/minirt.h"
 
+/*
+ * ,255,255,255
+ */
 bool is_color_string(const char *line)
 {
 	char	**splitted;

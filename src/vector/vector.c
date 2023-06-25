@@ -25,29 +25,42 @@ t_vector    *new_vector(float x, float y, float z)
     return (vector);
 }
 
-t_vector *new_vector_from_strings(const char *xs, const char *ys, const char *zs)
+t_vector *new_vector_from_strings(const char *str)
 {
-	float x;
-	float y;
-	float z;
+	char **splitted;
 
-	x = ft_atof(xs);
-	y = ft_atof(ys);
-	z = ft_atof(zs);
-	return (new_vector(x, y, z));
-}
-
-t_vector *parse_vector(const char *str)
-{
-	char **s;
-	size_t	count;
-
-	s = ft_split(str, ',');
-	count = 0;
-	while (s[count])
-		count++;
-	if (count != 3)
+	if (is_valid_vector_string(str) == false)
 		return (NULL);
-	return (new_vector_from_strings(s[0], s[1], s[2]));
+	splitted = ft_split(str, ',');
+	if (!splitted)
+		return (NULL);
+	return (new_vector(
+			ft_atof(splitted[0]),
+			ft_atof(splitted[1]),
+			ft_atof(splitted[2]))
+			);
 }
 
+bool is_vector(const char *str, t_vector_type type)
+{
+	t_vector *vector;
+
+	vector = new_vector_from_strings(str);
+	if (!vector)
+		return (false);
+	if (type == NORMALIZED)
+	{
+		if (vector->x > 1 || vector->y > 1 || vector->z > 1)
+			return (false);
+		if (vector->x < 0 || vector->y < 0 || vector->z < 0)
+			return (false);
+	}
+	return (true);
+}
+
+
+void	free_vector(t_vector *vector)
+{
+	if (vector)
+		free(vector);
+}
