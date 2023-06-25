@@ -110,7 +110,6 @@ t_scene *parser(char *filename)
 	int status;
 	int fd;
 
-	test_parser(filename);
 	scene = new_scene(0, 0);
 	if (is_valid_file_extension(filename) == false)
         handle_error(FILE_EXTENSION_ERROR, NULL);

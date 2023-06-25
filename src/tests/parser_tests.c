@@ -1,10 +1,6 @@
+#include "minirt.h"
 
-
-
-
-#include "../../includes/minirt.h"
-
-void validate(bool status, size_t test_index)
+static void validate(bool status, size_t test_index)
 {
 	if (status == true)
 		printf("\033[32m Test %zu - OK \n\033[0m", test_index);
@@ -116,6 +112,10 @@ void test_parse_ambient_light(void)
 			"A -0. 255,255,255",	// false,
 			"A 1.00000000000001 255,255,255", // false
 	};
+//	t_ambient_light lights[test_parse_ambient_light_COUNT] = {
+//			{new_color(255, 255, 255), 0.0f},
+//
+//	};
 	bool results[test_parse_ambient_light_COUNT] = {
 			true,
 			true,
@@ -155,10 +155,9 @@ void test_parse_ambient_light(void)
 }
 
 
-void test_parser(char *filename)
+void test_parser(void)
 {
-	(void)filename;
-//	test_is_valid_file_extension();
-//	test_is_valid_line_items_count();
+	test_is_valid_file_extension();
+	test_is_valid_line_items_count();
 	test_parse_ambient_light();
 }

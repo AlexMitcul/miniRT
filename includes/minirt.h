@@ -30,7 +30,7 @@
 # include "scene.h"
 # include "parser.h"
 
-# include "tests.h"
+# include "test.h"
 
 float ft_atof(const char* str);
 void ft_free_strings(char** array);

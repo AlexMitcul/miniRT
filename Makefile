@@ -31,7 +31,7 @@ HEADER += $(INCLUDES)scene.h
 HEADER += $(INCLUDES)color.h
 HEADER += $(INCLUDES)light.h
 HEADER += $(INCLUDES)parser.h
-HEADER += $(INCLUDES)tests.h
+HEADER += $(INCLUDES)test.h
 
 vpath %.c src/
 vpath %.c src/parser/
@@ -39,6 +39,7 @@ vpath %.c src/figures/
 vpath %.c src/scene/
 vpath %.c src/utils/
 vpath %.c src/vector/
+vpath %.c src/tests/
 
 
 SRCS += main.c
@@ -56,7 +57,7 @@ SRCS += sphere.c
 SRCS += parser.c camera_parser.c light_parser.c
 
 # Tests
-SRCS += parser_tests.c
+SRCS += parser_tests.c color_tests.c test.c
 
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c
 
