@@ -55,7 +55,6 @@ bool is_vector(const char *str, t_vector_type type)
 		if (vector->x < 0 || vector->y < 0 || vector->z < 0)
 			return (free_vector(vector), false);
 	}
-    free_vector(vector);
 	return (true);
 }
 

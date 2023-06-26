@@ -35,7 +35,7 @@ int parse_sphere(t_scene *scene, char **data)
     if (validate_sphere_string(data) == false)
         return (EXIT_FAILURE);
     radius = ft_atof(data[2]);
-    if (radius == 0)
+    if (radius <= 0)
         return (EXIT_FAILURE);
     radius /= 2;
     color = new_color_from_string(data[3]);

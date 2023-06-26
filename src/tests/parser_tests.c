@@ -99,4 +99,5 @@ void test_parser(void)
     test_is_valid_line_items_count();
     test_parse_ambient_light();
     test_parse_light();
+    test_parse_sphere();
 }

@@ -18,4 +18,9 @@ void test_parser(void);
 void test_parse_ambient_light(void);
 void test_parse_light(void);
 
+/*
+ *  Figures
+ */
+void test_parse_sphere(void);
+
 #endif //MINIRT_TEST_H

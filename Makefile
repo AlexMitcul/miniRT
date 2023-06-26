@@ -60,7 +60,8 @@ SRCS += parser.c camera_parser.c light_parser.c cylinder_parser.c \
 		plane_parser.c sphere_parser.c
 
 # Tests
-SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c
+SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
+		sphere_parser_tests.c
 
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c
