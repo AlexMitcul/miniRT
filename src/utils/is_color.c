@@ -10,10 +10,11 @@ bool is_color_string(const char *line)
 
 	splitted = ft_split(line, ',');
 	if (!splitted || !(*splitted))
-		return (false);
+		return (ft_free_strings(splitted), false);
 	count = 0;
 	while (splitted[count] && ft_isdecimal(splitted[count]))
 		count++;
+    ft_free_strings(splitted);
 	if (count != 3)
 		return (false);
 	return (true);

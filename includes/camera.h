@@ -24,4 +24,6 @@ typedef struct s_camera
 
 t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov);
 
+void    free_camera(t_camera *camera);
+
 #endif

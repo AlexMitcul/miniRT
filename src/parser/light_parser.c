@@ -95,7 +95,6 @@ int parse_light(t_scene *scene, char **data)
     origin = new_vector_from_strings(data[1]);
     if (!origin)
         return (free_color(color), EXIT_FAILURE);
-    light = (t_light *) malloc(sizeof(t_light));
     light = new_light(origin, brightness, color);
     if (!light)
         return (free_vector(origin), free_color(color), EXIT_FAILURE);

@@ -32,3 +32,27 @@ void    sphere_add_to_scene(t_scene *scene, t_sphere *sphere)
         sphere->next = scene->spheres;
     scene->spheres = sphere;
 }
+
+void    free_sphere(t_sphere *sphere)
+{
+    if (!sphere)
+        return ;
+    if (sphere->center)
+        free(sphere->center);
+    if (sphere->color)
+        free(sphere->color);
+    free(sphere);
+}
+
+void free_sphere_list(t_sphere *head)
+{
+    t_sphere *current;
+    t_sphere *next;
+
+    current = head;
+    while (current != NULL) {
+        next = current->next;
+        free_sphere(current);
+        current = next;
+    }
+}

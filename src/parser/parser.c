@@ -81,7 +81,7 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
 
 	splitted = ft_split(line, ' ');
 	if (!splitted || !(*splitted))
-		return (EXIT_SUCCESS);
+		return (ft_free_strings(splitted), EXIT_SUCCESS);
 	if (is_valid_line_items_count(splitted) == false)
 		handle_error(PARSER_ERROR, &line_index);
 	type = splitted[0];
@@ -97,6 +97,7 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
         status = parse_plane(scene, splitted);
 	else if (ft_strncmp(type, "cy", ft_strlen(type)) == 0)
 		status = parse_cylinder(scene, splitted);
+    ft_free_strings(splitted);
 	return (status);
 }
 
@@ -118,7 +119,7 @@ int parse_file(t_scene *scene, int fd)
 		free(line);
 		if (status == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		get_next_line(fd);
+		line = get_next_line(fd);
 		line_index++;
 	}
 	return (EXIT_SUCCESS);

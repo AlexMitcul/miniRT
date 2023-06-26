@@ -24,3 +24,14 @@ t_camera    *new_camera(t_vector *origin, t_vector *direction, float fov)
     camera->fov = fov;
     return (camera);
 }
+
+void    free_camera(t_camera *camera)
+{
+    if (!camera)
+        return ;
+    if (camera->origin)
+        free_vector(camera->origin);
+    if (camera->direction)
+        free_vector(camera->direction);
+    free(camera);
+}

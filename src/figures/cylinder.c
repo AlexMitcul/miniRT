@@ -33,3 +33,29 @@ void cylinder_add_to_scene(t_scene *scene, t_cylinder *cylinder)
         cylinder->next = scene->cylinders;
     scene->cylinders = cylinder;
 }
+
+void free_cylinder(t_cylinder *cylinder)
+{
+    if (!cylinder)
+        return ;
+    if (cylinder->center)
+        free_vector(cylinder->center);
+    if (cylinder->axis)
+        free_vector(cylinder->axis);
+    if (cylinder->color)
+        free_color(cylinder->color);
+    free(cylinder);
+}
+
+void free_cylinder_list(t_cylinder *head)
+{
+    t_cylinder *current;
+    t_cylinder *next;
+
+    current = head;
+    while (current != NULL) {
+        next = current->next;
+        free_cylinder(current);
+        current = next;
+    }
+}

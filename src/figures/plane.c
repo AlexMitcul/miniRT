@@ -32,3 +32,29 @@ void    plane_add_to_scene(t_scene *scene, t_plane *plane)
         plane->next = scene->planes;
     scene->planes = plane;
 }
+
+void    free_plane(t_plane *plane)
+{
+    if (!plane)
+        return ;
+    if (plane->origin)
+        free_vector(plane->origin);
+    if (plane->direction)
+        free_vector(plane->direction);
+    if (plane->color)
+        free_color(plane->color);
+    free(plane);
+}
+
+void free_plane_list(t_plane *head)
+{
+    t_plane *current;
+    t_plane *next;
+
+    current = head;
+    while (current != NULL) {
+        next = current->next;
+        free_plane(current);
+        current = next;
+    }
+}

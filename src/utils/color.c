@@ -58,6 +58,7 @@ t_color *new_color_from_string(const char *data)
 	color->r = ft_atoi(splitted[0]);
 	color->g = ft_atoi(splitted[1]);
 	color->b = ft_atoi(splitted[2]);
+    ft_free_strings(splitted);
 	return (color);
 }
 

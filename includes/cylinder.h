@@ -19,6 +19,8 @@ typedef struct s_cylinder
 
 t_cylinder *new_cylinder(t_vector *center, t_vector *axis,
                      float radius, float height, t_color *color);
+void free_cylinder(t_cylinder *cylinder);
+void free_cylinder_list(t_cylinder *head);
 void    cylinder_add_to_scene(t_scene *scene, t_cylinder *cylinder);
 
 #endif //MINIRT_CYLINDER_H

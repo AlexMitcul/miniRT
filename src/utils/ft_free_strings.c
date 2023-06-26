@@ -2,7 +2,7 @@
 
 void ft_free_strings(char** array)
 {
-	if (array == NULL)
+	if (array == NULL || *array == NULL)
 		return;
 	int i = 0;
 	while (array[i] != NULL)

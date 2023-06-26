@@ -20,6 +20,8 @@ void	free_ambient_light(t_ambient_light *light)
 {
 	if (!light)
 		return ;
+    if (light->color)
+        free_color(light->color);
 	free(light);
 }
 
@@ -36,4 +38,15 @@ t_light *new_light(t_vector *origin, float brightness, t_color *color)
     light->brightness = brightness;
     light->color = color;
     return (light);
+}
+
+void    free_light(t_light *light)
+{
+    if (!light)
+        return ;
+    if (light->origin)
+        free_vector(light->origin);
+    if (light->color)
+        free_color(light->color);
+    free(light);
 }

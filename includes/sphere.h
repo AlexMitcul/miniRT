@@ -25,6 +25,8 @@ typedef struct s_sphere
 } t_sphere;
 
 t_sphere    *new_sphere(t_vector *center, float radius, t_color *color);
+void        free_sphere(t_sphere *sphere);
+void        free_sphere_list(t_sphere *head);
 void        sphere_add_to_scene(t_scene *scene, t_sphere *sphere);
 
 #endif
