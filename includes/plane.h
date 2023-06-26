@@ -15,7 +15,7 @@ typedef struct s_plane
     struct s_plane *next;
 }   t_plane;
 
-t_plane *new_plane(t_vector *origin, t_vector *destination, t_color *color);
-void    pland_add_to_scene(t_scene *scene, t_plane *plane);
+t_plane *new_plane(t_vector *origin, t_vector *direction, t_color *color);
+void    plane_add_to_scene(t_scene *scene, t_plane *plane);
 
 #endif //MINIRT_PLANE_H

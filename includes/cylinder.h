@@ -17,7 +17,7 @@ typedef struct s_cylinder
     struct s_cylinder *next;
 }   t_cylinder;
 
-t_cylinder *cylinder(t_vector *center, t_vector *axis,
+t_cylinder *new_cylinder(t_vector *center, t_vector *axis,
                      float radius, float height, t_color *color);
 void    cylinder_add_to_scene(t_scene *scene, t_cylinder *cylinder);
 
