@@ -15,12 +15,20 @@
 
 # include "minirt.h"
 
+typedef struct s_camera t_camera;
+typedef struct s_sphere t_sphere;
+typedef struct s_plane t_plane;
+typedef struct s_cylinder t_cylinder;
+typedef struct s_ambient_light t_ambient_light;
+typedef struct s_light t_light;
+
 typedef struct s_scene
 {
     t_camera *camera;
     t_sphere *spheres;
     t_plane *planes;
     t_cylinder  *cylinders;
+    t_light *light;
 	t_ambient_light *ambient_light;
     float width;
     float height;

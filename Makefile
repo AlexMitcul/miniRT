@@ -26,6 +26,8 @@ HEADER += $(INCLUDES)minirt.h
 HEADER += $(INCLUDES)vector.h
 HEADER += $(INCLUDES)error.h
 HEADER += $(INCLUDES)sphere.h
+HEADER += $(INCLUDES)plane.h
+HEADER += $(INCLUDES)cylinder.h
 HEADER += $(INCLUDES)camera.h
 HEADER += $(INCLUDES)scene.h
 HEADER += $(INCLUDES)color.h
@@ -51,10 +53,11 @@ SRCS += vector.c vector_operations.c vector_validation.c
 SRCS += scene.c camera.c light.c
 
 # Figures
-SRCS += sphere.c
+SRCS += sphere.c plane.c cylinder.c
 
 # Parser
-SRCS += parser.c camera_parser.c light_parser.c
+SRCS += parser.c camera_parser.c light_parser.c cylinder_parser.c \
+		plane_parser.c sphere_parser.c
 
 # Tests
 SRCS += parser_tests.c color_tests.c test.c

@@ -35,21 +35,19 @@ int	parse_ambient_light(t_scene *scene, char **data)
 {
 	t_ambient_light *ambient_light;
 	t_color *color;
-	float lighting_ratio;
+	float lighting;
 
-	if (validate_ambient_light_line(data) == false)
+	if (validate_ambient_light_line(data) == false || scene->ambient_light)
 		return (EXIT_FAILURE);
-	lighting_ratio = ft_atof(data[1]);
-	if (lighting_ratio < 0 || lighting_ratio > 1)
-		return (handle_error(BAD_VALUE_ERROR, NULL), EXIT_FAILURE);
+    lighting = ft_atof(data[1]);
+	if (lighting < 0 || lighting > 1)
+		return (EXIT_FAILURE);
 	color = new_color_from_string(data[2]);
 	if (!color)
 		return (EXIT_FAILURE);
-	ambient_light = (t_ambient_light *) malloc(sizeof(t_ambient_light));
+    ambient_light = new_ambient_light(color, lighting);
 	if (!ambient_light)
-		return (free_color(color), handle_error(MEMORY_ERROR, NULL), EXIT_FAILURE);
-	ambient_light->color = color;
-	ambient_light->lighting_ratio = lighting_ratio;
+		return (free_color(color), EXIT_FAILURE);
 	scene->ambient_light = ambient_light;
 	return (EXIT_SUCCESS);
 }
@@ -86,7 +84,7 @@ int parse_light(t_scene *scene, char **data)
     float brightness;
     t_color *color;
 
-    if (validate_light_string(data) == false)
+    if (validate_light_string(data) == false || scene->light)
         return (EXIT_FAILURE);
     brightness = ft_atof(data[2]);
     if (brightness < 0 || brightness > 1)
@@ -98,10 +96,9 @@ int parse_light(t_scene *scene, char **data)
     if (!origin)
         return (free_color(color), EXIT_FAILURE);
     light = (t_light *) malloc(sizeof(t_light));
+    light = new_light(origin, brightness, color);
     if (!light)
         return (free_vector(origin), free_color(color), EXIT_FAILURE);
-    light->origin = origin;
-    light->color = color;
-    light->brightness_ratio = brightness;
+    scene->light = light;
     return (EXIT_SUCCESS);
 }

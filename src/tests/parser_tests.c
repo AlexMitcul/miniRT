@@ -95,7 +95,7 @@ static bool ambient_light_compare(t_ambient_light *a, t_ambient_light *b)
 		return (true);
 	if (a == NULL || b == NULL)
 		return (false);
-	if (a->lighting_ratio == b->lighting_ratio &&
+	if (a->lighting == b->lighting &&
 		a->color->r == b->color->r &&
 		a->color->g == b->color->g &&
 		a->color->b == b->color->b)
