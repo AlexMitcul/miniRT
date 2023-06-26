@@ -22,5 +22,6 @@ void test_parse_light(void);
  *  Figures
  */
 void test_parse_sphere(void);
+void test_parse_plane(void);
 
 #endif //MINIRT_TEST_H

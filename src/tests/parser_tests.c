@@ -100,4 +100,5 @@ void test_parser(void)
     test_parse_ambient_light();
     test_parse_light();
     test_parse_sphere();
+    test_parse_plane();
 }

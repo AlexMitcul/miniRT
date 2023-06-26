@@ -18,9 +18,12 @@ bool is_valid_vector_string(const char *str)
         return (false);
 	while (i < length - 1)
 	{
-		if (ft_strchr(".,", str[i]) && !ft_isdigit(str[i + 1]))
+        if (ft_strchr(".,", str[i]) && (str[i + 1] == '-' || str[i + 1] == '+'))
+            i++;
+		else if (ft_strchr(".,", str[i]) && !ft_isdigit(str[i + 1]))
 			return (false);
-		i++;
+        else
+		    i++;
 	}
 	return (true);
 }

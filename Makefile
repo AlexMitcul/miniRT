@@ -14,7 +14,7 @@ NAME	=	miniRT
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror -g
-RM		=	rm -rf
+RM		=	rm -f
 
 LIBDIR = ./libft
 LIB = $(LIBDIR)/libft.a
@@ -57,7 +57,7 @@ SRCS += sphere.c plane.c cylinder.c
 
 # Parser
 SRCS += parser.c camera_parser.c light_parser.c cylinder_parser.c \
-		plane_parser.c sphere_parser.c
+		plane_parser.c sphere_parser.c plane_parser_tests.c
 
 # Tests
 SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
@@ -93,7 +93,7 @@ fclean : clean
 
 clean : clean
 	$(MAKE) fclean -C $(LIBDIR)
-	$(RM) $(NAME)
+	$(RM) $(NAME)*
 
 re : fclean
 	$(MAKE)

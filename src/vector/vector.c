@@ -52,7 +52,7 @@ bool is_vector(const char *str, t_vector_type type)
 	{
 		if (vector->x > 1 || vector->y > 1 || vector->z > 1)
 			return (free_vector(vector), false);
-		if (vector->x < 0 || vector->y < 0 || vector->z < 0)
+		if (vector->x < -1 || vector->y < -1 || vector->z < -1)
 			return (free_vector(vector), false);
 	}
 	return (true);
