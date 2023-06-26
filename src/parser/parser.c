@@ -89,14 +89,14 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
 		status = parse_ambient_light(scene, splitted);
 	if (ft_strncmp(type, "C", ft_strlen(type)) == 0)
 		status = parse_camera(scene, splitted);
-//	else if (ft_strncmp(type, "L", ft_strlen(type)) == 0 && count == 4)
-//		return (true);
-//	else if (ft_strncmp(type, "sp", ft_strlen(type)) == 0 && count == 4)
-//		return (true);
-//	else if (ft_strncmp(type, "pl", ft_strlen(type)) == 0 && count == 4)
-//		return (true);
-//	else if (ft_strncmp(type, "cy", ft_strlen(type)) == 0 && count == 6)
-//		return (true);
+	else if (ft_strncmp(type, "L", ft_strlen(type)) == 0)
+        status = parse_light(scene, splitted);
+	else if (ft_strncmp(type, "sp", ft_strlen(type)) == 0)
+        status = parse_sphere(scene, splitted);
+	else if (ft_strncmp(type, "pl", ft_strlen(type)) == 0)
+        status = parse_plane(scene, splitted);
+	else if (ft_strncmp(type, "cy", ft_strlen(type)) == 0)
+		status = parse_cylinder(scene, splitted);
 	return (status);
 }
 

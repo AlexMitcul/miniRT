@@ -31,5 +31,13 @@ int parse_camera(t_scene *scene, char **data);
  * Light
  */
 int	parse_ambient_light(t_scene *scene, char **data);
+int parse_light(t_scene *scene, char **data);
+
+/*
+ *  Figures
+ */
+int parse_cylinder(t_scene *scene, char **data);
+int parse_plane(t_scene *scene, char **data);
+int parse_sphere(t_scene *scene, char **data);
 
 #endif
