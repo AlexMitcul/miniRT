@@ -45,8 +45,8 @@ int parse_camera(t_scene *scene, char **data)
 	direction = new_vector_from_strings(data[2]);
 	if (!direction)
 		return (free_vector(origin), EXIT_FAILURE);
-    camera = new_camera(origin, direction, fov);
-    if (!camera)
+	camera = new_camera(origin, direction, fov);
+	if (!camera)
         return (free_vector(origin), free_vector(direction), EXIT_FAILURE);
 	scene->camera = camera;
 	return (EXIT_SUCCESS);

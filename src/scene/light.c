@@ -7,7 +7,7 @@ t_ambient_light *new_ambient_light(t_color *color, float lighting)
 	t_ambient_light *light;
 
     if (!color)
-        return (NULL);
+		return (NULL);
 	light = (t_ambient_light *) malloc(sizeof(t_ambient_light));
     if (!light)
         return (NULL);
@@ -21,7 +21,7 @@ void	free_ambient_light(t_ambient_light *light)
 	if (!light)
 		return ;
     if (light->color)
-        free_color(light->color);
+		free_color(light->color);
 	free(light);
 }
 

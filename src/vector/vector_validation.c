@@ -15,7 +15,7 @@ bool is_valid_vector_string(const char *str)
     else
         return (false);
     if (!ft_isdigit(str[length - 1]))
-        return (false);
+		return (false);
 	while (i < length - 1)
 	{
         if (ft_strchr(".,", str[i]) && (str[i + 1] == '-' || str[i + 1] == '+'))
