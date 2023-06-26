@@ -26,6 +26,8 @@
 # include "light.h"
 # include "error.h"
 # include "sphere.h"
+# include "cylinder.h"
+# include "plane.h"
 # include "camera.h"
 # include "scene.h"
 # include "parser.h"

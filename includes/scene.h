@@ -19,6 +19,8 @@ typedef struct s_scene
 {
     t_camera *camera;
     t_sphere *spheres;
+    t_plane *planes;
+    t_cylinder  *cylinders;
 	t_ambient_light *ambient_light;
     float width;
     float height;

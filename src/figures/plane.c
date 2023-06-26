@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 16:08:34 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/23 16:08:34 by amitcul          ###   ########.fr       */
+/*   Created: 2023/06/26 09:44:32 by amitcul           #+#    #+#             */
+/*   Updated: 2023/06/26 09:44:35 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_sphere    *new_sphere(t_vector *center, float radius, t_color *color)
+t_plane    *new_plane(t_vector *origin, t_vector *direction, t_color *color)
 {
-    t_sphere    *sphere;
+    t_plane *plane;
 
-    sphere = (t_sphere *) malloc(sizeof(t_sphere));
-    if (!sphere)
+    plane = (t_plane *) malloc(sizeof(t_plane));
+    if (!plane)
         handle_error(MEMORY_ERROR, NULL);
-    sphere->center = center;
-    sphere->radius = radius;
-    sphere->color = color;
-    sphere->next = NULL;
-    return (sphere);
+    plane->origin = origin;
+    plane->color = color;
+    plane->direction = direction;
+    plane->next = NULL;
+    return (plane);
 }
 
-void    sphere_add_to_scene(t_scene *scene, t_sphere *sphere)
+void    plane_add_to_scene(t_scene *scene, t_plane *plane)
 {
-    if (scene->spheres)
-        sphere->next = scene->spheres;
-    scene->spheres = sphere;
+    if (scene->planes)
+        plane->next = scene->planes;
+    scene->planes = plane;
 }
