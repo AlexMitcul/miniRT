@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   is_unsigned_char_datatype.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 09:08:03 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 11:02:31 by amitcul          ###   ########.fr       */
+/*   Created: 2023/06/26 11:08:20 by amitcul           #+#    #+#             */
+/*   Updated: 2023/06/26 11:08:24 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minirt.h"
+#include <stdbool.h>
+#include "../../libft/includes/libft.h"
 
-void validate(bool status, size_t test_index)
+bool is_unsigned_char_datatype(char **data)
 {
-    if (status == true)
-        printf("\033[32m Test %zu - OK \n\033[0m", test_index);
-    else
-        printf("\033[31m Test %zu - KO \n\033[0m", test_index);
-}
+    int x;
+    int y;
+    int z;
 
-void	test(void)
-{
-	test_color();
-	test_parser();
+    x = ft_atoi(data[0]);
+    y = ft_atoi(data[1]);
+    z = ft_atoi(data[2]);
+    if (x > 255 || y > 255 || z > 255)
+        return (false);
+    if (x < 0 || y < 0 || z < 0)
+        return (false);
+    return (true);
 }
-

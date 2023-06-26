@@ -1,7 +1,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-size_t	ft_count_chat(const char *str, char c)
+size_t	ft_count_char(const char *str, char c)
 {
 	size_t	i;
 	size_t	count;

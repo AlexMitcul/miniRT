@@ -38,5 +38,6 @@ void        vec_normalize(t_vector *);
 float       vec_product(t_vector *, t_vector *);
 
 bool is_valid_vector_string(const char *str);
+bool vector_compare(t_vector *a, t_vector *b);
 
 #endif

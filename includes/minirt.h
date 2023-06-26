@@ -41,6 +41,7 @@ int	ft_isdecimal(const char *str);
 int ft_is_decimal_in_range(const char *str, int low, int high);
 bool is_color_string(const char *line);
 bool is_float(const char* str);
-size_t	ft_count_chat(const char *str, char c);
+size_t	ft_count_char(const char *str, char c);
+bool is_unsigned_char_datatype(char **data);
 
 #endif

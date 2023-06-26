@@ -6,12 +6,16 @@ bool is_valid_vector_string(const char *str)
 	size_t	length;
 	size_t	i;
 
-	if (!str || ft_count_chat(str, '.') != 3 || ft_count_chat(str, ',') != 3)
+    i = 0;
+    if (!str || ft_count_char(str, '.') > 3 || ft_count_char(str, ',') != 2)
 		return (false);
 	length = ft_strlen(str);
-	if (ft_strchr(".,", str[0]) || ft_strchr(".,", str[length]))
-		return (false);
-	i = 0;
+    if (ft_isdigit(str[0]) || str[0] == '-' || str[0] == '+')
+        i++;
+    else
+        return (false);
+    if (!ft_isdigit(str[length - 1]))
+        return (false);
 	while (i < length - 1)
 	{
 		if (ft_strchr(".,", str[i]) && !ft_isdigit(str[i + 1]))
@@ -19,4 +23,13 @@ bool is_valid_vector_string(const char *str)
 		i++;
 	}
 	return (true);
+}
+
+bool vector_compare(t_vector *a, t_vector *b)
+{
+    if (a->x == b->x &&
+        a->y == b->y &&
+        a->z == b->z)
+        return (true);
+    return (false);
 }

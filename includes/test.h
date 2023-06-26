@@ -7,7 +7,15 @@
 
 void	test(void);
 
+void validate(bool status, size_t test_index);
+
 void test_color(void);
 void test_parser(void);
+
+/*
+ *  Light
+ */
+void test_parse_ambient_light(void);
+void test_parse_light(void);
 
 #endif //MINIRT_TEST_H
