@@ -6,7 +6,7 @@
 #    By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/16 11:02:30 by amitcul           #+#    #+#              #
-#    Updated: 2023/06/05 21:23:21 by amitcul          ###   ########.fr        #
+#    Updated: 2023/07/17 10:28:21 by amitcul          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ RM		=	rm -f
 
 LIBDIR = ./libft
 LIB = $(LIBDIR)/libft.a
+
+MINILIBXDIR = ./minilibx-linux
 
 INCLUDES = ./includes/
 INCLUDES_LIB = ./libft/includes/
@@ -85,15 +87,17 @@ $(OBJ_DIR):
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
+	$(MAKE) -C $(MINILIBXDIR)
 
 fclean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)
 	$(RM) -R $(OBJ_DIR)
+	$(MAKE) fclean -C $(MINILIBXDIR)
 
 clean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)*
 
 re : fclean
-	$(MAKE)
+	$(MAKE))
