@@ -3,22 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   plane_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:57:55 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 09:57:55 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/17 11:36:01 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-static bool validate_plane_string(char **data)
+static bool	validate_plane_string(char **data)
 {
-    if (is_vector(data[1], NORMAL) &&
-        is_vector(data[2], NORMALIZED) &&
-        is_color_string(data[3]))
-        return (true);
-    return (false);
+	if (is_vector(data[1], NORMAL) && is_vector(data[2], NORMALIZED)
+		&& is_color_string(data[3]))
+		return (true);
+	return (false);
 }
 
 /*
@@ -37,28 +36,28 @@ static bool validate_plane_string(char **data)
  	* return EXIT_SUCCESS if all passed good,
  	* EXIT_FAILED otherwise
  */
-int parse_plane(t_scene *scene, char **data)
+int	parse_plane(t_scene *scene, char **data)
 {
-    t_plane *plane;
-    t_vector *origin;
-    t_vector *direction;
-    t_color  *color;
+	t_plane		*plane;
+	t_vector	*origin;
+	t_vector	*direction;
+	t_color		*color;
 
-    if (validate_plane_string(data) == false)
-        return (EXIT_FAILURE);
-    color = new_color_from_string(data[3]);
-    if (!color)
-        return (EXIT_FAILURE);
-    origin = new_vector_from_strings(data[1]);
-    if (!origin)
-        return (free_color(color), EXIT_FAILURE);
-    direction = new_vector_from_strings(data[2]);
-    if (!direction)
-        return (free_vector(origin), free_color(color), EXIT_FAILURE);
-    plane = new_plane(origin, direction, color);
-    if (!plane)
-        return (free_color(color), free_vector(direction),
-                free_vector(origin), EXIT_FAILURE);
-    plane_add_to_scene(scene, plane);
-    return (EXIT_SUCCESS);
+	if (validate_plane_string(data) == false)
+		return (EXIT_FAILURE);
+	color = new_color_from_string(data[3]);
+	if (!color)
+		return (EXIT_FAILURE);
+	origin = new_vector_from_strings(data[1]);
+	if (!origin)
+		return (free_color(color), EXIT_FAILURE);
+	direction = new_vector_from_strings(data[2]);
+	if (!direction)
+		return (free_vector(origin), free_color(color), EXIT_FAILURE);
+	plane = new_plane(origin, direction, color);
+	if (!plane)
+		return (free_color(color), free_vector(direction), free_vector(origin),
+			EXIT_FAILURE);
+	plane_add_to_scene(scene, plane);
+	return (EXIT_SUCCESS);
 }

@@ -1,16 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_parser.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 11:32:25 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 11:33:04 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
 static bool	validate_camera_line(char **data)
 {
-	if (is_vector(data[1], NORMAL) &&
-		is_vector(data[2], NORMALIZED) &&
-		is_float(data[3]))
+	if (is_vector(data[1], NORMAL) && is_vector(data[2], NORMALIZED)
+		&& is_float(data[3]))
 		return (true);
 	return (false);
 }
 
-//! If it will be second camera in scene throw error
 /*
  * @ Description:
  	* Parse input strings array, create camera structure and assign it
@@ -27,12 +36,12 @@ static bool	validate_camera_line(char **data)
  	* return EXIT_SUCCESS if all passed good,
  	* EXIT_FAILED otherwise
  */
-int parse_camera(t_scene *scene, char **data)
+int	parse_camera(t_scene *scene, char **data)
 {
-	t_camera *camera;
-	t_vector *origin;
-	t_vector *direction;
-	float	fov;
+	t_camera	*camera;
+	t_vector	*origin;
+	t_vector	*direction;
+	float		fov;
 
 	if (validate_camera_line(data) == false || scene->camera)
 		return (EXIT_FAILURE);
@@ -47,7 +56,7 @@ int parse_camera(t_scene *scene, char **data)
 		return (free_vector(origin), EXIT_FAILURE);
 	camera = new_camera(origin, direction, fov);
 	if (!camera)
-        return (free_vector(origin), free_vector(direction), EXIT_FAILURE);
+		return (free_vector(origin), free_vector(direction), EXIT_FAILURE);
 	scene->camera = camera;
 	return (EXIT_SUCCESS);
 }

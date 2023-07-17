@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_parser.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 11:34:25 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 11:34:56 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
@@ -11,10 +22,9 @@
  * @ Return value:
  	* return true if is valid, false otherwise
  */
-static bool validate_ambient_light_line(char **data)
+static bool	validate_ambient_light_line(char **data)
 {
-	if (is_float(data[1]) &&
-		is_color_string(data[2]))
+	if (is_float(data[1]) && is_color_string(data[2]))
 		return (true);
 	return (false);
 }
@@ -33,32 +43,31 @@ static bool validate_ambient_light_line(char **data)
  */
 int	parse_ambient_light(t_scene *scene, char **data)
 {
-	t_ambient_light *ambient_light;
-	t_color *color;
-	float lighting;
+	t_ambient_light	*ambient_light;
+	t_color			*color;
+	float			lighting;
 
 	if (validate_ambient_light_line(data) == false || scene->ambient_light)
 		return (EXIT_FAILURE);
-    lighting = ft_atof(data[1]);
+	lighting = ft_atof(data[1]);
 	if (lighting < 0 || lighting > 1)
 		return (EXIT_FAILURE);
 	color = new_color_from_string(data[2]);
 	if (!color)
 		return (EXIT_FAILURE);
-    ambient_light = new_ambient_light(color, lighting);
+	ambient_light = new_ambient_light(color, lighting);
 	if (!ambient_light)
 		return (free_color(color), EXIT_FAILURE);
 	scene->ambient_light = ambient_light;
 	return (EXIT_SUCCESS);
 }
 
-static bool validate_light_string(char **data)
+static bool	validate_light_string(char **data)
 {
-    if (is_vector(data[1], NORMAL) &&
-            is_float(data[2]) &&
-            is_color_string(data[3]))
-        return (true);
-    return (false);
+	if (is_vector(data[1], NORMAL) && is_float(data[2])
+		&& is_color_string(data[3]))
+		return (true);
+	return (false);
 }
 
 /*
@@ -77,27 +86,27 @@ static bool validate_light_string(char **data)
  	* return EXIT_SUCCESS if all passed good,
  	* EXIT_FAILED otherwise
  */
-int parse_light(t_scene *scene, char **data)
+int	parse_light(t_scene *scene, char **data)
 {
-    t_light *light;
-    t_vector *origin;
-    float brightness;
-    t_color *color;
+	t_light		*light;
+	t_vector	*origin;
+	float		brightness;
+	t_color		*color;
 
-    if (validate_light_string(data) == false || scene->light)
-        return (EXIT_FAILURE);
-    brightness = ft_atof(data[2]);
-    if (brightness < 0 || brightness > 1)
-        return (EXIT_FAILURE);
-    color = new_color_from_string(data[3]);
-    if (!color)
-        return (EXIT_FAILURE);
-    origin = new_vector_from_strings(data[1]);
-    if (!origin)
-        return (free_color(color), EXIT_FAILURE);
-    light = new_light(origin, brightness, color);
-    if (!light)
-        return (free_vector(origin), free_color(color), EXIT_FAILURE);
-    scene->light = light;
-    return (EXIT_SUCCESS);
+	if (validate_light_string(data) == false || scene->light)
+		return (EXIT_FAILURE);
+	brightness = ft_atof(data[2]);
+	if (brightness < 0 || brightness > 1)
+		return (EXIT_FAILURE);
+	color = new_color_from_string(data[3]);
+	if (!color)
+		return (EXIT_FAILURE);
+	origin = new_vector_from_strings(data[1]);
+	if (!origin)
+		return (free_color(color), EXIT_FAILURE);
+	light = new_light(origin, brightness, color);
+	if (!light)
+		return (free_vector(origin), free_color(color), EXIT_FAILURE);
+	scene->light = light;
+	return (EXIT_SUCCESS);
 }

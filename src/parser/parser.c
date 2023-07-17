@@ -6,34 +6,34 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:55:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 10:45:56 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/17 11:35:27 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 /*
  * @ Description:
-	 * Validate file extension. Valid file extension is '.rt'.
-	 * file.rt.rt is valid extension.
+		* Validate file extension. Valid file extension is '.rt'.
+		* file.rt.rt is valid extension.
  * @ Input:
-	 * const char *filename, which is path to file
+		* const char *filename, which is path to file
  * @ Return value:
  	* If extension is valid => true, otherwise => false
  */
-bool is_valid_file_extension(const char *filename)
+bool	is_valid_file_extension(const char *filename)
 {
-	char *file_extension;
+	char	*file_extension;
 
-    if (!filename)
+	if (!filename)
 		return (false);
 	file_extension = ft_strrchr(filename, '.');
 	if (!file_extension)
 		return (false);
 	if (ft_strlen(file_extension) == ft_strlen(filename))
 		return (false);
-	if (ft_strlen(file_extension) == 3 &&
-		ft_strncmp(file_extension, ".rt", ft_strlen(file_extension)) == 0)
+	if (ft_strlen(file_extension) == 3
+		&& ft_strncmp(file_extension, ".rt", ft_strlen(file_extension)) == 0)
 		return (true);
 	return (false);
 }
@@ -49,10 +49,10 @@ bool is_valid_file_extension(const char *filename)
  * @ Return value:
  	* If line is valid => true, otherwise => false
  */
-bool is_valid_line_items_count(char **data)
+bool	is_valid_line_items_count(char **data)
 {
-	char *type;
-	size_t count;
+	char	*type;
+	size_t	count;
 
 	count = 0;
 	while (data[count])
@@ -75,10 +75,11 @@ bool is_valid_line_items_count(char **data)
 
 int	parse_line(t_scene *scene, char *line, size_t line_index)
 {
-	char **splitted;
-	char *type;
-	int status = 0;
+	char	**splitted;
+	char	*type;
+	int		status;
 
+	status = 0;
 	splitted = ft_split(line, ' ');
 	if (!splitted || !(*splitted))
 		return (ft_free_strings(splitted), EXIT_SUCCESS);
@@ -90,23 +91,23 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
 	if (ft_strncmp(type, "C", ft_strlen(type)) == 0)
 		status = parse_camera(scene, splitted);
 	else if (ft_strncmp(type, "L", ft_strlen(type)) == 0)
-        status = parse_light(scene, splitted);
+		status = parse_light(scene, splitted);
 	else if (ft_strncmp(type, "sp", ft_strlen(type)) == 0)
-        status = parse_sphere(scene, splitted);
+		status = parse_sphere(scene, splitted);
 	else if (ft_strncmp(type, "pl", ft_strlen(type)) == 0)
-        status = parse_plane(scene, splitted);
+		status = parse_plane(scene, splitted);
 	else if (ft_strncmp(type, "cy", ft_strlen(type)) == 0)
 		status = parse_cylinder(scene, splitted);
-    ft_free_strings(splitted);
+	ft_free_strings(splitted);
 	return (status);
 }
 
-int parse_file(t_scene *scene, int fd)
+int	parse_file(t_scene *scene, int fd)
 {
 	size_t	line_index;
-	int 	status;
+	int		status;
 	char	*line;
-	char 	*tmp;
+	char	*tmp;
 
 	line = get_next_line(fd);
 	line_index = 1;
@@ -125,7 +126,7 @@ int parse_file(t_scene *scene, int fd)
 	return (EXIT_SUCCESS);
 }
 
-t_scene *parser(const char *filename)
+t_scene	*parser(const char *filename)
 {
 	t_scene	*scene;
 	int		status;
