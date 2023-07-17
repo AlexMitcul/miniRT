@@ -1,23 +1,31 @@
-//
-// Created by Alexandru Mitcul on 26/06/2023.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   plane.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 10:54:25 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 10:54:46 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef MINIRT_PLANE_H
-#define MINIRT_PLANE_H
+#ifndef PLANE_H
+# define PLANE_H
 
 # include "minirt.h"
 
 typedef struct s_plane
 {
-    t_vector *origin;
-    t_vector *direction;
-    t_color *color;
-    struct s_plane *next;
-}   t_plane;
+	t_vector		*origin;
+	t_vector		*direction;
+	t_color			*color;
+	struct s_plane	*next;
+}	t_plane;
 
-t_plane *new_plane(t_vector *origin, t_vector *direction, t_color *color);
-void    free_plane(t_plane *plane);
-void    free_plane_list(t_plane *head);
-void    plane_add_to_scene(t_scene *scene, t_plane *plane);
+t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color);
+void	free_plane(t_plane *plane);
+void	free_plane_list(t_plane *head);
+void	plane_add_to_scene(t_scene *scene, t_plane *plane);
 
 #endif //MINIRT_PLANE_H

@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/16 11:02:30 by amitcul           #+#    #+#              #
-#    Updated: 2023/07/17 10:28:21 by amitcul          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME	=	miniRT
 
 CC		=	cc
@@ -87,17 +75,17 @@ $(OBJ_DIR):
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
-	$(MAKE) -C $(MINILIBXDIR)
+# $(MAKE) -C $(MINILIBXDIR)
 
 fclean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)
 	$(RM) -R $(OBJ_DIR)
-	$(MAKE) fclean -C $(MINILIBXDIR)
+#$(MAKE) fclean -C $(MINILIBXDIR)
 
 clean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)*
 
 re : fclean
-	$(MAKE))
+	$(MAKE)

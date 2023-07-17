@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/23 15:40:07 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:53:07 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef MINIRT_H
-#define MINIRT_H
+#ifndef MINIRT_H
+# define MINIRT_H
 
 # include <stdlib.h>
 # include <stddef.h>
@@ -32,16 +32,15 @@
 # include "camera.h"
 # include "parser.h"
 
-
 # include "test.h"
 
-float ft_atof(const char* str);
-void ft_free_strings(char** array);
-int	ft_isdecimal(const char *str);
-int ft_is_decimal_in_range(const char *str, int low, int high);
-bool is_color_string(const char *line);
-bool is_float(const char* str);
+float	ft_atof(const char *str);
+void	ft_free_strings(char **array);
+int		ft_isdecimal(const char *str);
+int		ft_is_decimal_in_range(const char *str, int low, int high);
+bool	is_color_string(const char *line);
+bool	is_float(const char *str);
 size_t	ft_count_char(const char *str, char c);
-bool is_unsigned_char_datatype(char **data);
+bool	is_unsigned_char_datatype(char **data);
 
 #endif

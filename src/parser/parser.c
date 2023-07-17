@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:55:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/23 16:55:58 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/17 10:45:56 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,13 +127,13 @@ int parse_file(t_scene *scene, int fd)
 
 t_scene *parser(const char *filename)
 {
-	t_scene *scene;
-	int status;
-	int fd;
+	t_scene	*scene;
+	int		status;
+	int		fd;
 
 	scene = new_scene(0, 0);
 	if (is_valid_file_extension(filename) == false)
-        handle_error(FILE_EXTENSION_ERROR, NULL);
+		handle_error(FILE_EXTENSION_ERROR, NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
 		handle_error(FILE_NAME_ERROR, NULL);
