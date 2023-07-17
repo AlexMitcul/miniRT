@@ -1,9 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_color.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 11:48:03 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 11:48:07 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
-/*
- * ,255,255,255
- */
-bool is_color_string(const char *line)
+bool	is_color_string(const char *line)
 {
 	char	**splitted;
 	size_t	count;
@@ -14,7 +23,7 @@ bool is_color_string(const char *line)
 	count = 0;
 	while (splitted[count] && ft_isdecimal(splitted[count]))
 		count++;
-    ft_free_strings(splitted);
+	ft_free_strings(splitted);
 	if (count != 3)
 		return (false);
 	return (true);

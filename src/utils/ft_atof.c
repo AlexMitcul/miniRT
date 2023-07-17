@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 11:46:21 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 11:46:29 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 static double	ft_atodigit(const char *str)
@@ -18,7 +30,7 @@ static double	ft_atodigit(const char *str)
 	return (res);
 }
 
-float			ft_atof(const char *nbr)
+float	ft_atof(const char *nbr)
 {
 	double	res;
 	int		sign;

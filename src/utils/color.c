@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/17 11:45:24 by amitcul           #+#    #+#             */
+/*   Updated: 2023/07/17 11:45:51 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
 /*
  * Tested
  */
-static bool is_valid_color_string(const char *str)
+static bool	is_valid_color_string(const char *str)
 {
 	size_t	i;
 	size_t	commas;
@@ -35,30 +47,32 @@ static bool is_valid_color_string(const char *str)
  * char * in format `255.255.255`, NULL-ended
  * @ Return value:
  * if string isn't in right format returns NULL
- * otherwise return t_color *;
+ * otherwise return (t_color *);
  */
-t_color *new_color_from_string(const char *data)
+t_color	*new_color_from_string(const char *data)
 {
-	char **splitted;
-	t_color *color;
+	char	**splitted;
+	t_color	*color;
 
 	if (is_valid_color_string(data) == false)
 		return (NULL);
 	splitted = ft_split(data, ',');
 	if (!splitted)
 		return (NULL);
-	color = (t_color *) malloc(sizeof(t_color));
+	color = (t_color *)malloc(sizeof(t_color));
 	if (!color)
 		return (ft_free_strings(splitted),
-				handle_error(MEMORY_ERROR, NULL), NULL);
+			handle_error(MEMORY_ERROR, NULL),
+			NULL);
 	if (is_unsigned_char_datatype(splitted) == false)
 		return (ft_free_strings(splitted),
-				handle_error(BAD_VALUE_ERROR, NULL),
-				free_color(color), NULL);
+			handle_error(BAD_VALUE_ERROR, NULL),
+			free_color(color),
+			NULL);
 	color->r = ft_atoi(splitted[0]);
 	color->g = ft_atoi(splitted[1]);
 	color->b = ft_atoi(splitted[2]);
-    ft_free_strings(splitted);
+	ft_free_strings(splitted);
 	return (color);
 }
 
@@ -68,15 +82,17 @@ t_color *new_color_from_string(const char *data)
  * int r, int g, int b => red, green, blue colors value in range [0, 255]
  * @ Return value:
  * if one of param isn't in range [0, 255] return NULL
- * otherwise return t_color *;
+ * otherwise return (t_color *);
  */
-t_color *new_color(const int r, const int g, const int b)
+t_color	*new_color(const int r, const int g, const int b)
 {
+	t_color	*color;
+
 	if (r > 255 || g > 255 || b > 255)
 		return (NULL);
 	if (r < 0 || g < 0 || b < 0)
 		return (NULL);
-	t_color *color = (t_color *) malloc(sizeof(t_color));
+	color = (t_color *)malloc(sizeof(t_color));
 	if (!color)
 		return (NULL);
 	color->r = r;
@@ -92,11 +108,9 @@ void	free_color(t_color *color)
 	free(color);
 }
 
-bool color_compare(t_color *a, t_color *b)
+bool	color_compare(t_color *a, t_color *b)
 {
-    if (a->r == b->r &&
-        a->g == b->g &&
-        a->b == b->b)
-        return (true);
-    return (false);
+	if (a->r == b->r && a->g == b->g && a->b == b->b)
+		return (true);
+	return (false);
 }
