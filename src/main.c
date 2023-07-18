@@ -12,15 +12,14 @@
 
 #include "../includes/minirt.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_scene *scene;
+	t_scene	*scene;
 
-    //	test();
-    if (argc != 2)
-        handle_error(ARGUMENTS_COUNT_ERROR, NULL);
-    scene = parser(argv[1]);
+	//	test();
+	if (argc != 2)
+		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+	scene = parser(argv[1]);
 	free_scene(scene);
-
-    return (0);
+	return (0);
 }
