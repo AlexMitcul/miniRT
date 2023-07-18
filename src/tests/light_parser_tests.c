@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   light_parser_tests.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:08:03 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 11:02:04 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/18 11:07:30 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
+#include "../../includes/minirt.h"
 
 static bool ambient_light_compare(t_ambient_light *a, t_ambient_light *b)
 {
