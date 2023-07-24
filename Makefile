@@ -75,16 +75,17 @@ $(OBJ_DIR):
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
-# $(MAKE) -C $(MINILIBXDIR)
+	$(MAKE) -C $(MINILIBXDIR)
 
 fclean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)
 	$(RM) -R $(OBJ_DIR)
-#$(MAKE) fclean -C $(MINILIBXDIR)
+	$(MAKE) clean -C $(MINILIBXDIR)
 
-clean : clean
+clean :
 	$(MAKE) fclean -C $(LIBDIR)
+	$(MAKE) clean -C $(MINILIBXDIR)
 	$(RM) $(NAME)*
 
 re : fclean
