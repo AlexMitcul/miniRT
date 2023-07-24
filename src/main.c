@@ -15,11 +15,20 @@
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
+	void	*mlx;
+	void	*win;
+	void	*img;
 
 	//	test();
 	if (argc != 2)
 		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+	mlx = mlx_init();
+	win = mlx_new_window(mlx, 1920/2, 1080/2, "miniRT");
+	img = mlx_new_image(mlx, 1920/2, 1080/2);
+	if (!mlx)
+		return (2);
 	scene = parser(argv[1]);
 	free_scene(scene);
+	mlx_loop(mlx);
 	return (0);
 }

@@ -68,7 +68,7 @@ $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	@echo $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) -L./libft -lft -lm -o $@ -fPIE
+	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) libft.a libmlx_Linux.a libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
 
 $(OBJ_DIR):
 	mkdir $@
@@ -76,12 +76,15 @@ $(OBJ_DIR):
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
 	$(MAKE) -C $(MINILIBXDIR)
+	cp $(LIBDIR)/*.a .
+	cp $(MINILIBXDIR)/*.a .
 
 fclean : clean
 	$(MAKE) fclean -C $(LIBDIR)
 	$(RM) $(NAME)
 	$(RM) -R $(OBJ_DIR)
 	$(MAKE) clean -C $(MINILIBXDIR)
+	$(RM) *.a
 
 clean :
 	$(MAKE) fclean -C $(LIBDIR)

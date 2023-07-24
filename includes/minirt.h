@@ -21,6 +21,8 @@
 # include "../libft/includes/libft.h"
 # include "../libft/includes/get_next_line.h"
 
+# include "../minilibx-linux/mlx.h"
+
 # include "vector.h"
 # include "scene.h"
 # include "color.h"
