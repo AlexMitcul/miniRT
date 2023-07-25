@@ -6,26 +6,40 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:44:28 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 12:49:16 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_scene	*new_scene(float width, float height)
+# define WIDTH 1200
+# define HEIGHT 800
+
+t_scene	*new_scene(void)
 {
 	t_scene	*scene;
 
-	scene = (t_scene *)malloc(sizeof(t_scene));
-	scene->width = width;
-	scene->height = height;
-	scene->ambient_light = NULL;
-	scene->light = NULL;
-	scene->camera = NULL;
-	scene->spheres = NULL;
-	scene->planes = NULL;
-	scene->cylinders = NULL;
+	scene = (t_scene *) ft_calloc(1, sizeof(t_scene));
+	if (!scene)
+		return (NULL);
+	scene->window_data = (t_window_data *) ft_calloc(1, sizeof(t_window_data));
+	if (!scene->window_data)
+		return (free_scene(scene), NULL);
+	scene->width = WIDTH;
+	scene->height = HEIGHT;
 	return (scene);
+}
+
+void free_mlx_data(t_scene *scene)
+{
+	mlx_destroy_window(scene->mlx, scene->win);
+	if (scene->window_data)
+	{
+		mlx_destroy_image(scene->mlx, scene->window_data->img);
+		free(scene->window_data);
+	}
+	mlx_destroy_display(scene->mlx);
+	free(scene->mlx);
 }
 
 void	free_scene(t_scene *scene)
@@ -41,5 +55,6 @@ void	free_scene(t_scene *scene)
 	free_sphere_list(scene->spheres);
 	free_plane_list(scene->planes);
 	free_cylinder_list(scene->cylinders);
+	free_mlx_data(scene);
 	free(scene);
 }

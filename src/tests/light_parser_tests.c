@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:08:03 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/18 11:07:30 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 12:38:06 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void test_parse_ambient_light(void)
 	test_index = 0;
 	while (test_index < sizeof(data) / sizeof(char *))
 	{
-		scene = new_scene(0, 0);
+		scene = new_scene();
 		splitted = ft_split(data[test_index], ' ');
 		parse_ambient_light(scene, splitted);
 		if (test_index < 5)
@@ -135,7 +135,7 @@ void test_parse_light(void)
     test_index = 0;
     while (test_index < sizeof(data) / sizeof(char *))
     {
-        scene = new_scene(0, 0);
+        scene = new_scene();
         splitted = ft_split(data[test_index], ' ');
         parse_light(scene, splitted);
         if (test_index < 2)

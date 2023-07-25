@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:55:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:35:27 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 12:31:06 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ t_scene	*parser(const char *filename)
 	int		status;
 	int		fd;
 
-	scene = new_scene(0, 0);
+	scene = new_scene();
 	if (is_valid_file_extension(filename) == false)
 		handle_error(FILE_EXTENSION_ERROR, NULL);
 	fd = open(filename, O_RDONLY);

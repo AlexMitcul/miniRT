@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_parser_tests.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:47:46 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 11:47:46 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 12:38:30 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void test_parse_sphere(void)
     test_index = 0;
     while (test_index < sizeof(data) / sizeof(char *))
     {
-        scene = new_scene(0, 0);
+        scene = new_scene();
         splitted = ft_split(data[test_index], ' ');
         parse_sphere(scene, splitted);
         if (test_index < 3)
