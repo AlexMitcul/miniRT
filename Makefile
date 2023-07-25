@@ -54,7 +54,7 @@ SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
 		sphere_parser_tests.c
 
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
-		ft_count_char.c is_unsigned_char_datatype.c
+		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
 
 OBJ_DIR = ./obj/
 
