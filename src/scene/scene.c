@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 21:28:18 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:04:39 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	free_scene(t_scene *scene)
 	free_sphere_list(scene->spheres);
 	free_plane_list(scene->planes);
 	free_cylinder_list(scene->cylinders);
+	free(scene->background_color);
 	free_mlx_data(scene);
 	free(scene);
 }

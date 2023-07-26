@@ -23,7 +23,7 @@ HEADER += $(INCLUDES)scene.h
 HEADER += $(INCLUDES)color.h
 HEADER += $(INCLUDES)light.h
 HEADER += $(INCLUDES)parser.h
-HEADER += $(INCLUDES)test.h
+HEADER += $(INCLUDES)render.h
 
 vpath %.c src/
 vpath %.c src/parser/

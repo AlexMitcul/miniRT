@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 23:59:11 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:57:29 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_scene
 	float			aspect_ratio;
 	float			viewport_width;
 	float			viewport_height;
+	t_color			*background_color;
 }	t_scene;
 
 t_scene	*new_scene(void);

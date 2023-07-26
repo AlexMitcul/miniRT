@@ -6,18 +6,31 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/26 13:30:07 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:41:31 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	rgb2int(t_color color)
+int	new_image(t_scene *scene)
 {
-	return (color.r << 16 | color.g << 8 | color.b);
+	mlx_destroy_image(scene->mlx, scene->window_data->img);
+	scene->window_data->img = mlx_new_image(scene->mlx, \
+	CANVAS_WIDTH, CANVAS_HEIGHT);
+	if (!scene->window_data->img)
+		return (1);
+	scene->window_data->addr = mlx_get_data_addr(scene->window_data->img, \
+		&scene->window_data->bits_per_pixel, \
+		&scene->window_data->line_length, &scene->window_data->endian);
+	return (0);
 }
 
-void	pixel_put(t_window_data *img, int x, int y, t_color color)
+int	rgb2int(t_color *color)
+{
+	return (color->r << 16 | color->g << 8 | color->b);
+}
+
+void	pixel_put(t_window_data *img, int x, int y, t_color *color)
 {
 	char	*pxl;
 
@@ -31,13 +44,17 @@ t_vector	*canvas_to_viewport(t_scene *scene, int x, int y)
 	t_vector	*v;
 
 	v = new_vector(0, 0, 0);
-	v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH) - scene->camera->viewport_width / 2;
-	v->y = y * (scene->camera->viewport_height / CANVAS_HEIGHT) - scene->camera->viewport_height / 2;
+	v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH) \
+		- scene->camera->viewport_width / 2;
+	v->y = y * (scene->camera->viewport_height / CANVAS_HEIGHT) \
+		- scene->camera->viewport_height / 2;
+	// v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH) - 1;
+	// v->y = y * (scene->camera->viewport_height / CANVAS_HEIGHT) - 1;
 	v->z = DISTANCE_TO_VIEWPORT;
 	return (v);
 }
 
-void	intersect_ray_sphere(t_scene *scene, float *t1, float *t2, t_vector direction)
+void	intersect_ray_sphere(t_scene *scene, t_sphere *sp, float *t1, float *t2, t_vector direction)
 {
 	float		a;
 	float		b;
@@ -47,10 +64,10 @@ void	intersect_ray_sphere(t_scene *scene, float *t1, float *t2, t_vector directi
 
 	*t1 = 0;
 	*t2 = 0;
-	co = vec_substract(scene->camera->origin, scene->spheres->center);
+	co = vec_substract(scene->camera->origin, sp->center);
 	a = vec_product(&direction, &direction);
 	b = 2 * vec_product(co, &direction);
-	c = vec_product(co, co) - scene->spheres->radius * scene->spheres->radius;
+	c = vec_product(co, co) - sp->radius * sp->radius;
 	discr = b * b - 4 * a * c;
 	if (discr < 0)
 		return ;
@@ -58,52 +75,75 @@ void	intersect_ray_sphere(t_scene *scene, float *t1, float *t2, t_vector directi
 	*t2 = (-b - (float)sqrt(discr)) / (2 * a);
 }
 
-t_color	ray_tracer(t_scene *scene, t_vector *direction)
+void	set_sp_closest_intersection(t_sphere *sp, t_sphere **closest_sp, \
+		float t1, float t2, float *closest_t)
 {
-	float	t[2];
-	t_color	color;
-
-	intersect_ray_sphere(scene, &t[0], &t[1], *direction);
-	if (t[0] > DISTANCE_TO_VIEWPORT && t[0] < 10000000)
-		color = *scene->spheres->color;
-	else if (t[1] > DISTANCE_TO_VIEWPORT && t[1] < 10000000 && t[1] < t[0])
+	if (t1 > DISTANCE_TO_VIEWPORT && t1 < MAX_T && t1 < *closest_t)
 	{
-		color.r = 0;
-		color.g = 255;
-		color.b = 0;
+		*closest_t = t1;
+		*closest_sp = sp;
 	}
-	else
+	if (t2 > DISTANCE_TO_VIEWPORT && t2 < MAX_T && t2 < *closest_t)
 	{
-		color.r = 0;
-		color.g = 0;
-		color.b = 0;
+		*closest_t = t2;
+		*closest_sp = sp;
 	}
-	return (color);
 }
+
+t_color	*ray_tracer(t_scene *scene, t_vector *direction)
+{
+	float		t[2];
+	t_sphere	*sp;
+	float		closest_t;
+	t_sphere	*closest_sp;
+
+	sp = scene->spheres;
+	closest_t = MAX_T;
+	closest_sp = NULL;
+	while (sp)
+	{
+		intersect_ray_sphere(scene, sp, &t[0], &t[1], *direction);
+		set_sp_closest_intersection(sp, &closest_sp, t[0], t[1], &closest_t);
+		sp = sp->next;
+	}
+	free(direction); // free direction vector
+	if (!closest_sp)
+		return (scene->background_color);
+	return (closest_sp->color);
+}
+
+// cyllinder
+// plane
+// diffuse light
+// ambient light
+// hard shadows
 
 
 void	render_sphere(t_scene *scene)
 {
-	int x;
-	int y;
-	t_color color;
+	int 		x;
+	int 		y;
 	t_vector	*direction;
-	float	fov;
+	float		fov;
+	t_vector	*viewport_point;
 
-	fov = scene->camera->fov * PI / 180;
-	y = -1;
+	/* move to initialization */
+	fov = scene->camera->fov * PI / 180; // move to initialization
 	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * DISTANCE_TO_VIEWPORT);
+	scene->camera->viewport_width = 2 * (float)atan(fov / 2 * DISTANCE_TO_VIEWPORT);
 	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
+	scene->background_color = new_color(0, 0, 0); // freed in free_scene
+	y = -1;
 	while (++y < CANVAS_HEIGHT)
 	{
 		x = -1;
 		while (++x < CANVAS_WIDTH)
 		{
-			direction = vec_substract(canvas_to_viewport(scene, x, y), scene->camera->origin);
+			viewport_point = canvas_to_viewport(scene, x, y);
+			direction = vec_substract(viewport_point, scene->camera->origin);
+			free(viewport_point);
 			vec_normalize(direction);
-			color = ray_tracer(scene, direction);
-			pixel_put(scene->window_data, x, y, color);
+			pixel_put(scene->window_data, x, y, ray_tracer(scene, direction));
 		}
 	}
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->window_data->img, 0, 0);

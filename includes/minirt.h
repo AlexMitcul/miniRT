@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 01:32:52 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:02:03 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include "../minilibx-linux/mlx.h"
 
 # include "vector.h"
-# include "scene.h"
 # include "color.h"
+# include "scene.h"
 # include "plane.h"
 # include "light.h"
 # include "error.h"
