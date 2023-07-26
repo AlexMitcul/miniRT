@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 12:49:16 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 21:28:18 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1080
 
 t_scene	*new_scene(void)
 {

@@ -32,6 +32,7 @@ vpath %.c src/scene/
 vpath %.c src/utils/
 vpath %.c src/vector/
 vpath %.c src/tests/
+vpath %.c src/render/
 
 
 SRCS += main.c
@@ -56,6 +57,9 @@ SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
 
+# Render
+SRCS += tmp_renderingcircle.c
+
 OBJ_DIR = ./obj/
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRCS))
@@ -68,7 +72,7 @@ $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 
 $(NAME): $(OBJ_DIR) $(OBJS)
 	@echo $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) libft.a libmlx_Linux.a libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
+	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) $(LIB) $(MINILIBXDIR)/libmlx_Linux.a $(MINILIBXDIR)/libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
 
 $(OBJ_DIR):
 	mkdir $@

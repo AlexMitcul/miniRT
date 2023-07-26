@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 13:44:36 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 01:32:52 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "cylinder.h"
 # include "camera.h"
 # include "parser.h"
+# include "render.h"
 
 # include "test.h"
 

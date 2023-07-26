@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.h                                           :+:      :+:    :+:   */
+/*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 16:08:26 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 00:39:43 by amenses-         ###   ########.fr       */
+/*   Created: 2023/07/26 01:30:16 by amenses-          #+#    #+#             */
+/*   Updated: 2023/07/26 13:27:40 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPHERE_H
-# define SPHERE_H
+#ifndef RENDER_H
+# define RENDER_H
 
 # include "minirt.h"
-# include "scene.h"
 
-typedef struct s_sphere
-{
-	t_vector		*center;
-	float			radius;
-	t_color			*color;
-	struct s_sphere	*next;
-}	t_sphere;
+# define PI 		3.14159265358979323846264338
 
-t_sphere	*new_sphere(t_vector *center, float radius, t_color *color);
-void		free_sphere(t_sphere *sphere);
-void		free_sphere_list(t_sphere *head);
-void		sphere_add_to_scene(t_scene *scene, t_sphere *sphere);
+void	render_sphere(t_scene *scene);
 
 #endif

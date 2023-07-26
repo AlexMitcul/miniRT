@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 13:43:51 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 01:29:17 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	main(int argc, char **argv)
 	mlx_hook(scene->win, 2, 1L << 0, close_win, scene);
 	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);
 	// render(scene);
+	render_sphere(scene);
 	mlx_loop(scene->mlx);
 	free_scene(scene);
 	return (0);
