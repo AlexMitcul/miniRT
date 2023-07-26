@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 13:34:42 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 13:51:01 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ static void	move_camera(t_scene *scene, int keycode)
 		I'm not sure about right orientation, but for template is ok
 	*/
 	if (keycode == 119)
-		scene->camera->origin->z -= 1;
+		scene->camera->origin->z -= 0.1;
 	else if (keycode == 115)
-		scene->camera->origin->z += 1;
+		scene->camera->origin->z += 0.1;
 	else if (keycode == 97)
-		scene->camera->origin->x += 1;
+		scene->camera->origin->x += 0.1;
 	else if (keycode == 100)
-		scene->camera->origin->x -= 1;
+		scene->camera->origin->x -= 0.1;
+	render(scene);
 }
 
 int	close_win(int keycode, t_scene *scene)

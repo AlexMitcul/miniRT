@@ -24,6 +24,7 @@ HEADER += $(INCLUDES)color.h
 HEADER += $(INCLUDES)light.h
 HEADER += $(INCLUDES)parser.h
 HEADER += $(INCLUDES)test.h
+HEADER += $(INCLUDES)render.h
 
 vpath %.c src/
 vpath %.c src/parser/
@@ -58,7 +59,7 @@ SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
 
 # Render
-SRCS += tmp_renderingcircle.c
+SRCS += render.c tmp_renderingcircle.c
 
 OBJ_DIR = ./obj/
 
