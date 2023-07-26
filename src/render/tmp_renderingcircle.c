@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/26 16:41:31 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:14:23 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,13 @@ void	intersect_ray_sphere(t_scene *scene, t_sphere *sp, float *t1, float *t2, t_
 	a = vec_product(&direction, &direction);
 	b = 2 * vec_product(co, &direction);
 	c = vec_product(co, co) - sp->radius * sp->radius;
+	free(co);
 	discr = b * b - 4 * a * c;
 	if (discr < 0)
 		return ;
 	*t1 = (-b + (float)sqrt(discr)) / (2 * a);
 	*t2 = (-b - (float)sqrt(discr)) / (2 * a);
+	printf("t1: %f, t2: %f\n", *t1, *t2);
 }
 
 void	set_sp_closest_intersection(t_sphere *sp, t_sphere **closest_sp, \
@@ -124,15 +126,8 @@ void	render_sphere(t_scene *scene)
 	int 		x;
 	int 		y;
 	t_vector	*direction;
-	float		fov;
 	t_vector	*viewport_point;
 
-	/* move to initialization */
-	fov = scene->camera->fov * PI / 180; // move to initialization
-	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	scene->camera->viewport_width = 2 * (float)atan(fov / 2 * DISTANCE_TO_VIEWPORT);
-	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
-	scene->background_color = new_color(0, 0, 0); // freed in free_scene
 	y = -1;
 	while (++y < CANVAS_HEIGHT)
 	{

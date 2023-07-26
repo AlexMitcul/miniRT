@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 13:42:07 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 17:02:38 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	setup_scene(t_scene *scene)
 			&scene->window_data->bits_per_pixel,
 			&scene->window_data->line_length,
 			&scene->window_data->endian);
+	scene->camera->fov *= PI / 180;
+	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
+	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * DISTANCE_TO_VIEWPORT);
+	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
 }
 
 int	main(int argc, char **argv)

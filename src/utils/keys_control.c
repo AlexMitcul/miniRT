@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 13:51:01 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 17:08:30 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,15 @@ static void	move_camera(t_scene *scene, int keycode)
 		I'm not sure about right orientation, but for template is ok
 	*/
 	if (keycode == 119)
-		scene->camera->origin->z -= 0.1;
+		scene->camera->origin->z -= 1;
 	else if (keycode == 115)
 		scene->camera->origin->z += 0.1;
 	else if (keycode == 97)
 		scene->camera->origin->x += 0.1;
 	else if (keycode == 100)
 		scene->camera->origin->x -= 0.1;
+	printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
+	new_image(scene);
 	render(scene);
 }
 

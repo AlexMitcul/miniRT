@@ -6,14 +6,11 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 16:04:39 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:03:05 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-# define WIDTH 1920
-# define HEIGHT 1080
 
 t_scene	*new_scene(void)
 {
@@ -25,8 +22,9 @@ t_scene	*new_scene(void)
 	scene->window_data = (t_window_data *) ft_calloc(1, sizeof(t_window_data));
 	if (!scene->window_data)
 		return (free_scene(scene), NULL);
-	scene->width = WIDTH;
-	scene->height = HEIGHT;
+	scene->width = CANVAS_WIDTH;
+	scene->height = CANVAS_HEIGHT;
+	scene->background_color = new_color(0, 0, 0);
 	return (scene);
 }
 
@@ -55,7 +53,7 @@ void	free_scene(t_scene *scene)
 	free_sphere_list(scene->spheres);
 	free_plane_list(scene->planes);
 	free_cylinder_list(scene->cylinders);
-	free(scene->background_color);
+	free_color(scene->background_color);
 	free_mlx_data(scene);
 	free(scene);
 }
