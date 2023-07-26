@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:20:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 10:48:55 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/25 19:25:44 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_camera
 }				t_camera;
 
 t_camera		*new_camera(t_vector *origin, t_vector *direction, float fov);
-
 void			free_camera(t_camera *camera);
 
 #endif
