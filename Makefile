@@ -1,8 +1,8 @@
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g
-RM		=	rm -f
+CFLAGS	=	-Wall -Wextra -Werror
+RM		=	rm -rf
 
 LIBDIR = ./libft
 LIB = $(LIBDIR)/libft.a
@@ -64,8 +64,7 @@ OBJ_DIR = ./obj/
 
 OBJS = $(patsubst %.c, $(OBJ_DIR)%.o, $(SRCS))
 
-all: $(LIB)
-	$(MAKE) $(NAME)
+all: $(LIB) $(NAME)
 
 $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) -I $(INCLUDES_LIB) -o $@ -fPIE
@@ -97,3 +96,5 @@ clean :
 
 re : fclean
 	$(MAKE)
+
+.PHONY: all clean fclean re
