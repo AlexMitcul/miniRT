@@ -3,19 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:29:05 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/28 03:34:23 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+t_vector	*vec_add(t_vector *a, t_vector *b)
+{
+	t_vector	*result;
+
+	result = new_vector(a->x + b->x, a->y + b->y, a->z + b->z);
+	return (result);
+}
+
 t_vector	*vec_substract(t_vector *a, t_vector *b)
 {
 	t_vector	*result;
 
+	// printf("a->x: %f a->y: %f a->z: %f\n", a->x, a->y, a->z);
+	// printf("b->x: %f b->y: %f b->z: %f\n", b->x, b->y, b->z);
 	result = new_vector(a->x - b->x, a->y - b->y, a->z - b->z);
 	return (result);
 }

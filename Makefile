@@ -1,7 +1,7 @@
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 RM		=	rm -rf
 
 LIBDIR = ./libft
@@ -37,7 +37,7 @@ vpath %.c src/render/
 
 SRCS += main.c
 
-SRCS += error.c color.c
+SRCS += error.c color.c color_operations.c
 SRCS += vector.c vector_operations.c vector_validation.c
 
 # Scene
@@ -58,7 +58,7 @@ SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
 
 # Render
-SRCS += render.c tmp_renderingcircle.c
+SRCS += ray_ops.c render.c tmp_renderingcircle.c
 
 OBJ_DIR = ./obj/
 
