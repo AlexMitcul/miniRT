@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 20:34:21 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/29 00:49:11 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,14 @@ void	setup_scene(t_scene *scene)
 			&scene->window_data->endian);
 	scene->camera->fov *= PI / 180;
 	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * DISTANCE_TO_VIEWPORT);
+	// scene->camera->viewport_width = 2;
+	// scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
+	// scene->focal_length = 1;
+	// scene->focal_length = 1 / tan(scene->camera->fov / 2);
+	scene->focal_length = DISTANCE_TO_VIEWPORT;
+	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * scene->focal_length);
 	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
+	// scene->camera->viewport_width = scene->camera->viewport_width * scene->camera->aspect_ratio;
 }
 
 int	main(int argc, char **argv)

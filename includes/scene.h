@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/28 03:43:14 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/28 23:42:43 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH	1920
-# define CANVAS_HEIGHT	1080
+# define CANVAS_WIDTH	400
+# define CANVAS_HEIGHT	200
 # define DISTANCE_TO_VIEWPORT 1
 
 typedef struct s_camera			t_camera;
@@ -51,6 +51,7 @@ typedef struct s_scene
 	float			viewport_width;
 	float			viewport_height;
 	t_color			*background_color;
+	float			focal_length;
 }	t_scene;
 
 t_scene	*new_scene(void);
