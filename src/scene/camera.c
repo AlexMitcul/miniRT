@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:23:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/23 16:23:50 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/30 01:57:48 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,11 @@ void	free_camera(t_camera *camera)
 		free_vector(camera->origin);
 	if (camera->direction)
 		free_vector(camera->direction);
+	if (camera->f)
+		free_vector(camera->f);
+	if (camera->u)
+		free_vector(camera->u);
+	if (camera->v)
+		free_vector(camera->v);
 	free(camera);
 }

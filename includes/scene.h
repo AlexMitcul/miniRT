@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/28 03:43:14 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:29:20 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH	1920
-# define CANVAS_HEIGHT	1080
+# define CANVAS_WIDTH	400
+# define CANVAS_HEIGHT	200
 # define DISTANCE_TO_VIEWPORT 1
 
 typedef struct s_camera			t_camera;

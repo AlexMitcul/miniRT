@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/28 03:48:47 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:37:15 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,20 @@ t_vector	*canvas_to_viewport(t_scene *scene, int x, int y)
 	t_vector	*v;
 
 	v = new_vector(0, 0, 0);
-	v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH) \
+	/* v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH) \
 		- scene->camera->viewport_width / 2;
 	v->y = y * (scene->camera->viewport_height / CANVAS_HEIGHT) \
-		- scene->camera->viewport_height / 2;
+		- scene->camera->viewport_height / 2; */
+	v->x = x * scene->camera->viewport_width;
+	v->y = y * scene->camera->viewport_height;
+	v->y *= -1;
 	// v->x = x * (scene->camera->viewport_width / CANVAS_WIDTH);
 	// v->y = y * (scene->camera->viewport_height / CANVAS_HEIGHT);
 	v->z = DISTANCE_TO_VIEWPORT;
 	return (v);
 }
 
-void	intersect_sphere(t_sphere *sphere, t_ray *ray, float **t)
+void	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t1, float *t2)
 {
 	t_vector		*co;
 	float			a;
@@ -66,9 +69,9 @@ void	intersect_sphere(t_sphere *sphere, t_ray *ray, float **t)
 
 	// printf("intersect sphere\n");
 	// printf("ray->d: %f %f %f\n", ray->d->x, ray->d->y, ray->d->z);
-	ray->o = new_vector(0, 0, 0);
+	// ray->o = new_vector(0, 0, 0);
 	// printf("ray->o: %f %f %f\n", ray->o->x, ray->o->y, ray->o->z);
-	co = vec_substract(ray->o, sphere->center);
+	co = vec_substract(sphere->center, ray->o);
 	// printf("co: %f %f %f\n", co->x, co->y, co->z);
 	a = vec_product(ray->d, ray->d);
 	b = 2 * vec_product(co, ray->d);
@@ -77,8 +80,8 @@ void	intersect_sphere(t_sphere *sphere, t_ray *ray, float **t)
 	discr = b * b - 4 * a * c;
 	if (discr < 0)
 		return ;
-	*t[0] = (-b + (float)sqrt(discr)) / (2 * a);
-	*t[1] = (-b - (float)sqrt(discr)) / (2 * a);
+	*t1 = (-b + (float)sqrt(discr)) / (2 * a);
+	*t2 = (-b - (float)sqrt(discr)) / (2 * a);
 }
 
 /* void	intersect_ray_sphere(t_scene *scene, t_sphere *sp, float *t1, float *t2, t_vector direction)
@@ -107,21 +110,23 @@ void	intersect_sphere(t_sphere *sphere, t_ray *ray, float **t)
 
 // void	set_sp_closest_intersection(t_sphere *sp, t_sphere **closest_sp, \
 // 		float t1, float t2, float *closest_t)
-void	closest_intersection(t_sphere *sphere, t_ray *ray, float **t, \
+void	closest_intersection(t_sphere *sphere, t_ray *ray, float t[2], \
 				float t_min, float t_max)
 {
 
-	if (*t[0] > t_min && *t[0] < t_max && *t[0] < ray->intersection->t)
+	if (t[0] > t_min && t[0] < t_max && t[0] < ray->intersection->t)
 	{
-		ray->intersection->t = *t[0];
+		ray->intersection->t = t[0];
 		ray->intersection->sp = sphere;
+		ray->intersection->color = sphere->color;
 		// *closest_t = t1;
 		// *closest_sp = sp;
 	}
-	if (*t[1] > t_min && *t[1] < t_max && *t[1] < ray->intersection->t)
+	if (t[1] > t_min && t[1] < t_max && t[1] < ray->intersection->t)
 	{
-		ray->intersection->t = *t[1];
+		ray->intersection->t = t[1];
 		ray->intersection->sp = sphere;
+		ray->intersection->color = sphere->color;
 		// *closest_t = t2;
 		// *closest_sp = sp;
 	}
@@ -188,7 +193,7 @@ float	diffuse_lighting(t_scene *scene, t_ray *ray)
 	float		n_dot_light;
 
 	intensity = scene->ambient_light->lighting;
-	light_ray = new_ray(ray->intersection->p, scene->light->origin);
+	light_ray = new_lightray(ray->intersection->p, scene->light->origin);
 	
 	// light_direction = vec_substract(scene->light->origin, intersection_point);
 	n_dot_light = vec_product(ray->intersection->n, light_ray->d);
@@ -201,7 +206,7 @@ float	diffuse_lighting(t_scene *scene, t_ray *ray)
 		(vec_length(ray->intersection->n) * vec_length(light_ray->d));
 		// printf("intensity: %f\n", intensity);
 	}
-	// free_ray(light_ray);
+	free_ray(light_ray);
 	// free(light_direction);
 	return (intensity / 2);
 }
@@ -218,7 +223,8 @@ t_intersection	*intersection_init(void)
 // t_color	*ray_tracer(t_scene *scene, t_vector *direction)
 t_color	*ray_tracer(t_scene* scene, t_ray *ray)
 {
-	float		*t;
+	// float		*t;
+	float		t[2];
 	t_sphere	*sp;
 	// float		closest_t;
 	// t_sphere	*closest_sp;
@@ -228,24 +234,28 @@ t_color	*ray_tracer(t_scene* scene, t_ray *ray)
 	// t_vector	*t_dot_direction;
 
 	sp = scene->spheres;
-	t = ft_calloc(2, sizeof(float));
+	ft_bzero(t, sizeof(float) * 2);
+	// t = ft_calloc(2, sizeof(float));
 	// closest_t = MAX_T;
 	// closest_sp = NULL;
 	ray->intersection = intersection_init();
 	while (sp)
 	{
-		intersect_sphere(sp, ray, &t);
+		intersect_sphere(sp, ray, &t[0], &t[1]);
+		// intersect_sphere(sp, ray, &t);
 		// intersect_ray_sphere(sp, ray);
 		// intersect_ray_sphere(scene, sp, &t[0], &t[1], *direction);
-		closest_intersection(sp, ray, &t, DISTANCE_TO_VIEWPORT, MAX_T);
+		closest_intersection(sp, ray, t, DISTANCE_TO_VIEWPORT, MAX_T);
 		// set_sp_closest_intersection(sp, &closest_sp, t[0], t[1], &closest_t);
 		sp = sp->next;
 	}
 	// if (!closest_sp)
-	free(t);
+	// free(t);
 	if (ray->intersection->t == MAX_T)
 		return (color_dup(scene->background_color));
-	ray->o = new_vector(0, 0, 0);
+	// printf("t: %f\n", ray->intersection->t);
+	// return (color_dup(scene->spheres->color));
+	// ray->o = new_vector(0, 0, 0);
 	ray->intersection->p = ray_point(ray, ray->intersection->t);
 	ray->intersection->n = vec_substract(ray->intersection->p, \
 		ray->intersection->sp->center);
@@ -270,12 +280,23 @@ t_color	*ray_tracer(t_scene* scene, t_ray *ray)
 // ambient light
 // hard shadows
 
+t_vector	*get_canvas_point(int x, int y)
+{
+	float	cx;
+	float	cy;
+	
+	cx = 2.0f * (float)x / (float)CANVAS_WIDTH - 1.0f;
+	cy = 2.0f * (float)y / (float)CANVAS_HEIGHT - 1.0f;
+	return (new_vector(cx, cy, 0.0f));
+}
+
 void	render_sphere(t_scene *scene)
 {
 	int 		x;
 	int 		y;
 	// t_vector	*direction;
 	t_vector	*viewport_point;
+	t_vector	*canvas_point;
 	t_color		*color;
 	t_ray		*ray;
 
@@ -290,9 +311,13 @@ void	render_sphere(t_scene *scene)
 		// while (++x < CANVAS_WIDTH / 2)
 		while (++x < CANVAS_WIDTH)
 		{
+			canvas_point = get_canvas_point(x, y);
 			viewport_point = canvas_to_viewport(scene, x, y);
 			// printf("x: %d y: %d\n", x, y);
-			ray = new_ray(scene->camera->origin, viewport_point);
+			// printf("canvas_point: %f %f %f\n", canvas_point->x, canvas_point->y, canvas_point->z);
+			// printf("viewport_point: %f %f %f\n", viewport_point->x, viewport_point->y, viewport_point->z);
+			// printf("x: %d y: %d\n", x, y);
+			ray = new_ray(scene->camera->origin, viewport_point, scene->camera);
 			// printf("ray: %f %f %f\n", ray->o->x, ray->o->y, ray->o->z);
 			// printf("ray: %f %f %f\n", ray->d->x, ray->d->y, ray->d->z);
 			// viewport_point = canvas_to_viewport(scene, x, y);
@@ -304,8 +329,9 @@ void	render_sphere(t_scene *scene)
 			
 			// printf("direction: %f %f %f\n", direction->x, direction->y, direction->z);
 			pixel_put(scene->window_data, x, y, color);
-			// free_ray(ray);
+			free_ray(ray);
 			// free(direction); // free direction vector
+			free(canvas_point);
 			free(viewport_point);
 			free(color);
 		}

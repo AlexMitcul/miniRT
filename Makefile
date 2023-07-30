@@ -38,7 +38,8 @@ vpath %.c src/render/
 SRCS += main.c
 
 SRCS += error.c color.c color_operations.c
-SRCS += vector.c vector_operations.c vector_validation.c
+SRCS += vector.c vector_operations.c vector_validation.c \
+		vector_operations_1.c
 
 # Scene
 SRCS += scene.c camera.c light.c

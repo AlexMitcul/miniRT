@@ -6,11 +6,37 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 20:34:21 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/30 02:35:46 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
+
+void	set_camera(t_camera *camera)
+{
+	t_vector	*up_guide;
+
+	up_guide = new_vector(0, 1, 0);
+	camera->fov *= (float)PI / 180 / 2;
+	// camera->fov *= (float)PI / 180;
+	camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
+	camera->viewport_width = (float)tan(camera->fov) * DISTANCE_TO_VIEWPORT;
+	// scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2) * DISTANCE_TO_VIEWPORT;
+	camera->viewport_height = camera->viewport_width * camera->aspect_ratio;
+	camera->f = vec_dup(camera->direction); // free
+	vec_normalize(camera->f);
+	camera->u = vec_cross_product(up_guide, camera->direction);
+	vec_normalize(camera->u);
+	camera->v = vec_cross_product(camera->direction, camera->u);
+	free(up_guide);
+	// printf("camera->fov: %f\n", camera->fov);
+	// printf("camera->aspect_ratio: %f\n", camera->aspect_ratio);
+	// printf("camera->viewport_width: %f\n", camera->viewport_width);
+	// printf("camera->viewport_height: %f\n", camera->viewport_height);
+	// printf("camera->f: %f, %f, %f\n", camera->f->x, camera->f->y, camera->f->z);
+	// printf("camera->u: %f, %f, %f\n", camera->u->x, camera->u->y, camera->u->z);
+	// printf("camera->v: %f, %f, %f\n", camera->v->x, camera->v->y, camera->v->z);
+}
 
 void	setup_scene(t_scene *scene)
 {
@@ -23,10 +49,7 @@ void	setup_scene(t_scene *scene)
 			&scene->window_data->bits_per_pixel,
 			&scene->window_data->line_length,
 			&scene->window_data->endian);
-	scene->camera->fov *= PI / 180;
-	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * DISTANCE_TO_VIEWPORT);
-	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
+	set_camera(scene->camera);
 }
 
 int	main(int argc, char **argv)
