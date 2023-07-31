@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/31 02:17:25 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:51:48 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ float	diffuse_lighting(t_scene *scene, t_ray *ray)
 	// normal_dot_light = vec_product(normal, light_direction);
 	/* if (shadow_check(scene, intersection_point, light_direction)) //
 		return (intensity / 2); // */
+	// printf("len(n)=%f\n", vec_length(ray->intersection->n));
 	if (n_dot_light > 0)
 	{
 		intensity += scene->light->brightness * n_dot_light / \
