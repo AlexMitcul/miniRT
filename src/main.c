@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/30 02:35:46 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:14:35 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	set_camera(t_camera *camera)
 	camera->viewport_width = (float)tan(camera->fov) * DISTANCE_TO_VIEWPORT;
 	// scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2) * DISTANCE_TO_VIEWPORT;
 	camera->viewport_height = camera->viewport_width * camera->aspect_ratio;
-	camera->f = vec_dup(camera->direction); // free
+	// camera->f = vec_dup(camera->direction); // free
+	camera->f = vec_substract(camera->direction, camera->origin); // ?
 	vec_normalize(camera->f);
-	camera->u = vec_cross_product(up_guide, camera->direction);
+	camera->u = vec_cross_product(camera->direction, up_guide);
 	vec_normalize(camera->u);
-	camera->v = vec_cross_product(camera->direction, camera->u);
+	camera->v = vec_cross_product(camera->u, camera->direction);
 	free(up_guide);
 	// printf("camera->fov: %f\n", camera->fov);
 	// printf("camera->aspect_ratio: %f\n", camera->aspect_ratio);

@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:30:16 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/30 02:04:04 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:13:31 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ void		render(t_scene *scene);
 void		render_sphere(t_scene *scene);
 int			new_image(t_scene *scene);
 
-t_ray	*new_lightray(t_vector *origin, t_vector *point);
+// t_ray		*new_lightray(t_vector *origin, t_vector *point);
+t_ray	*light_ray(t_vector *origin, t_vector *point);
 // t_ray		*new_ray(t_vector *origin, t_vector *point);
-t_ray	*new_ray(t_vector *origin, t_vector *point, t_camera *camera);
+// t_ray	*new_ray(t_vector *origin, t_vector *point, t_camera *camera);
+t_ray		*camera_ray(t_camera *camera, t_vector *point);
 t_vector	*ray_point(t_ray *ray, float t);
 void		free_ray(t_ray *ray);
+
+void	setup_scene(t_scene *scene);
 
 #endif

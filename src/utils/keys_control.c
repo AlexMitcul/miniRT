@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/27 01:08:24 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/31 02:17:11 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,17 @@ static void	move_camera(t_scene *scene, int keycode)
 		I'm not sure about right orientation, but for template is ok
 	*/
 	if (keycode == 119)
-		scene->camera->origin->z += 0.01;
+		scene->camera->origin->z += 0.1;
 	else if (keycode == 115)
-		scene->camera->origin->z -= 0.01;
+		scene->camera->origin->z -= 0.1;
 	else if (keycode == 97)
-		scene->camera->origin->x += 0.01;
+		scene->camera->origin->x += 0.1;
 	else if (keycode == 100)
 		scene->camera->origin->x -= 0.1;
 	// printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
 	new_image(scene);
+	// free(scene->camera->f);
+	// scene->camera->f = vec_substract(scene->camera->direction, scene->camera->origin);
 	render(scene);
 }
 
