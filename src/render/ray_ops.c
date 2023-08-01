@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:20:57 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/31 01:13:26 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:19:42 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,31 @@ t_ray	*light_ray(t_vector *origin, t_vector *point)
 	return (ray);
 }
 
+t_vector	*matmul3x1(float m[3][3], t_vector *p)
+{
+	t_vector	*r;
+
+	r = ft_calloc(1, sizeof(t_vector));
+	r->x = p->x * m[0][0] + p->y * m[1][0] + p->z * m[2][0];
+	r->y = p->x * m[0][1] + p->y * m[1][1] + p->z * m[2][1];
+	r->z = p->x * m[0][2] + p->y * m[1][2] + p->z * m[2][2];
+	return (r);
+}
+
+void	cam_matrix(t_camera *camera)
+{
+	camera->matrix[0][0] = camera->u->x;
+	camera->matrix[0][1] = camera->u->y;
+	camera->matrix[0][2] = camera->u->z;
+	camera->matrix[1][0] = camera->v->x;
+	camera->matrix[1][1] = camera->v->y;
+	camera->matrix[1][2] = camera->v->z;
+	camera->matrix[2][0] = camera->f->x;
+	camera->matrix[2][1] = camera->f->y;
+	camera->matrix[2][2] = camera->f->z;
+}
+
+
 t_ray	*camera_ray(t_camera *camera, t_vector *point)
 {
 	t_ray		*ray;
@@ -54,10 +79,14 @@ t_ray	*camera_ray(t_camera *camera, t_vector *point)
 	tmp = vec_add(camera->f, up);
 	// ray->d = vec_add(tmp, right);
 	direction = vec_add(tmp, right);
+	free(tmp);
+	// direction = matmul3x1(camera->matrix, point);
 	// vec_normalize(direction);
 	// vec_normalize(ray->d);
+	// tmp = vec_substract(direction, camera->origin);
 	ray = new_ray(camera->origin, direction);
-	free(tmp);
+	// ray = new_ray(camera->origin, tmp);
+	// free(tmp);
 	free(up);
 	free(right);
 	free(direction);

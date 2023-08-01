@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/31 02:51:48 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 03:36:54 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t1, float *t2)
 	// tmp = new_ray(ray->o, ray->d);
 	
 	co = vec_substract(ray->o, sphere->center);
+	// vec_normalize(ray->d);
 	// co = vec_dup(ray->o);
 	// printf("co: %f %f %f\n", co->x, co->y, co->z);
 	
@@ -295,8 +296,8 @@ t_vector	*get_canvas_point(int x, int y)
 	float	cx;
 	float	cy;
 	
-	cx = 2.0f * (float)x / (float)CANVAS_WIDTH - 1.0f;
-	cy = 2.0f * (float)y / (float)CANVAS_HEIGHT - 1.0f;
+	cx = 2.0f * ((float)x + 0.5) / (float)CANVAS_WIDTH - 1.0f;
+	cy = 2.0f * ((float)y + 0.5) / (float)CANVAS_HEIGHT - 1.0f;
 	cy *= -1;
 	return (new_vector(cx, cy, 0.0f));
 }
