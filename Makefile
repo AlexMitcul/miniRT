@@ -24,6 +24,7 @@ HEADER += $(INCLUDES)color.h
 HEADER += $(INCLUDES)light.h
 HEADER += $(INCLUDES)parser.h
 HEADER += $(INCLUDES)render.h
+HEADER += $(INCLUDES)hooks.h
 
 vpath %.c src/
 vpath %.c src/parser/
@@ -33,6 +34,7 @@ vpath %.c src/utils/
 vpath %.c src/vector/
 vpath %.c src/tests/
 vpath %.c src/render/
+vpath %.c src/hooks/
 
 
 SRCS += main.c
@@ -55,7 +57,9 @@ SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
 		sphere_parser_tests.c
 
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
-		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
+		ft_count_char.c is_unsigned_char_datatype.c
+
+SRCS += keys_control.c menu.c
 
 # Render
 SRCS += render.c tmp_renderingcircle.c

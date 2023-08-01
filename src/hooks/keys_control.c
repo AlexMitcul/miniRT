@@ -6,11 +6,11 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 15:53:15 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/01 16:52:01 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 void	close_app(t_scene *scene)
 {
@@ -19,13 +19,6 @@ void	close_app(t_scene *scene)
 	free_scene(scene);
 	exit(0);
 }
-
-int	close_win_with_cross(void *data)
-{
-	close_app((t_scene *)data);
-	return (0);
-}
-
 /*
 	119	w
 	115	s
@@ -34,6 +27,8 @@ int	close_win_with_cross(void *data)
 
 	113	q
 	101	e
+
+	65293 enter
 */
 static void	move_camera(t_scene *scene, int keycode)
 {
@@ -55,23 +50,38 @@ static void	move_camera(t_scene *scene, int keycode)
 
 int	close_win(int keycode, t_scene *scene)
 {
-	// printf("keycode: %d\n", keycode);
+	printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		close_app(scene);
+	if (keycode == 65293)
+	{
+		if (scene->is_menu_open)
+			; //! free_menu(scene->menu);
+		scene->is_menu_open = !scene->is_menu_open;
+		new_image(scene);
+		render(scene);
+		// printf("is_menu_open: %d\n", scene->is_menu_open);
+	}
 	else
 		move_camera(scene, keycode);
 	/* debug only */
-	if (keycode == 119)
-		printf("w\n");
-	else if (keycode == 115)
-		printf("s\n");
-	else if (keycode == 97)
-		printf("a\n");
-	else if (keycode == 100)
-		printf("d\n");
-	else if (keycode == 113)
-		printf("q\n");
-	else if (keycode == 101)
-		printf("e\n");
+	// if (keycode == 119)
+	// 	printf("w\n");
+	// else if (keycode == 115)
+	// 	printf("s\n");
+	// else if (keycode == 97)
+	// 	printf("a\n");
+	// else if (keycode == 100)
+	// 	printf("d\n");
+	// else if (keycode == 113)
+	// 	printf("q\n");
+	// else if (keycode == 101)
+	// 	printf("e\n");
+	return (0);
+}
+
+int	close_win_with_cross(void *data)
+{
+	close_app((t_scene *)data);
 	return (0);
 }

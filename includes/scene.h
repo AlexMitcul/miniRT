@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 16:58:33 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:44:20 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,23 @@ typedef struct s_cylinder		t_cylinder;
 typedef struct s_ambient_light	t_ambient_light;
 typedef struct s_light			t_light;
 
-typedef struct s_window_data {
+typedef struct s_window_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }	t_window_data;
+
+typedef struct s_menu
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_menu;
 
 typedef struct s_scene
 {
@@ -51,6 +61,9 @@ typedef struct s_scene
 	float			viewport_width;
 	float			viewport_height;
 	t_color			*background_color;
+
+	bool			is_menu_open;
+	t_menu			*menu;
 }	t_scene;
 
 t_scene	*new_scene(void);

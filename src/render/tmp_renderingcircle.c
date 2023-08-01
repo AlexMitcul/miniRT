@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_renderingcircle.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/07/26 17:14:23 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:53:45 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
+void	free_menu(t_scene *scene);
 int	new_image(t_scene *scene)
 {
 	mlx_destroy_image(scene->mlx, scene->window_data->img);
@@ -22,6 +23,7 @@ int	new_image(t_scene *scene)
 	scene->window_data->addr = mlx_get_data_addr(scene->window_data->img, \
 		&scene->window_data->bits_per_pixel, \
 		&scene->window_data->line_length, &scene->window_data->endian);
+	free_menu(scene);
 	return (0);
 }
 
@@ -74,7 +76,7 @@ void	intersect_ray_sphere(t_scene *scene, t_sphere *sp, float *t1, float *t2, t_
 		return ;
 	*t1 = (-b + (float)sqrt(discr)) / (2 * a);
 	*t2 = (-b - (float)sqrt(discr)) / (2 * a);
-	printf("t1: %f, t2: %f\n", *t1, *t2);
+	// printf("t1: %f, t2: %f\n", *t1, *t2);
 }
 
 void	set_sp_closest_intersection(t_sphere *sp, t_sphere **closest_sp, \

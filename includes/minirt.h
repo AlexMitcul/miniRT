@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 16:02:03 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:29:14 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include "camera.h"
 # include "parser.h"
 # include "render.h"
+# include "hooks.h"
 
 # include "test.h"
 
@@ -46,7 +47,6 @@ bool	is_float(const char *str);
 size_t	ft_count_char(const char *str, char c);
 bool	is_unsigned_char_datatype(char **data);
 
-int		close_win(int keycode, t_scene *scene);
-int		close_win_with_cross(void *data);
+int	rgb2int(t_color *color);
 
 #endif

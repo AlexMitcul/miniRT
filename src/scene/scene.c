@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 17:03:05 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:54:20 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,16 @@ void free_mlx_data(t_scene *scene)
 	free(scene->mlx);
 }
 
+void	free_menu(t_scene *scene)
+{
+	if (!scene->menu)
+		return ;
+	if (scene->menu->img)
+		mlx_destroy_image(scene->mlx, scene->menu->img);
+	free(scene->menu);
+	scene->menu = NULL;
+}
+
 void	free_scene(t_scene *scene)
 {
 	if (!scene)
@@ -54,6 +64,7 @@ void	free_scene(t_scene *scene)
 	free_plane_list(scene->planes);
 	free_cylinder_list(scene->cylinders);
 	free_color(scene->background_color);
+	free_menu(scene);
 	free_mlx_data(scene);
 	free(scene);
 }
