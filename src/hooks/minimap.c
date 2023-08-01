@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 13:42:19 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 17:20:14 by amitcul          ###   ########.fr       */
+/*   Created: 2023/08/01 17:28:13 by amitcul           #+#    #+#             */
+/*   Updated: 2023/08/01 17:28:27 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void render(t_scene *scene)
+void	display_minimap(t_scene *scene)
 {
-	render_sphere(scene);
-	if (scene->is_menu_open)
-		render_menu(scene);
+	(void)scene;
 }
