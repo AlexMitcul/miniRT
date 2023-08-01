@@ -6,13 +6,13 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:58:31 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 16:50:31 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/01 17:12:59 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-#define MENU_WIDTH 200
+#define MENU_WIDTH 150
 #define MENU_HEIGHT 1080
 
 void	menu_pixel_put(t_menu *img, int x, int y, t_color *color)
@@ -23,6 +23,15 @@ void	menu_pixel_put(t_menu *img, int x, int y, t_color *color)
 	*(unsigned int *)pxl = rgb2int(color);
 }
 
+void	fill_bg(t_menu *menu)
+{
+	t_color *color = new_color(30, 30, 30);
+	for (int i = 0; i < MENU_WIDTH; i++)
+		for (int j = 0; j < MENU_HEIGHT; j++)
+			menu_pixel_put(menu, i, j, color);
+	free_color(color);
+}
+
 void	render_menu(t_scene *scene)
 {
 	scene->menu = (t_menu *) ft_calloc(1, sizeof(t_menu));
@@ -31,13 +40,9 @@ void	render_menu(t_scene *scene)
 			&scene->menu->bits_per_pixel,
 			&scene->menu->line_length,
 			&scene->menu->endian);
-	t_color *color = new_color(150, 150, 150);
-	if (!scene->menu->img)
-		printf("there is no image");
-	for (int i = 0; i < MENU_HEIGHT; i++)
-		for (int j = 0; j < MENU_WIDTH; j++)
-			menu_pixel_put(scene->menu, i, j, color);
-	free_color(color);
+	fill_bg(scene->menu);
+	display_info(scene);
+	// display_minimap(scene);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->menu->img, 0, 0);
 }
 
