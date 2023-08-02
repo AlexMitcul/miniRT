@@ -6,14 +6,29 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 16:48:53 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/02 19:33:23 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
+void	setup_selected_data(t_scene *scene)
+{
+	t_selected	*selected;
+
+	selected = (t_selected *) malloc(sizeof(t_selected));
+	selected->cylinder_index = 0;
+	selected->plane_index = 0;
+	selected->sphere_index = 0;
+	selected->sphere = scene->spheres;
+	selected->plane = scene->planes;
+	selected->cylinder = scene->cylinders;
+	scene->selected = selected;
+}
+
 void	setup_scene(t_scene *scene)
 {
+	setup_selected_data(scene);
 	scene->mlx = mlx_init();
 	scene->win = mlx_new_window(
 			scene->mlx, scene->width, scene->height, "miniRT");

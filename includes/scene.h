@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 17:24:30 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/02 19:51:17 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,33 @@ typedef struct s_window_data
 	int		endian;
 }	t_window_data;
 
+typedef enum e_selected_type
+{
+	CAMERA,
+	LIGHT,
+	SPHERE,
+	PLANE,
+	CYLINDER,
+}	t_selected_type;
+
 typedef struct s_menu
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
 }	t_menu;
+
+typedef struct s_selected
+{
+	int			sphere_index;
+	t_sphere	*sphere;
+	int			plane_index;
+	t_plane		*plane;
+	int			cylinder_index;
+	t_cylinder	*cylinder;
+}	t_selected;
 
 typedef struct s_scene
 {
@@ -62,11 +81,15 @@ typedef struct s_scene
 	float			viewport_height;
 	t_color			*background_color;
 
+	t_selected		*selected;
+	char			selected_type;
+	int				selected_sphere;
 	bool			is_menu_open;
 	t_menu			*menu;
 }	t_scene;
 
 t_scene	*new_scene(void);
 void	free_scene(t_scene *scene);
+void	free_menu(t_scene *scene);
 
 #endif

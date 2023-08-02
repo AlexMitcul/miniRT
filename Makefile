@@ -1,7 +1,8 @@
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g3
+#-fsanitize=address -g3
 RM		=	rm -rf
 
 LIBDIR = ./libft
@@ -59,7 +60,8 @@ SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c
 
-SRCS += keys_control.c menu.c menu_info.c
+SRCS += keys_control.c menu.c menu_info.c sphere_info.c plane_info.c \
+		cylinder_info.c
 
 # Render
 SRCS += render.c tmp_renderingcircle.c
