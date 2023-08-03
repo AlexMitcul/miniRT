@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 15:11:22 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:31:21 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,29 @@ void	update_selected_element(t_scene *scene, int direction)
 
 int	close_win(int keycode, t_scene *scene)
 {
-	printf("keycode: %d\n", keycode);
-	if (scene->is_menu_open)
-		printf("selected type: %d\n", scene->selected_type);
-	if (keycode == 65307)
-		close_app(scene);
-	if (keycode == 65438)
-	{
-		scene->is_menu_open = !scene->is_menu_open;
-		// new_image(scene);
-		render(scene);
-	}
-	else if (keycode == 65362)
-		update_selected_type(scene, -1);
-	else if (keycode == 65364)
-		update_selected_type(scene, 1);
-	else if (keycode == 65363)
-		update_selected_element(scene, 1);
-	else if (keycode == 65361)
-		update_selected_element(scene, -1);
-	else
-		move_camera(scene, keycode);
+	printf("key = %d\n", keycode);
+	// (void)scene;
+	// return 0;
+	// printf("asdkasda;lsd\n");
+	// printf("keycode: %d\n", keycode);
+	// if (keycode == 65307)
+	// 	close_app(scene);
+	// if (keycode == 65438)
+	// {
+	// 	scene->is_menu_open = !scene->is_menu_open;
+	// 	// new_image(scene);
+	// 	render(scene);
+	// }
+	// else if (keycode == 65362)
+	// 	update_selected_type(scene, -1);
+	// else if (keycode == 65364)
+	// 	update_selected_type(scene, 1);
+	// else if (keycode == 65363)
+	// 	update_selected_element(scene, 1);
+	// else if (keycode == 65361)
+	// 	update_selected_element(scene, -1);
+	// else
+	// 	move_camera(scene, keycode);
 	return (0);
 }
 

@@ -25,6 +25,7 @@ HEADER += $(INCLUDES)light.h
 HEADER += $(INCLUDES)parser.h
 HEADER += $(INCLUDES)render.h
 HEADER += $(INCLUDES)hooks.h
+HEADER += $(INCLUDES)keys.h
 
 vpath %.c src/
 vpath %.c src/parser/
@@ -35,7 +36,6 @@ vpath %.c src/vector/
 vpath %.c src/tests/
 vpath %.c src/render/
 vpath %.c src/hooks/
-
 
 SRCS += main.c
 
