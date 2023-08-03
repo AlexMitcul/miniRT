@@ -39,7 +39,7 @@ vpath %.c src/hooks/
 
 SRCS += main.c
 
-SRCS += error.c color.c
+SRCS += error.c color.c color_operations.c
 SRCS += vector.c vector_operations.c vector_validation.c
 
 # Scene
@@ -63,7 +63,7 @@ SRCS += keys_control.c menu.c menu_info.c sphere_info.c plane_info.c \
 		cylinder_info.c
 
 # Render
-SRCS += render.c tmp_renderingcircle.c
+SRCS += ray_ops.c render.c tmp_renderingcircle.c
 
 OBJ_DIR = ./obj/
 

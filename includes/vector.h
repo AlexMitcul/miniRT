@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:36:02 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:01:10 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/07/26 22:17:42 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ t_vector	*new_vector_from_strings(const char *str);
 t_vector	*parse_vector(const char *str);
 bool		is_vector(const char *data, t_vector_type type);
 void		free_vector(t_vector *vector);
+t_vector	*vec_multiply(float scalar, t_vector *v);
 
+t_vector	*vec_add(t_vector *a, t_vector *b);
 t_vector	*vec_substract(t_vector *a, t_vector *b);
 float		vec_length(t_vector *vector);
 void		vec_normalize(t_vector *vector);
