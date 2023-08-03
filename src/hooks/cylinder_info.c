@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 19:48:13 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 19:51:21 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/02 20:13:28 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	display_cylinder_info(t_scene *scene)
 	char	*to_print;
 
 	mlx_string_put(scene->mlx, scene->win, 10, CYLINDER_OFFSET + 20, 0xffffff,
-		"Plane:");
+		"Cylinder:");
 	mlx_string_put(scene->mlx, scene->win, 10, CYLINDER_OFFSET + 40, 0xffffff,
 		"x       y       z");
 	to_print = get_coordinates(scene->selected->cylinder->center, 2);

@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 16:54:20 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:14:57 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	free_scene(t_scene *scene)
 	free_cylinder_list(scene->cylinders);
 	free_color(scene->background_color);
 	free_menu(scene);
+	free(scene->selected);
 	free_mlx_data(scene);
 	free(scene);
 }

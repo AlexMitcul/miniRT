@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 20:11:19 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:12:55 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ void	close_app(t_scene *scene)
 	exit(0);
 }
 /*
+	up 65431
+	right 65432
+	down 65433
+	left 65430
+
+	+ 65451
+	- 65453
 	119	w
 	115	s
 	97	a
@@ -30,21 +37,26 @@ void	close_app(t_scene *scene)
 
 	65293 enter
 */
+
 static void	move_camera(t_scene *scene, int keycode)
 {
 	/*
 		I'm not sure about right orientation, but for template is ok
 	*/
-	if (keycode == 119)
-		scene->camera->origin->z -= 1;
-	else if (keycode == 115)
+	if (keycode == 65451)
+		scene->camera->origin->z -= 0.1;
+	else if (keycode == 65453)
 		scene->camera->origin->z += 0.1;
-	else if (keycode == 97)
+	else if (keycode == 65432)
 		scene->camera->origin->x += 0.1;
-	else if (keycode == 100)
+	else if (keycode == 65430)
 		scene->camera->origin->x -= 0.1;
-	printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
-	new_image(scene);
+	else if (keycode == 65431)
+		scene->camera->origin->y -= 0.1;
+	else if (keycode == 65433)
+		scene->camera->origin->y += 0.1;
+	// printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
+	// new_image(scene);
 	render(scene);
 }
 
@@ -86,10 +98,10 @@ int	close_win(int keycode, t_scene *scene)
 		printf("selected type: %d\n", scene->selected_type);
 	if (keycode == 65307)
 		close_app(scene);
-	if (keycode == 65293)
+	if (keycode == 65438)
 	{
 		scene->is_menu_open = !scene->is_menu_open;
-		new_image(scene);
+		// new_image(scene);
 		render(scene);
 	}
 	else if (keycode == 65362)
