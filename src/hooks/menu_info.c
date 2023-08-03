@@ -137,24 +137,6 @@ char	*get_color_in_hex_string(t_color *color)
 	return (r);
 }
 
-void	display_light_info(t_scene *scene)
-{
-	char	*to_print;
-
-	mlx_string_put(scene->mlx, scene->win, 10, 100 + 20, 0xffffff,
-		"Light:");
-	mlx_string_put(scene->mlx, scene->win, 10, 100 + 40, 0xffffff,
-		"x       y       z");
-	to_print = get_coordinates(scene->light->origin, 2);
-	mlx_string_put(scene->mlx, scene->win, 10, 100 + 60, 0xffffff,
-		to_print);
-	free(to_print);
-	to_print = get_color_in_hex_string(scene->light->color);
-	mlx_string_put(scene->mlx, scene->win, 10, 100 + 80, rgb2int(scene->light->color),
-		to_print);
-	free(to_print);
-}
-
 void	display_figures_info(t_scene *scene)
 {
 	display_camera_info(scene);
@@ -164,54 +146,29 @@ void	display_figures_info(t_scene *scene)
 	display_cylinder_info(scene);
 }
 
+#define MENU_OFFSET 700
+
 void	display_info(t_scene *scene)
 {
 	display_figures_info(scene);
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 20, 0xffff00,
-		" press ESC:           exit");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 80, 0xffff00,
-		" left mouse button:   rotation");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 100, 0xffff00,
-		" right mouse button:  translation");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 120, 0xffff00,
-		" scroll up/down:      zoom in/out");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 140, 0xffff00,
-		" press C:             change color mode");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 160, 0xffff00,
-		" press H:             help");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 180, 0xffff00,
-		" press I:             isometric mode");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 200, 0xffff00,
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 20, 0xffff00,
+				   " exit        ESQ/window cross");
+  	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 40, 0xffff00,
+					 " press 0:           menu");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 80, 0xffff00,
+				   " change object        left/right arrow");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 100, 0xffff00,
+				   " change object type   up/down arrow");
+  	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 140, 0xffff00,
+					 " == numpad section == ");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 160, 0xffff00,
+				   " change Z coord +/-      2 | 8");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 160, 0xffff00,
+				 " change X coord +/-      6 | 4");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 160, 0xffff00,
+				   " change Y coord +/-      + | -");
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 220, 0xffff00,
 		" press P:             perspective mode");
-	mlx_string_put(scene->mlx, scene->win, 10, 700 + 220, 0xffff00,
+	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 240, 0xffff00,
 		" press S:             depth-shade mode");
 }
-
-/*
-Camera:
-x	y	z
-0.0	0.0	0.0
-0.00 0.01 1.02
-
-Light:
-0x00FF00
-x	y	z
-0.0	0.0	0.0
-
-Plane
-0x00FF00
-x	y	z
-0.0	0.0	0.0
-0.00 0.01 1.02
-
-Sphere
-0x00FF00
-x	y	z
-0.0	0.0	0.0
-
-Cylinder
-0x00FF00
-x	y	z
-0.0	0.0	0.0
-0.00 0.01 1.02
-*/

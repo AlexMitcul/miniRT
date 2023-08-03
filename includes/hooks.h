@@ -23,6 +23,7 @@ int		close_win_with_cross(void *data);
 void	display_spheres_info(t_scene *scene);
 void	display_plane_info(t_scene *scene);
 void	display_cylinder_info(t_scene *scene);
+void	display_light_info(t_scene *scene);
 
 /* utils */
 

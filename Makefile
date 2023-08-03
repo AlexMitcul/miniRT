@@ -1,7 +1,7 @@
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g3 # -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address
 RM		=	rm -rf
 
 LIBDIR = ./libft
@@ -61,7 +61,7 @@ SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c
 
 SRCS += menu.c menu_info.c sphere_info.c plane_info.c \
-		cylinder_info.c
+		cylinder_info.c light_info.c
 
 SRCS += hooks_test.c
 
@@ -78,7 +78,7 @@ $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) -I $(INCLUDES_LIB) -o $@ -fPIE
 
 $(NAME): $(OBJ_DIR) $(OBJS)
-#	@echo $(OBJS)
+	@echo $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) $(LIB) libmlx_Linux.a libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
 
 $(OBJ_DIR):
@@ -86,7 +86,7 @@ $(OBJ_DIR):
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
-	$(MAKE) -C $(MIN?ILIBXDIR)
+	$(MAKE) -C $(MINILIBXDIR)
 	cp $(LIBDIR)/*.a .
 	cp $(MINILIBXDIR)/*.a .
 
