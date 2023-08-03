@@ -40,7 +40,8 @@ vpath %.c src/hooks/
 SRCS += main.c
 
 SRCS += error.c color.c color_operations.c
-SRCS += vector.c vector_operations.c vector_validation.c
+SRCS += vector.c vector_operations.c vector_validation.c \
+		vector_coordinates_update.c
 
 # Scene
 SRCS += scene.c camera.c light.c
@@ -59,8 +60,10 @@ SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c
 
-SRCS += keys_control.c menu.c menu_info.c sphere_info.c plane_info.c \
+SRCS += menu.c menu_info.c sphere_info.c plane_info.c \
 		cylinder_info.c
+
+SRCS += hooks_test.c
 
 # Render
 SRCS += ray_ops.c render.c tmp_renderingcircle.c
@@ -75,15 +78,15 @@ $(OBJS): $(OBJ_DIR)%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -I $(INCLUDES) -I $(INCLUDES_LIB) -o $@ -fPIE
 
 $(NAME): $(OBJ_DIR) $(OBJS)
-	@echo $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) $(LIB) $(MINILIBXDIR)/libmlx_Linux.a $(MINILIBXDIR)/libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
+#	@echo $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -I$(INCLUDES) -I$(INCLUDES_LIB) $(LIB_TERMCAP) $(LIB) libmlx_Linux.a libmlx.a -lXext -lX11 -lm -lz -o $(NAME) -fPIE
 
 $(OBJ_DIR):
 	mkdir $@
 
 $(LIB):
 	$(MAKE) -C $(LIBDIR)
-	$(MAKE) -C $(MINILIBXDIR)
+	$(MAKE) -C $(MIN?ILIBXDIR)
 	cp $(LIBDIR)/*.a .
 	cp $(MINILIBXDIR)/*.a .
 

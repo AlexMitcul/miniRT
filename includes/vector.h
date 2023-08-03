@@ -13,6 +13,8 @@
 #ifndef VECTOR_H
 # define VECTOR_H
 
+#include <stdbool.h>
+
 typedef enum s_vector_type
 {
 	NORMAL,
@@ -41,5 +43,14 @@ float		vec_product(t_vector *a, t_vector *b);
 
 bool		is_valid_vector_string(const char *str);
 bool		vector_compare(t_vector *a, t_vector *b);
+
+typedef enum s_coordinate
+{
+	X,
+	Y,
+	Z
+}	t_coordinate;
+
+void	update(t_vector *vector, t_coordinate coordinate, float by);
 
 #endif

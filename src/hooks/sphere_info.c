@@ -12,7 +12,7 @@
 
 #include "../../includes/minirt.h"
 
-#define SPHERE_OFFSET 300
+#define SPHERE_OFFSET 200
 
 void	display_spheres_info(t_scene *scene)
 {
