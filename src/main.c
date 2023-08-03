@@ -6,12 +6,13 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 03:25:48 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:47:04 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
+// issue with camera orientation 0,1,0
 void	set_camera(t_camera *camera)
 {
 	t_vector	*up_guide;
@@ -26,17 +27,17 @@ void	set_camera(t_camera *camera)
 	camera->f = vec_dup(camera->direction); // free
 	// camera->f = vec_substract(camera->direction, camera->origin); // ?
 	vec_normalize(camera->f);
-	camera->u = vec_cross_product(camera->f, up_guide);
+	camera->u = vec_cross_product(up_guide, camera->f); // m
 	vec_normalize(camera->u);
-	camera->v = vec_cross_product(camera->u, camera->f);
+	camera->v = vec_cross_product(camera->f, camera->u); // m
 	free(up_guide);
 	// printf("camera->fov: %f\n", camera->fov);
 	// printf("camera->aspect_ratio: %f\n", camera->aspect_ratio);
 	// printf("camera->viewport_width: %f\n", camera->viewport_width);
 	// printf("camera->viewport_height: %f\n", camera->viewport_height);
-	// printf("camera->f: %f, %f, %f\n", camera->f->x, camera->f->y, camera->f->z);
-	// printf("camera->u: %f, %f, %f\n", camera->u->x, camera->u->y, camera->u->z);
-	// printf("camera->v: %f, %f, %f\n", camera->v->x, camera->v->y, camera->v->z);
+	printf("camera->f: %f, %f, %f\n", camera->f->x, camera->f->y, camera->f->z);
+	printf("camera->u: %f, %f, %f\n", camera->u->x, camera->u->y, camera->u->z);
+	printf("camera->v: %f, %f, %f\n", camera->v->x, camera->v->y, camera->v->z);
 }
 
 void	setup_scene(t_scene *scene)

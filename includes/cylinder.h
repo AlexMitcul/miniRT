@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:49:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 10:51:04 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 01:41:41 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_cylinder
 	float				radius;
 	float				height;
 	t_color				*color;
+	float				rotation[3][3];
 	struct s_cylinder	*next;
 }						t_cylinder;
 

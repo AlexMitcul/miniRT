@@ -6,11 +6,21 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:20:57 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/01 03:19:42 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/02 01:45:46 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+t_intersection	*intersection_init(void)
+{
+	t_intersection	*intersection;
+
+	intersection = ft_calloc(1, sizeof(t_intersection));
+	// intersection->t = MAX_T;
+	intersection->t = INFINITY;
+	return (intersection);
+}
 
 t_ray	*new_ray(t_vector *point, t_vector *direction)
 {
@@ -18,12 +28,25 @@ t_ray	*new_ray(t_vector *point, t_vector *direction)
 
 	ray = ft_calloc(1, sizeof(t_ray));
 	ray->o = vec_dup(point);
-	vec_normalize(direction);
+	// vec_normalize(direction);
 	ray->d = vec_dup(direction);
+	ray->intersection = intersection_init();
 	return (ray);
 }
 
-t_ray	*light_ray(t_vector *origin, t_vector *point)
+t_ray	*scene_ray(t_vector *origin, t_vector *point)
+{
+	t_ray		*ray;
+	t_vector	*direction;
+
+	// direction = vec_substract(point, origin);
+	direction = vec_substract(origin, point);
+	ray = new_ray(origin, direction);
+	free(direction);
+	return (ray);
+}
+
+/* t_ray	*light_ray(t_vector *origin, t_vector *point)
 {
 	t_ray		*ray;
 	t_vector	*direction;
@@ -32,12 +55,12 @@ t_ray	*light_ray(t_vector *origin, t_vector *point)
 	// ray->o = new_vector(origin->x, origin->y, origin->z); // free needed
 	// ray->d = vec_substract(origin, point);
 	// vec_normalize(ray->d);
-	direction = vec_substract(origin, point);
+	direction = vec_substract(point, origin);
 	ray = new_ray(origin, direction);
 	free(direction);
 	// ray->d = vec_substract(point, origin); // free needed
 	return (ray);
-}
+} */
 
 t_vector	*matmul3x1(float m[3][3], t_vector *p)
 {
@@ -74,6 +97,7 @@ t_ray	*camera_ray(t_camera *camera, t_vector *point)
 
 	// ray = ft_calloc(1, sizeof(t_ray));
 	// ray->o = vec_dup(camera->origin);
+	// right = vec_multiply(point->x, camera->u);
 	right = vec_multiply(point->x, camera->u);
 	up = vec_multiply(point->y, camera->v);
 	tmp = vec_add(camera->f, up);
