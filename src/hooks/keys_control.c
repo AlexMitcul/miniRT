@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:12:55 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:11:22 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,20 @@ void	close_app(t_scene *scene)
 	free_scene(scene);
 	exit(0);
 }
-/*
-	up 65431
-	right 65432
-	down 65433
-	left 65430
-
-	+ 65451
-	- 65453
-	119	w
-	115	s
-	97	a
-	100	d
-
-	113	q
-	101	e
-
-	65293 enter
-*/
 
 static void	move_camera(t_scene *scene, int keycode)
 {
-	/*
-		I'm not sure about right orientation, but for template is ok
-	*/
-	if (keycode == 65451)
+	if (keycode == PLUS)
 		scene->camera->origin->z -= 0.1;
-	else if (keycode == 65453)
+	else if (keycode == MINUS)
 		scene->camera->origin->z += 0.1;
-	else if (keycode == 65432)
+	else if (keycode == RIGHT)
 		scene->camera->origin->x += 0.1;
-	else if (keycode == 65430)
+	else if (keycode == LEFT)
 		scene->camera->origin->x -= 0.1;
-	else if (keycode == 65431)
+	else if (keycode == UP)
 		scene->camera->origin->y -= 0.1;
-	else if (keycode == 65433)
+	else if (keycode == DOWN)
 		scene->camera->origin->y += 0.1;
 	// printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
 	// new_image(scene);
@@ -73,21 +52,20 @@ void	update_selected_type(t_scene *scene, int direction)
 	render(scene);
 }
 
-void	update_lists(t_scene *scene)
-{
-	(void)scene;
-	scene->selected->plane = scene->selected->plane->next;
-}
-
 void	update_selected_element(t_scene *scene, int direction)
 {
-	if (scene->selected_type == 2)
-		scene->selected->cylinder_index += direction;
-	else if (scene->selected_type == 3)
-		scene->selected->plane_index += direction;
-	else if (scene->selected_type == 4)
-		scene->selected->cylinder += direction;
-	update_lists(scene);
+	if (scene->selected_type == SPHERE && direction < 0 && scene->selected->sphere->prev)
+		scene->selected->sphere = scene->selected->sphere->prev;
+	else if (scene->selected_type == SPHERE && direction > 0 && scene->selected->sphere->next)
+		scene->selected->sphere = scene->selected->sphere->next;
+	else if (scene->selected_type == PLANE && direction < 0 && scene->selected->plane->prev)
+		scene->selected->plane = scene->selected->plane->prev;
+	else if (scene->selected_type == PLANE && direction > 0 && scene->selected->plane->next)
+		scene->selected->plane = scene->selected->plane->next;
+	else if (scene->selected_type == CYLINDER && direction < 0 && scene->selected->cylinder->prev)
+		scene->selected->cylinder = scene->selected->cylinder->prev;
+	else if (scene->selected_type == CYLINDER && direction > 0 && scene->selected->cylinder->next)
+		scene->selected->cylinder = scene->selected->cylinder->next;
 	render(scene);
 }
 

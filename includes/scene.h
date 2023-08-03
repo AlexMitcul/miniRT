@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:17:49 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:01:15 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef enum e_selected_type
 	PLANE,
 	CYLINDER,
 }	t_selected_type;
+
+
 
 typedef struct s_menu
 {

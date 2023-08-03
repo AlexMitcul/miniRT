@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:47:46 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 12:38:30 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:57:49 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,21 @@ void test_parse_sphere(void)
                     new_vector(0, 0, 20.6),
                     12.6f / 2,
                     new_color(10, 0, 255),
+                    NULL,
                     NULL
             },
             {
                     new_vector(0, 0, 20),
                     12.0f / 2,
                     new_color(10, 0, 255),
+                    NULL,
                     NULL
             },
             {
                     new_vector(0, 0, 0),
                     12.0f / 2,
                     new_color(10, 0, 255),
+                    NULL,
                     NULL
             },
     };

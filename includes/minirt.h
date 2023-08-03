@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 16:29:14 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:01:38 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # include "parser.h"
 # include "render.h"
 # include "hooks.h"
+
+# include "keys.h"
 
 # include "test.h"
 
