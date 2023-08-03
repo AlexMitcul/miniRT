@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:44:32 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 09:44:35 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:48:46 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,17 @@ t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color)
 	plane->color = color;
 	plane->direction = direction;
 	plane->next = NULL;
+	plane->prev = NULL;
 	return (plane);
 }
 
 void	plane_add_to_scene(t_scene *scene, t_plane *plane)
 {
 	if (scene->planes)
+	{
+		scene->planes->prev = plane;
 		plane->next = scene->planes;
+	}
 	scene->planes = plane;
 }
 

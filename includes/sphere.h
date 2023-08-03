@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:08:26 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 20:21:17 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:46:47 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_sphere
 	float			radius;
 	t_color			*color;
 	struct s_sphere	*next;
+	struct s_sphere	*prev;
 }	t_sphere;
 
 t_sphere	*new_sphere(t_vector *center, float radius, t_color *color);

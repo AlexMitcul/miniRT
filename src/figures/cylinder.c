@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:53:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:30:18 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:49:26 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ t_cylinder	*new_cylinder(t_vector *center, t_vector *axis, float radius,
 	cylinder->height = height;
 	cylinder->color = color;
 	cylinder->next = NULL;
+	cylinder->prev = NULL;
 	return (cylinder);
 }
 
 void	cylinder_add_to_scene(t_scene *scene, t_cylinder *cylinder)
 {
 	if (scene->cylinders)
+	{
+		scene->cylinders->prev = cylinder;
 		cylinder->next = scene->cylinders;
+	}
 	scene->cylinders = cylinder;
 }
 

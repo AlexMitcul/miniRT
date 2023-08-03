@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:54:25 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 10:54:46 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:33:32 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_plane
 	t_vector		*direction;
 	t_color			*color;
 	struct s_plane	*next;
+	struct s_plane	*prev;
 }	t_plane;
 
 t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color);
