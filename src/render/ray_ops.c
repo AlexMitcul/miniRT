@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_ops.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:20:57 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/02 01:45:46 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/04 02:26:41 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,17 @@ t_vector	*ray_point(t_ray *ray, float t)
 	point->x = ray->o->x + t * ray->d->x;
 	point->y = ray->o->y + t * ray->d->y;
 	point->z = ray->o->z + t * ray->d->z;
+	return (point);
+}
+
+t_vector	*vec_point(t_vector *origin, t_vector *directions, float t)
+{
+	t_vector	*point;
+
+	point = new_vector(0, 0, 0);
+	point->x = origin->x + t * directions->x;
+	point->y = origin->y + t * directions->y;
+	point->z = origin->z + t * directions->z;
 	return (point);
 }
 

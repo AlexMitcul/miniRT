@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:30:16 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/02 18:09:24 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/04 02:26:59 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_ray		*new_ray(t_vector *point, t_vector *direction);
 t_ray		*camera_ray(t_camera *camera, t_vector *point);
 t_ray		*scene_ray(t_vector *origin, t_vector *point);
 t_vector	*ray_point(t_ray *ray, float t);
+t_vector	*vec_point(t_vector *origin, t_vector *directions, float t);
 void		free_ray(t_ray *ray);
 
 void	setup_scene(t_scene *scene);

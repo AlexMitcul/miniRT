@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tmp_renderingcircle.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 21:31:07 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/03 02:41:15 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/04 03:53:41 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_vector	*rodrigues_rotation(t_vector *v, t_vector *k, float theta)
+/* t_vector	*rodrigues_rotation(t_vector *v, t_vector *k, float theta)
 {
 	t_vector	*result;
 	t_vector	*cross;
@@ -31,7 +31,7 @@ t_vector	*rodrigues_rotation(t_vector *v, t_vector *k, float theta)
 		vec_product(k, v) * (1 - cos_theta);
 	free(cross);
 	return (result);
-}
+} */
 
 int	new_image(t_scene *scene)
 {
@@ -102,7 +102,7 @@ void	intersect_sphere(t_sphere *sphere, t_ray *ray, float *t1, float *t2)
 	
 	a = vec_product(ray->d, ray->d);
 	b = 2 * vec_product(co, ray->d);
-	c = vec_product(co, co) - sphere->radius * sphere->radius;
+	c = vec_product(co, co) - (float)pow(sphere->radius, 2);
 	free(co);
 	discr = (b * b) - (4 * a * c);
 	if (discr < 0)
@@ -134,31 +134,66 @@ void	intersect_plane(t_plane *plane, t_ray *ray, float *t1, float *t2)
 	free(minus_n);
 }
 
-void	intersect_cylinder(t_cylinder *cylinder, t_ray *ray, float *t1, float *t2) // t3?
+void	cyl_cap(t_cylinder *cyl, t_ray *ray, float *t, int cap)
 {
-	t_vector	*co;
+	t_vector	*cp[2];
+	t_vector	*p;
+	t_vector	*c[2];
+	
+	c[0] = vec_point(cyl->center, cyl->axis, -1.0 * cyl->height / 2);
+	c[1] = vec_point(cyl->center, cyl->axis, cyl->height / 2);
+	p = ray_point(ray, *t);
+	cp[0] = vec_substract(p, c[0]);
+	cp[1] = vec_substract(p, c[1]);
+	// *t *= (vec_product(cp, cyl->axis) == 0);
+	if (cap >= 0 && vec_product(cp[cap], cp[cap]) > (float)pow(cyl->radius, 2))
+		*t = 0;
+	if (cap < 0 && (vec_product(cp[0], cyl->axis) < 0 || \
+		vec_product(cp[1], cyl->axis) > 0))
+		*t = 0;
+	free(c[0]);
+	free(c[1]);
+	free(p);
+	free(cp[0]);
+	free(cp[1]);
+}
+
+void	intersect_cylinder(t_cylinder *cyl, t_ray *ray, float *t1, float *t2, \
+	float *t3, float *t4, float *t5, float *t6) // t3?
+{
 	float		a;
 	float		b;
 	float		c;
 	float		discr;
+	t_plane		*plane;
+	t_vector	*n;
 
-	co = vec_substract(ray->o, cylinder->center);
-	a = vec_product(ray->d, ray->d) - pow(vec_product(ray->d, cylinder->axis), 2);
-	b = 2 * (vec_product(ray->d, co) - vec_product(ray->d, cylinder->axis) * vec_product(co, cylinder->axis));
-	c = vec_product(co, co) - pow(vec_product(co, cylinder->axis), 2) - pow(cylinder->radius, 2);
-	free(co);
+	n = vec_dup(cyl->axis);
+	plane = new_plane(vec_point(cyl->center, cyl->axis, cyl->height / 2), \
+		vec_dup(cyl->axis), color_dup(cyl->color));
+	plane->next = new_plane(vec_point(cyl->center, cyl->axis, -cyl->height / 2), \
+		vec_multiply(-1.0f, n), color_dup(cyl->color)); // inverting vector? does it resolve the double intersection for plane?
+	a = vec_product(ray->d, ray->d) - (float)pow(vec_product(ray->d, cyl->axis), 2);
+	b = 2 * vec_product(ray->o, ray->d) - 2 * vec_product(ray->d, cyl->axis) * \
+		vec_product(ray->o, cyl->axis);
+	c = vec_product(ray->o, ray->o) - (float)pow(vec_product(ray->o, cyl->axis), 2) - \
+		(float)pow(cyl->radius, 2);
 	discr = (b * b) - (4 * a * c);
-	if (discr < 0)
-		return ;
-	*t1 = (-b + (float)sqrt(discr)) / (2 * a);
-	*t2 = (-b - (float)sqrt(discr)) / (2 * a);
-	
-	t_vector	*center;
-	t_vector	*axis;
-	t_vector	*tmp;
-	float		theta;
-
-	
+	if (discr > 0)
+	{
+		*t1 = (-b + (float)sqrt(discr)) / (2 * a);
+		cyl_cap(cyl, ray, t1, -1);
+		*t2 = (-b - (float)sqrt(discr)) / (2 * a);
+		cyl_cap(cyl, ray, t2, -1);
+	}
+	intersect_plane(plane, ray, t3, t4);
+	cyl_cap(cyl, ray, t3, 1);
+	cyl_cap(cyl, ray, t4, 1);
+	intersect_plane(plane->next, ray, t5, t6);
+	cyl_cap(cyl, ray, t5, 0);
+	cyl_cap(cyl, ray, t6, 0);
+	free_plane_list(plane);
+	free_vector(n);
 }
 
 void	sp_closest_intersection(t_sphere *sphere, t_ray *ray, float t[2], \
@@ -170,7 +205,11 @@ void	sp_closest_intersection(t_sphere *sphere, t_ray *ray, float t[2], \
 		ray->intersection->sp = sphere;
 		ray->intersection->type = SPHERE;
 		ray->intersection->color = sphere->color;
+		if (ray->intersection->p)
+			free(ray->intersection->p);
 		ray->intersection->p = ray_point(ray, ray->intersection->t);
+		if (ray->intersection->n)
+			free(ray->intersection->n);
 		ray->intersection->n = vec_substract(ray->intersection->p, \
 		ray->intersection->sp->center);
 		vec_normalize(ray->intersection->n);
@@ -181,7 +220,11 @@ void	sp_closest_intersection(t_sphere *sphere, t_ray *ray, float t[2], \
 		ray->intersection->sp = sphere;
 		ray->intersection->type = SPHERE;
 		ray->intersection->color = sphere->color;
+		if (ray->intersection->p)
+			free(ray->intersection->p);
 		ray->intersection->p = ray_point(ray, ray->intersection->t);
+		if (ray->intersection->n)
+			free(ray->intersection->n);
 		ray->intersection->n = vec_substract(ray->intersection->p, \
 		ray->intersection->sp->center);
 		vec_normalize(ray->intersection->n);
@@ -198,7 +241,11 @@ void	pl_closest_intersection(t_plane *pl, t_ray *ray, float *t, \
 		ray->intersection->pl = pl;
 		ray->intersection->type = PLANE;
 		ray->intersection->color = pl->color;
+		if (ray->intersection->p)
+			free(ray->intersection->p);
 		ray->intersection->p = ray_point(ray, ray->intersection->t);
+		if (ray->intersection->n)
+			free(ray->intersection->n);
 		ray->intersection->n = vec_dup(pl->direction);
 		vec_normalize(ray->intersection->n);
 	}
@@ -208,7 +255,11 @@ void	pl_closest_intersection(t_plane *pl, t_ray *ray, float *t, \
 		ray->intersection->pl = pl;
 		ray->intersection->type = PLANE;
 		ray->intersection->color = pl->color;
+		if (ray->intersection->p)
+			free(ray->intersection->p);
 		ray->intersection->p = ray_point(ray, ray->intersection->t);
+		if (ray->intersection->n)
+			free(ray->intersection->n);
 		ray->intersection->n = vec_dup(pl->direction);
 		vec_normalize(ray->intersection->n);
 	}
@@ -216,7 +267,27 @@ void	pl_closest_intersection(t_plane *pl, t_ray *ray, float *t, \
 
 void	cyl_closest_intersection(t_cylinder *cyl, t_ray *ray, float *t, float t_min, float t_max)
 {
-	if (t[0] > t_min && t[0] < t_max && t[0] < ray->intersection->t)
+	int	i;
+
+	i = -1;
+	while (i++ < 5)
+	{
+		if (t[i] > t_min && t[i] < t_max && t[i] < ray->intersection->t)
+		{
+			ray->intersection->t = t[i];
+			ray->intersection->cyl = cyl;
+			ray->intersection->type = CYLINDER;
+			ray->intersection->color = cyl->color;
+			if (ray->intersection->p)
+				free(ray->intersection->p);
+			ray->intersection->p = ray_point(ray, ray->intersection->t);
+			if (ray->intersection->n)
+				free(ray->intersection->n);
+			ray->intersection->n = vec_substract(ray->intersection->p, cyl->center);
+			vec_normalize(ray->intersection->n);
+		}
+	}
+	/* if (t[0] > t_min && t[0] < t_max && t[0] < ray->intersection->t)
 	{
 		ray->intersection->t = t[0];
 		ray->intersection->cyl = cyl;
@@ -235,7 +306,7 @@ void	cyl_closest_intersection(t_cylinder *cyl, t_ray *ray, float *t, float t_min
 		ray->intersection->p = ray_point(ray, ray->intersection->t);
 		ray->intersection->n = vec_substract(ray->intersection->p, cyl->center);
 		vec_normalize(ray->intersection->n);
-	}
+	} */
 }
 
 int	shadow(t_scene *scene, t_intersection *inter)
@@ -299,14 +370,14 @@ float	diffuse_lighting(t_scene *scene, t_ray *ray)
 
 t_color	*ray_tracer(t_scene* scene, t_ray *ray)
 {
-	float		t[2];
+	float		t[6];
 	t_sphere	*sp;
 	t_plane		*pl;
 	t_cylinder	*cyl;
 	float		lighting;
 
 	sp = scene->spheres;
-	ft_bzero(t, sizeof(float) * 2);
+	ft_bzero(t, sizeof(float) * 6);
 	while (sp)
 	{
 		intersect_sphere(sp, ray, &t[0], &t[1]);
@@ -324,7 +395,8 @@ t_color	*ray_tracer(t_scene* scene, t_ray *ray)
 	cyl = scene->cylinders;
 	while (cyl)
 	{
-		intersect_cylinder(cyl, ray, &t[0], &t[1]);
+		vec_normalize(cyl->axis);
+		intersect_cylinder(cyl, ray, &t[0], &t[1], &t[2], &t[3], &t[4], &t[5]);
 		cyl_closest_intersection(cyl, ray, t, DISTANCE_TO_VIEWPORT, INFINITY);
 		cyl = cyl->next;
 	}
