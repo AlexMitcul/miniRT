@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 22:47:04 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/04 19:43:21 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ void	setup_scene(t_scene *scene)
 			&scene->window_data->line_length,
 			&scene->window_data->endian);
 	set_camera(scene->camera);
+	t_cylinder *cyl = scene->cylinders;
+	while (cyl)
+	{
+		printf("cyl->origin: %f, %f, %f\n", cyl->center->x, cyl->center->y, cyl->center->z);
+		cyl = cyl->next;
+	}
 }
 
 int	main(int argc, char **argv)
