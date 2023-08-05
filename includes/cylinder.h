@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:49:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 01:41:41 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/05 00:10:30 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_cylinder
 	float				radius;
 	float				height;
 	t_color				*color;
-	float				rotation[3][3];
+	t_vector			*c[2];
 	struct s_cylinder	*next;
 }						t_cylinder;
 
