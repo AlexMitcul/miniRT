@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:54:25 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 10:54:46 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:20:36 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_plane
 	t_vector		*origin;
 	t_vector		*direction;
 	t_color			*color;
+	int				is_cylinder_cap;
 	struct s_plane	*next;
 }	t_plane;
 

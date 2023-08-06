@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_parser_tests.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:05:25 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 12:37:29 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:28:42 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void test_parse_plane(void)
                 new_vector(0, 0, -10),
                 new_vector(0, 1,0 ),
                 new_color(0, 0, 255),
+                0,
                 NULL
              },
             {
                 new_vector(0, 0, -10),
                 new_vector(0, -1,0 ),
                 new_color(0, 0, 255),
+                0,
                 NULL
             }
     };

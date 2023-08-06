@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/06 02:43:21 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/06 21:01:33 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	set_camera(t_camera *camera)
 	up_guide = new_vector(0.0f, 1.0f, 0.0f);
 	camera->fov *= (float)PI / 180.0f / 2.0f;
 	camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	camera->viewport_width = (float)tan(camera->fov) * (float)DISTANCE_TO_VIEWPORT;
+	camera->viewport_width = (float)tan(camera->fov) * \
+		(float)DISTANCE_TO_VIEWPORT;
 	camera->viewport_height = camera->viewport_width * camera->aspect_ratio;
 	camera->f = vec_dup(camera->direction);
 	vec_normalize(camera->f);
@@ -52,7 +53,6 @@ int	main(int argc, char **argv)
 {
 	t_scene	*scene;
 
-	//	test();
 	if (argc != 2)
 		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
 	scene = parser(argv[1]);

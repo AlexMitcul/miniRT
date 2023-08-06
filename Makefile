@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/08/06 20:22:36 by amenses-          #+#    #+#              #
+#    Updated: 2023/08/06 20:23:24 by amenses-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	=	miniRT
 
 CC		=	cc
@@ -59,7 +71,8 @@ SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c keys_control.c
 
 # Render
-SRCS += ray_ops.c render.c tmp_renderingcircle.c
+SRCS += interceptor.c interceptor_hit_points.c math_utils.c  picasso.c \
+		picasso_utils.c rays.c ray_tracer.c
 
 OBJ_DIR = ./obj/
 

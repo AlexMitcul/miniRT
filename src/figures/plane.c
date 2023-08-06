@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.c>        +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:44:32 by amitcul           #+#    #+#             */
-/*   Updated: 2023/06/26 09:44:35 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:24:55 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color)
 	plane->origin = origin;
 	plane->color = color;
 	plane->direction = direction;
+	plane->is_cylinder_cap = 0;
 	plane->next = NULL;
 	return (plane);
 }

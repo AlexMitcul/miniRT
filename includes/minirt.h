@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 16:02:03 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:17:08 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,8 @@ bool	is_unsigned_char_datatype(char **data);
 
 int		close_win(int keycode, t_scene *scene);
 int		close_win_with_cross(void *data);
+
+/* math_utils.c */
+float	f_abs(float a);
 
 #endif

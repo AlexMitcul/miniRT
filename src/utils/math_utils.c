@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 13:42:19 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 13:43:42 by amitcul          ###   ########.fr       */
+/*   Created: 2023/08/06 20:02:12 by amenses-          #+#    #+#             */
+/*   Updated: 2023/08/06 20:02:26 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-void render(t_scene *scene)
+float	f_abs(float a)
 {
-	render_sphere(scene);
+	if (a < 0.0f)
+		return (-a);
+	return (a);
 }
