@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:30:16 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/04 02:26:59 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/06 01:57:51 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef enum e_object_type
 {
+	TYPE_NONE,
 	PLANE,
 	SPHERE,
 	CYLINDER,
@@ -29,12 +30,13 @@ typedef struct s_intersection
 {
 	t_vector				*p;
 	t_vector				*n;
-	float					t;
+	float					t[4];
+	float					t0;
 	int						type;
 	t_color					*color;
 	t_sphere				*sp;
 	t_plane					*pl;
-	t_cylinder				*cyl;
+	t_cylinder				*cy;
 }   t_intersection;
 
 typedef struct s_ray
@@ -43,6 +45,22 @@ typedef struct s_ray
 	t_vector		*d;
 	t_intersection	*intersection;
 }   t_ray;
+
+typedef struct s_render
+{
+	t_vector	*viewport_point;
+	t_vector	*canvas_point;
+	t_ray		*ray;
+	t_color		*color;
+}	t_render;
+
+typedef struct s_quadratic
+{
+	float	a;
+	float	b;
+	float	c;
+	float	d;
+}   t_quadratic;
 
 void		render(t_scene *scene);
 void		render_sphere(t_scene *scene);
