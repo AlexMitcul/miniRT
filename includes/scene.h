@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH	400
+# define CANVAS_WIDTH	1920
 # define CANVAS_HEIGHT	1080
 # define DISTANCE_TO_VIEWPORT 1
 
@@ -84,6 +84,8 @@ typedef struct s_scene
 	char			selected_type;
 	bool			is_menu_open;
 	t_menu			*menu;
+
+	bool			is_busy;
 }	t_scene;
 
 t_scene	*new_scene(void);

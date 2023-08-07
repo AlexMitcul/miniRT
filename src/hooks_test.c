@@ -103,6 +103,8 @@ int	close_win_with_cross(void *data)
 
 int	close_win(int keycode, t_scene *scene)
 {
+  if (scene->is_busy)
+	return (0);
   printf("keycode: %d\n", keycode);
   if (keycode == ESC)
 	close_app(scene);

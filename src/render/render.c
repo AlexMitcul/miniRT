@@ -11,11 +11,23 @@
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
+#include <time.h>
 void render(t_scene *scene)
 {
+	clock_t start, end;
+	double cpu_time_used;
+
+	start = clock();
+
+  	scene->is_busy = true;
 	render_sphere(scene);
 	free_menu(scene);
 	if (scene->is_menu_open)
 		render_menu(scene);
+	scene->is_busy = false;
+
+  	end = clock();
+
+	cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+  	printf("Execution time: %f seconds\n", cpu_time_used);
 }

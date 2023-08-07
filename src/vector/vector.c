@@ -16,7 +16,7 @@ t_vector	*new_vector(float x, float y, float z)
 {
 	t_vector	*vector;
 
-	vector = (t_vector *)malloc(sizeof(t_vector));
+	vector = (t_vector *) malloc(sizeof(t_vector));
 	if (!vector)
 		handle_error(MEMORY_ERROR, NULL);
 	vector->x = x;

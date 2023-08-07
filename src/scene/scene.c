@@ -26,6 +26,7 @@ t_scene	*new_scene(void)
 	scene->height = CANVAS_HEIGHT;
 	scene->background_color = new_color(0, 0, 0);
 	scene->selected_type = 0;
+	scene->is_busy = false;
 	return (scene);
 }
 

@@ -45,14 +45,19 @@ int	main(int argc, char **argv)
 {
 	t_scene	*scene;
 
-	if (argc != 2)
-		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
-	scene = parser(argv[1]);
+
+//	if (argc != 2)
+//		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+	(void)argv;
+	(void)argc;
+	char *filename = "maps/subject_map.rt";
+	scene = parser(filename);
+//	scene = parser(argv[1]);
 	if (!scene)
 		return (free_scene(scene), 1);
 	setup_scene(scene);
 	mlx_hook(scene->win, 2, 1L << 0, close_win, scene);
-	// mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);
+ 	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);
 	render(scene);
 	mlx_loop(scene->mlx);
 	free_scene(scene);
