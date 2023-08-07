@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 19:09:10 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:21:33 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ void	vec_normalize(t_vector *v)
 	v->z /= length;
 }
 
-float vec_product(t_vector *a, t_vector *b)
+float	vec_product(t_vector *a, t_vector *b)
 {
-	return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
+	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z));
 }
-
