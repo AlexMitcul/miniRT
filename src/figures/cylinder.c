@@ -6,26 +6,25 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:53:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 19:27:47 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:10:42 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_cylinder	*new_cylinder(t_vector *center, t_vector *axis, float radius,
-		float height, t_color *color)
+t_cylinder	*new_cylinder(t_vector *center, t_vector *axis, float num_data[2],
+	t_color *color)
 {
 	t_cylinder	*cylinder;
 
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
 	cylinder->center = center;
 	cylinder->axis = axis;
-	cylinder->radius = radius;
-	cylinder->height = height;
+	cylinder->radius = num_data[0];
+	cylinder->height = num_data[1];
 	cylinder->color = color;
 	cylinder->cap[0] = NULL;
 	cylinder->cap[1] = NULL;
-	// ft_bzero(cylinder->cap, sizeof(t_plane *) * 2);
 	cylinder->next = NULL;
 	cylinder->prev = NULL;
 	return (cylinder);

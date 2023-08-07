@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:49:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 18:24:14 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:10:25 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_cylinder
 }						t_cylinder;
 
 t_cylinder	*new_cylinder(t_vector *center, t_vector *axis,
-				float radius, float height, t_color *color);
+				float num_data[2], t_color *color);
 void		free_cylinder(t_cylinder *cylinder);
 void		free_cylinder_list(t_cylinder *head);
 void		cylinder_add_to_scene(t_scene *scene,

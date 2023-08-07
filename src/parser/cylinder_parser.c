@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:03:57 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 20:05:46 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:11:16 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	parse_cylinder2(t_scene *scene, char **data, t_cylinder *cylinder,
 	direction = new_vector_from_strings(data[2]);
 	if (!direction)
 		return (free_vector(origin), free_color(color), EXIT_FAILURE);
-	cylinder = new_cylinder(origin, direction, num_data[0], num_data[1], color);
+	cylinder = new_cylinder(origin, direction, num_data, color);
 	if (!cylinder)
 		return (free_color(color), free_vector(direction), free_vector(origin),
 			EXIT_FAILURE);

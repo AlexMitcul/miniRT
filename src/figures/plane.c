@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/07 19:17:47 by amitcul          ###   ########.fr       */
+/*   Created: 2023/08/07 20:09:18 by amitcul           #+#    #+#             */
+/*   Updated: 2023/08/07 20:09:47 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/minirt.h"
 
