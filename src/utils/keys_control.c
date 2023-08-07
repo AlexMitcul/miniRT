@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_control.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 13:43:36 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/04 19:33:29 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:14:00 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,9 @@ void	close_app(t_scene *scene)
 	free_scene(scene);
 	exit(0);
 }
-/*
-	119	w
-	115	s
-	97	a
-	100	d
 
-	113	q
-	101	e
-*/
 static void	move_camera(t_scene *scene, int keycode)
 {
-	/*
-		I'm not sure about right orientation, but for template is ok
-	*/
 	if (keycode == 119)
 		scene->camera->origin->z += 0.2;
 	else if (keycode == 115)
@@ -41,33 +30,16 @@ static void	move_camera(t_scene *scene, int keycode)
 		scene->camera->origin->x -= 0.2;
 	else if (keycode == 100)
 		scene->camera->origin->x += 0.2;
-	// printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
 	new_image(scene);
-	// free(scene->camera->f);
-	// scene->camera->f = vec_substract(scene->camera->direction, scene->camera->origin);
 	render(scene);
 }
 
 int	close_win(int keycode, t_scene *scene)
 {
-	// printf("keycode: %d\n", keycode);
 	if (keycode == 65307)
 		close_app(scene);
 	else
 		move_camera(scene, keycode);
-	/* debug only */
-	if (keycode == 119)
-		printf("w\n");
-	else if (keycode == 115)
-		printf("s\n");
-	else if (keycode == 97)
-		printf("a\n");
-	else if (keycode == 100)
-		printf("d\n");
-	else if (keycode == 113)
-		printf("q\n");
-	else if (keycode == 101)
-		printf("e\n");
 	return (0);
 }
 
