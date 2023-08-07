@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:48:00 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/07 19:26:07 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:13:01 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,12 @@ static void	pixel_put(t_window_data *img, int x, int y, t_color *color)
 	*(unsigned int *)pxl = rgb2int(color);
 }
 
-#include <time.h>
-
 void	render(t_scene *scene)
 {
 	int			x;
 	int			y;
 	t_render	*render;
 
-	clock_t start_time = clock();
-
-	// free_cylinder_caps(scene->cylinders);
 	set_cylinder_caps(scene->cylinders);
 	y = -1;
 	while (++y < CANVAS_HEIGHT)
@@ -59,7 +54,4 @@ void	render(t_scene *scene)
 	}
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->window_data->img, \
 		0, 0);
-    clock_t end_time = clock();
-	double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-    printf("Time taken by the function: %f seconds\n", elapsed_time);
 }
