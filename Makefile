@@ -1,19 +1,8 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Makefile                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 20:22:36 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/07 18:22:44 by amitcul          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -pg# -g3 #-fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -O3 -g# -fsanitize=address
 RM		=	rm -rf
 
 LIBDIR = ./libft
@@ -45,7 +34,6 @@ vpath %.c src/figures/
 vpath %.c src/scene/
 vpath %.c src/utils/
 vpath %.c src/vector/
-vpath %.c src/tests/
 vpath %.c src/render/
 vpath %.c src/hooks/
 
@@ -63,11 +51,7 @@ SRCS += sphere.c plane.c cylinder.c
 
 # Parser
 SRCS += parser.c camera_parser.c light_parser.c cylinder_parser.c \
-		plane_parser.c sphere_parser.c plane_parser_tests.c
-
-# Tests
-SRCS += parser_tests.c color_tests.c test.c light_parser_tests.c \
-		sphere_parser_tests.c
+		plane_parser.c sphere_parser.c
 
 SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 		ft_count_char.c is_unsigned_char_datatype.c

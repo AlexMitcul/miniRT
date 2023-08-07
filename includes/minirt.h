@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 18:24:37 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:35:00 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 # include "keys.h"
 
-# include "test.h"
+// # include "test.h"
 
 float	ft_atof(const char *str);
 void	ft_free_strings(char **array);

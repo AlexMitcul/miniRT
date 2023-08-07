@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/07 18:25:59 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 19:16:26 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH			500
-# define CANVAS_HEIGHT			500
+# define CANVAS_WIDTH			10
+# define CANVAS_HEIGHT			1080
 # define DISTANCE_TO_VIEWPORT	1
 
 typedef struct s_camera			t_camera;
@@ -85,8 +85,6 @@ typedef struct s_scene
 	char			selected_type;
 	bool			is_menu_open;
 	t_menu			*menu;
-
-	bool			is_busy;
 }	t_scene;
 
 t_scene	*new_scene(void);

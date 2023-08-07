@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:07:56 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/06 20:48:05 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:16:14 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static t_intersection	*intersection_init(void)
 {
 	t_intersection	*intersection;
 
-	intersection = ft_calloc(1, sizeof(t_intersection));
+	// intersection = ft_calloc(1, sizeof(t_intersection));
+	intersection = malloc(sizeof(t_intersection));
+	ft_memset(intersection, 0, sizeof(t_intersection)); // !
 	intersection->t0 = INFINITY;
 	return (intersection);
 }
@@ -25,7 +27,8 @@ static t_ray	*new_ray(t_vector *point, t_vector *direction)
 {
 	t_ray	*ray;
 
-	ray = ft_calloc(1, sizeof(t_ray));
+	// ray = ft_calloc(1, sizeof(t_ray));
+	ray = malloc(sizeof(t_ray));
 	ray->o = vec_dup(point);
 	ray->d = vec_dup(direction);
 	ray->intersection = intersection_init();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 01:30:16 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/06 20:52:10 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:32:37 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 typedef enum e_object_type
 {
 	TYPE_NONE,
-	PLANE,
-	SPHERE,
-	CYLINDER,
+	TYPE_PLANE,
+	TYPE_SPHERE,
+	TYPE_CYLINDER,
 }	e_object_type;
 
 typedef struct s_intersection
@@ -66,7 +66,7 @@ typedef struct s_quadratic
 
 /* interceptor.c */
 int	intersect_object(void *object, t_ray *ray, int type);
-	
+
 /* interceptor_hit_points.c */
 int		hit_sphere(t_sphere *sphere, t_ray *ray);
 int		hit_plane(t_plane *plane, t_ray *ray);

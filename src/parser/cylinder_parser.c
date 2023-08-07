@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:03:57 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:34:01 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:05:46 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,14 @@ static bool	validate_cylinder_string(char **data)
  	* return EXIT_SUCCESS if all passed good,
  	* EXIT_FAILED otherwise
  */
-int	parse_cylinder(t_scene *scene, char **data)
+
+static int	parse_cylinder2(t_scene *scene, char **data, t_cylinder *cylinder,
+	float num_data[2])
 {
-	t_cylinder	*cylinder;
 	t_vector	*origin;
 	t_vector	*direction;
-	float		radius;
-	float		height;
 	t_color		*color;
 
-	if (validate_cylinder_string(data) == false)
-		return (EXIT_FAILURE);
-	radius = ft_atof(data[3]);
-	height = ft_atof(data[4]);
-	if (radius == 0 || height == 0)
-		return (EXIT_FAILURE);
-	radius /= 2;
 	color = new_color_from_string(data[5]);
 	if (!color)
 		return (EXIT_FAILURE);
@@ -63,10 +55,26 @@ int	parse_cylinder(t_scene *scene, char **data)
 	direction = new_vector_from_strings(data[2]);
 	if (!direction)
 		return (free_vector(origin), free_color(color), EXIT_FAILURE);
-	cylinder = new_cylinder(origin, direction, radius, height, color);
+	cylinder = new_cylinder(origin, direction, num_data[0], num_data[1], color);
 	if (!cylinder)
 		return (free_color(color), free_vector(direction), free_vector(origin),
 			EXIT_FAILURE);
 	cylinder_add_to_scene(scene, cylinder);
 	return (EXIT_SUCCESS);
+}
+
+int	parse_cylinder(t_scene *scene, char **data)
+{
+	t_cylinder	*cylinder;
+	float		num_data[2];
+
+	cylinder = NULL;
+	if (validate_cylinder_string(data) == false)
+		return (EXIT_FAILURE);
+	num_data[0] = ft_atof(data[3]);
+	num_data[1] = ft_atof(data[4]);
+	if (num_data[0] == 0 || num_data[1] == 0)
+		return (EXIT_FAILURE);
+	num_data[0] /= 2;
+	return (parse_cylinder2(scene, data, cylinder, num_data));
 }

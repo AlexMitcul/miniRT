@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/30 01:02:24 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:09:10 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ void	vec_normalize(t_vector *v)
 	v->z /= length;
 }
 
-float	vec_product(t_vector *a, t_vector *b)
+float vec_product(t_vector *a, t_vector *b)
 {
-	float	result;
-
-	result = (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
-	return (result);
+	return (a->x * b->x) + (a->y * b->y) + (a->z * b->z);
 }
+

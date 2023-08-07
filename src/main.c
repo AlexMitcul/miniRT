@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 18:26:41 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 19:59:44 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	set_camera(t_camera *camera)
 
 void	setup_scene(t_scene *scene)
 {
-	setup_selected_data(scene);
 	scene->mlx = mlx_init();
 	scene->win = mlx_new_window(
 			scene->mlx, scene->width, scene->height, "miniRT");
@@ -61,7 +60,7 @@ int	main(int argc, char **argv)
 		return (free_scene(scene), 1);
 	setup_scene(scene);
 	mlx_hook(scene->win, 2, 1L << 0, close_win, scene);
- 	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);
+	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);
 	render(scene);
 	mlx_loop(scene->mlx);
 	free_scene(scene);

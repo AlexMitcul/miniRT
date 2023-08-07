@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 19:41:29 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 19:47:53 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:49:32 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	display_plane_info(t_scene *scene)
 {
 	char	*to_print;
 
+	if (!scene->planes || !scene->selected->plane)
+		return ;
 	mlx_string_put(scene->mlx, scene->win, 10, PLANE_OFFSET + 20, 0xffffff,
 		"Plane:");
 	mlx_string_put(scene->mlx, scene->win, 10, PLANE_OFFSET + 40, 0xffffff,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interceptor_hit_points.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 19:35:59 by amenses-          #+#    #+#             */
-/*   Updated: 2023/08/06 20:36:57 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:27:27 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,10 @@ void	set_cylinder_caps(t_cylinder *cylinders)
 	cy = cylinders;
 	while (cy)
 	{
+		if (cy->cap[0])
+			free_plane(cy->cap[0]);
+		if (cy->cap[1])
+			free_plane(cy->cap[1]);
 		vec_normalize(cy->axis);
 		cap_point[0] = vec_point(cy->center, cy->axis, \
 			-1.0f * cy->height / 2.0f);

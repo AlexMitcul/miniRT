@@ -50,19 +50,12 @@ void	move_camera(t_scene *scene, int keycode)
 //  scene->camera->origin->z += 0.1;
   else if (keycode == RIGHT)
 	update(scene->camera->origin, X, 0.1);
-//	scene->camera->origin->x += 0.1;
   else if (keycode == LEFT)
 	update(scene->camera->origin, X, -0.1);
-//	scene->camera->origin->x -= 0.1;
   else if (keycode == UP)
 	update(scene->camera->origin, Y, -0.1);
-//	scene->camera->origin->y -= 0.1;
   else if (keycode == DOWN)
 	update(scene->camera->origin, Y, 0.1);
-//	scene->camera->origin->y += 0.1;
-  // printf("camera origin: %f %f %f\n", scene->camera->origin->x, scene->camera->origin->y, scene->camera->origin->z);
-  // new_image(scene);
-//  render(scene);
 }
 
 void	update_selected_type(t_scene *scene, int direction)
@@ -103,15 +96,12 @@ int	close_win_with_cross(void *data)
 
 int	close_win(int keycode, t_scene *scene)
 {
-  if (scene->is_busy)
-	return (0);
   printf("keycode: %d\n", keycode);
   if (keycode == ESC)
 	close_app(scene);
   if (keycode == ZERO)
   {
 	scene->is_menu_open = !scene->is_menu_open;
-	// new_image(scene);
 	render(scene);
   }
   else if (keycode == UP_ARROW)

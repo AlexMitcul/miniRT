@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 19:34:19 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 19:41:16 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:54:14 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	display_spheres_info(t_scene *scene)
 {
 	char	*to_print;
 
+	if (!scene->spheres)
+		return ;
 	mlx_string_put(scene->mlx, scene->win, 10, SPHERE_OFFSET + 20, 0xffffff,
 		"Sphere:");
 	mlx_string_put(scene->mlx, scene->win, 10, SPHERE_OFFSET + 40, 0xffffff,

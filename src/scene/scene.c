@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 18:28:51 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 19:07:46 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@ t_scene	*new_scene(void)
 	scene = (t_scene *) ft_calloc(1, sizeof(t_scene));
 	if (!scene)
 		return (NULL);
-	scene->window_data = (t_window_data *) ft_calloc(1, sizeof(t_window_data));
+	scene->window_data = malloc(sizeof(t_window_data));
+	// scene->window_data = (t_window_data *) ft_calloc(1, sizeof(t_window_data));
 	if (!scene->window_data)
 		return (free_scene(scene), NULL);
 	scene->width = CANVAS_WIDTH;
 	scene->height = CANVAS_HEIGHT;
 	scene->background_color = new_color(0, 0, 0);
 	scene->selected_type = 0;
+	scene->selected = NULL;
+	scene->spheres = NULL;
+	scene->planes = NULL;
+	scene->cylinders = NULL;
 	return (scene);
 }
 
