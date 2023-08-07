@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 15:58:31 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 19:46:39 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:23:06 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,4 @@ void	render_menu(t_scene *scene)
 			&scene->menu->endian);
 	fill_bg(scene);
 	mlx_put_image_to_window(scene->mlx, scene->win, scene->menu->img, 0, 0);
-	display_info(scene);
-	// display_minimap(scene);
 }

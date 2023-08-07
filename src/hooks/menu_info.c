@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 17:13:29 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/02 19:51:39 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:24:36 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,6 @@ char	*get_coordinates(t_vector *vector, int precision)
 	return (tmp2);
 }
 
-void	display_camera_info(t_scene *scene)
-{
-	char	*to_print;
-
-	mlx_string_put(scene->mlx, scene->win, 10, 20, 0xffffff,
-		"Camera:");
-	mlx_string_put(scene->mlx, scene->win, 10, 40, 0xffffff,
-		"x       y       z");
-	to_print = get_coordinates(scene->camera->origin, 2);
-	mlx_string_put(scene->mlx, scene->win, 10, 60, 0xffffff,
-		to_print);
-	free(to_print);
-	to_print = get_coordinates(scene->camera->direction, 3);
-	mlx_string_put(scene->mlx, scene->win, 10, 80, 0xffffff,
-		to_print);
-	free(to_print);
-}
-
 char	*ft_itoa_base(int n, int base)
 {
 	char	*str;
@@ -91,8 +73,12 @@ char	*ft_itoa_base(int n, int base)
 	hex = "0123456789abcdef";
 	len = 1;
 	i = n;
-	while (i /= base)
+	i /= base;
+	while (i)
+	{
 		len++;
+		i /= base;
+	}
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	str[len] = '\0';
 	while (len--)
@@ -137,6 +123,8 @@ char	*get_color_in_hex_string(t_color *color)
 	return (r);
 }
 
+/*
+
 void	display_figures_info(t_scene *scene)
 {
 	display_camera_info(scene);
@@ -172,3 +160,5 @@ void	display_info(t_scene *scene)
 	mlx_string_put(scene->mlx, scene->win, 10, MENU_OFFSET + 240, 0xffff00,
 		" press S:             depth-shade mode");
 }
+
+*/

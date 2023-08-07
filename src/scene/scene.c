@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 19:07:46 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:22:06 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_scene	*new_scene(void)
 	if (!scene)
 		return (NULL);
 	scene->window_data = malloc(sizeof(t_window_data));
-	// scene->window_data = (t_window_data *) ft_calloc(1, sizeof(t_window_data));
 	if (!scene->window_data)
 		return (free_scene(scene), NULL);
 	scene->width = CANVAS_WIDTH;
@@ -34,7 +33,7 @@ t_scene	*new_scene(void)
 	return (scene);
 }
 
-void free_mlx_data(t_scene *scene)
+void	free_mlx_data(t_scene *scene)
 {
 	mlx_destroy_window(scene->mlx, scene->win);
 	if (scene->window_data)

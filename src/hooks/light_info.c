@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_info.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/07 20:23:19 by amitcul           #+#    #+#             */
+/*   Updated: 2023/08/07 20:23:25 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/minirt.h"
 
+/*
 void	display_light_info(t_scene *scene)
 {
   char	*to_print;
@@ -13,7 +26,9 @@ void	display_light_info(t_scene *scene)
 				 to_print);
   free(to_print);
   to_print = get_color_in_hex_string(scene->light->color);
-  mlx_string_put(scene->mlx, scene->win, 10, 100 + 80, rgb2int(scene->light->color),
+  mlx_string_put(scene->mlx, scene->win, 10, 100 + 80,
+    rgb2int(scene->light->color),
 				 to_print);
   free(to_print);
 }
+*/
