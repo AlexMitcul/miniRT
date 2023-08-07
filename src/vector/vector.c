@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:35:55 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/28 03:34:19 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:16:38 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_vector	*new_vector(float x, float y, float z)
 	vector->x = x;
 	vector->y = y;
 	vector->z = z;
-	// printf("new_vector: %f, %f, %f\n", vector->x, vector->y, vector->z);
 	return (vector);
 }
 
@@ -67,12 +66,4 @@ void	free_vector(t_vector *vector)
 {
 	if (vector)
 		free(vector);
-}
-
-t_vector	*vec_multiply(float scalar, t_vector *v)
-{
-	t_vector	*result;
-
-	result = new_vector(v->x * scalar, v->y * scalar, v->z * scalar);
-	return (result);
 }

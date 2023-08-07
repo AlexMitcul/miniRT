@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 10:49:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:49:08 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:22:57 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_cylinder
 	float				radius;
 	float				height;
 	t_color				*color;
+	t_plane				*cap[2];
 	struct s_cylinder	*next;
 	struct s_cylinder	*prev;
 }						t_cylinder;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Makefile                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/06 20:22:36 by amenses-          #+#    #+#             */
+/*   Updated: 2023/08/07 18:22:44 by amitcul          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 NAME	=	miniRT
 
 CC		=	cc
@@ -41,7 +53,7 @@ SRCS += main.c
 
 SRCS += error.c color.c color_operations.c
 SRCS += vector.c vector_operations.c vector_validation.c \
-		vector_coordinates_update.c
+		vector_coordinates_update.c vector_operations_1.c
 
 # Scene
 SRCS += scene.c camera.c light.c
@@ -66,7 +78,8 @@ SRCS += menu.c menu_info.c sphere_info.c plane_info.c \
 SRCS += hooks_test.c
 
 # Render
-SRCS += ray_ops.c render.c tmp_renderingcircle.c
+SRCS += interceptor.c interceptor_hit_points.c math_utils.c  picasso.c \
+		picasso_utils.c rays.c ray_tracer.c
 
 OBJ_DIR = ./obj/
 

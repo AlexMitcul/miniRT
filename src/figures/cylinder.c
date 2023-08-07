@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:53:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:49:26 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:27:24 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cylinder	*new_cylinder(t_vector *center, t_vector *axis, float radius,
 	cylinder->radius = radius;
 	cylinder->height = height;
 	cylinder->color = color;
+	ft_bzero(cylinder->cap, sizeof(t_plane *) * 2);
 	cylinder->next = NULL;
 	cylinder->prev = NULL;
 	return (cylinder);
@@ -48,6 +49,10 @@ void	free_cylinder(t_cylinder *cylinder)
 		free_vector(cylinder->axis);
 	if (cylinder->color)
 		free_color(cylinder->color);
+	if (cylinder->cap[0])
+		free_plane(cylinder->cap[0]);
+	if (cylinder->cap[1])
+		free_plane(cylinder->cap[1]);
 	free(cylinder);
 }
 

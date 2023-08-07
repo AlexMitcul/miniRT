@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:05:25 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:57:30 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:29:10 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void test_parse_plane(void)
                 new_vector(0, 0, -10),
                 new_vector(0, 1,0 ),
                 new_color(0, 0, 255),
-                NULL,
+                0,
                 NULL
              },
             {
                 new_vector(0, 0, -10),
                 new_vector(0, -1,0 ),
                 new_color(0, 0, 255),
-                NULL,
+                0,
                 NULL
             }
     };

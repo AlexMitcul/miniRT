@@ -5,19 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 16:27:17 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 15:22:59 by amitcul          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/07 18:25:59 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef SCENE_H
 # define SCENE_H
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH	1920
-# define CANVAS_HEIGHT	1080
-# define DISTANCE_TO_VIEWPORT 1
+# define CANVAS_WIDTH			500
+# define CANVAS_HEIGHT			500
+# define DISTANCE_TO_VIEWPORT	1
 
 typedef struct s_camera			t_camera;
 typedef struct s_sphere			t_sphere;

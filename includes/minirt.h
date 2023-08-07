@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 15:01:38 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:24:37 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ bool	is_float(const char *str);
 size_t	ft_count_char(const char *str, char c);
 bool	is_unsigned_char_datatype(char **data);
 
+int		close_win(int keycode, t_scene *scene);
+int		close_win_with_cross(void *data);
+
+/* math_utils.c */
+float	f_abs(float a);
 int	rgb2int(t_color *color);
 
 #endif

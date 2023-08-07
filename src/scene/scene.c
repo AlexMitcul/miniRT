@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:47:05 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:14:57 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:28:51 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_scene	*new_scene(void)
 	scene->height = CANVAS_HEIGHT;
 	scene->background_color = new_color(0, 0, 0);
 	scene->selected_type = 0;
-	scene->is_busy = false;
 	return (scene);
 }
 

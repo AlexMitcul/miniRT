@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 09:44:32 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:48:46 by amitcul          ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/08/07 18:27:56 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/minirt.h"
 
@@ -22,6 +23,7 @@ t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color)
 	plane->origin = origin;
 	plane->color = color;
 	plane->direction = direction;
+	plane->is_cylinder_cap = 0;
 	plane->next = NULL;
 	plane->prev = NULL;
 	return (plane);

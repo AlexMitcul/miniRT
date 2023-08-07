@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/28 03:34:23 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/07/30 01:02:24 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ t_vector	*vec_substract(t_vector *a, t_vector *b)
 {
 	t_vector	*result;
 
-	// printf("a->x: %f a->y: %f a->z: %f\n", a->x, a->y, a->z);
-	// printf("b->x: %f b->y: %f b->z: %f\n", b->x, b->y, b->z);
 	result = new_vector(a->x - b->x, a->y - b->y, a->z - b->z);
 	return (result);
 }

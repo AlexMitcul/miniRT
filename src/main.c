@@ -6,21 +6,33 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 15:23:50 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 18:26:41 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void	setup_selected_data(t_scene *scene)
+void	set_camera(t_camera *camera)
 {
-	t_selected	*selected;
+	t_vector	*up_guide;
 
-	selected = (t_selected *) malloc(sizeof(t_selected));
-	selected->sphere = scene->spheres;
-	selected->plane = scene->planes;
-	selected->cylinder = scene->cylinders;
-	scene->selected = selected;
+	up_guide = new_vector(0.0f, 1.0f, 0.0f);
+	camera->fov *= (float)PI / 180.0f / 2.0f;
+	camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
+	camera->viewport_width = (float)tan(camera->fov) * \
+		(float)DISTANCE_TO_VIEWPORT;
+	camera->viewport_height = camera->viewport_width * camera->aspect_ratio;
+	camera->f = vec_dup(camera->direction);
+	vec_normalize(camera->f);
+	if (vec_product(camera->f, up_guide) == 1.0f)
+		up_guide->x -= 0.1f;
+	camera->u = vec_cross_product(up_guide, camera->f);
+	vec_normalize(camera->u);
+	camera->v = vec_cross_product(camera->f, camera->u);
+	free(up_guide);
+	printf("camera->f: %f, %f, %f\n", camera->f->x, camera->f->y, camera->f->z);
+	printf("camera->u: %f, %f, %f\n", camera->u->x, camera->u->y, camera->u->z);
+	printf("camera->v: %f, %f, %f\n", camera->v->x, camera->v->y, camera->v->z);
 }
 
 void	setup_scene(t_scene *scene)
@@ -35,24 +47,16 @@ void	setup_scene(t_scene *scene)
 			&scene->window_data->bits_per_pixel,
 			&scene->window_data->line_length,
 			&scene->window_data->endian);
-	scene->camera->fov *= PI / 180;
-	scene->camera->aspect_ratio = (float)CANVAS_HEIGHT / (float)CANVAS_WIDTH;
-	scene->camera->viewport_width = 2 * (float)atan(scene->camera->fov / 2 * DISTANCE_TO_VIEWPORT);
-	scene->camera->viewport_height = scene->camera->viewport_width * scene->camera->aspect_ratio;
+	set_camera(scene->camera);
 }
 
 int	main(int argc, char **argv)
 {
 	t_scene	*scene;
 
-
-//	if (argc != 2)
-//		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
-	(void)argv;
-	(void)argc;
-	char *filename = "maps/subject_map.rt";
-	scene = parser(filename);
-//	scene = parser(argv[1]);
+	if (argc != 2)
+		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+	scene = parser(argv[1]);
 	if (!scene)
 		return (free_scene(scene), 1);
 	setup_scene(scene);

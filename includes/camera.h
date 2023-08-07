@@ -6,7 +6,7 @@
 /*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:20:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/26 13:39:21 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/01 01:50:11 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef struct s_camera
 	float		viewport_width;
 	float		viewport_height;
 	float		aspect_ratio;
+	t_vector	*f;
+	t_vector	*u;
+	t_vector	*v;
+	float		matrix[3][3];
 }				t_camera;
 
 t_camera		*new_camera(t_vector *origin, t_vector *direction, float fov);
