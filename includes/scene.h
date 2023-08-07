@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/07 19:16:26 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/07 20:28:29 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH			10
+# define CANVAS_WIDTH			1920
 # define CANVAS_HEIGHT			1080
 # define DISTANCE_TO_VIEWPORT	1
 
