@@ -6,12 +6,14 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:36:02 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/08 08:05:36 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 12:55:59 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
+
+# include <stdbool.h>
 
 typedef enum s_vector_type
 {
