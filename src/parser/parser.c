@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:55:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/08 18:11:27 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 20:41:21 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,19 @@ int	parse_file(t_scene *scene, int fd)
 	line_index = 1;
 	while (line)
 	{
-		tmp = ft_strtrim(line, " \n");
-		free(line);
-		line = tmp;
-		status = parse_line(scene, line);
-		free(line);
-		if (status == EXIT_FAILURE)
-			return (EXIT_FAILURE);
+		if (ft_strncmp("\n", line, 2) != 0)
+		{
+			tmp = ft_strtrim(line, " \n");
+			free(line);
+			line = tmp;
+			status = parse_line(scene, line);
+			free(line);
+			if (status == EXIT_FAILURE)
+				return (EXIT_FAILURE);
+		}
+		else
+			free(line);
 		line = get_next_line(fd);
-		line_index++;
 	}
 	return (EXIT_SUCCESS);
 }

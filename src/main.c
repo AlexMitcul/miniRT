@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/08 18:09:30 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 20:43:07 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	scene = parser(argv[1]);
-	if (!scene)
+	if (!scene || !scene->camera || !scene->ambient_light || !scene->light)
 	{
 		printf("Error\n");
-		return (EXIT_FAILURE);
+		return (free_scene(scene), EXIT_FAILURE);
 	}
-	if (!scene->camera || !scene->ambient_light || !scene->light)
-	  	return (free_scene(scene), EXIT_FAILURE);
 	setup_scene(scene);
 	mlx_hook(scene->win, 2, 1L << 0, close_win, scene);
 	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);

@@ -3,78 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alexmitcul <alexmitcul@student.42.fr>      +#+  +:+       +#+        */
+/*   By: amenses- <amenses-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/17 12:04:58 by alexmitcul        #+#    #+#             */
-/*   Updated: 2022/11/07 00:14:16 by alexmitcul       ###   ########.fr       */
+/*   Created: 2022/11/11 21:56:50 by amenses-          #+#    #+#             */
+/*   Updated: 2022/11/14 01:22:21 by amenses-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * - Description:
- * Allocates (with malloc(3)) and returns a copy of 's1' with the characters
- * specified in 'set' removed from the beginning and the end of the string.
- *
- * - Parameters:
- * s1: The string to be trimmed.
- * set:	the reference set of characters to trim.
- *
- * - Return value:
- * The trimmed string.
- * NULL if the allocation fails.
-**/
-
 #include "libft.h"
 
-static void	get_length(char const *line, char const *set, int *start, int *end)
+static int	ft_isset(char const c, char const *set)
 {
-	int		i;
-	int		len;
+	size_t	i;
 
-	len = ft_strlen(line);
 	i = 0;
-	while (i < len)
+	while (set[i])
 	{
-		if (ft_strchr(set, line[i]) == NULL)
-			break ;
+		if (set[i] == c)
+			return (1);
 		i++;
 	}
-	*start = i;
-	i = len - 1;
-	while (i >= 0)
-	{
-		if (ft_strchr(set, line[i]) == NULL)
-			break ;
-		i--;
-	}
-	*end = len - i - 1;
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*res;
-	int		i;
-	int		start;
-	int		end;
+	size_t	start;
+	size_t	end;
 
-	if (s1 == NULL)
+	if (!s1 || !set)
 		return (NULL);
-	if (set == NULL)
-		return (ft_strdup(s1));
-	get_length(s1, set, &start, &end);
-	if (start - end == 0)
-		res = malloc(sizeof(char));
-	else
-		res = malloc(sizeof(char) * (ft_strlen(s1) - start - end + 1));
-	if (res == NULL)
-		return (NULL);
-	i = 0;
-	end = ft_strlen(s1) - start - end;
-	while (i < end)
+	start = 0;
+	end = ft_strlen(s1) - 1;
+	while (ft_isset(s1[start], set) && start < end + 1)
+		start++;
+	if (start < end + 1)
 	{
-		res[i] = s1[start + i];
-		i++;
+		while (ft_isset(s1[end], set) && end > 0)
+			end--;
 	}
-	res[i] = '\0';
-	return (res);
+	return (ft_substr(s1, start, end - start + 1));
 }
+/* int main(void)
+{
+	char *s = "  \t \t \n   \n\n\n\t";
+	char *set = " \n\t";
+	char *trim;
+
+	trim = ft_strtrim(s, set);
+	printf(".%s.\n", trim);
+	free(trim);
+	return (0);
+} */

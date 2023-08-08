@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:23:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/08 19:11:35 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 20:55:21 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ t_camera	*new_camera(t_vector *origin, t_vector *direction, float fov)
 {
 	t_camera	*camera;
 
-//	camera = (t_camera *)malloc(sizeof(t_camera));
-  camera = ft_calloc(1, sizeof (t_camera));
+	camera = ft_calloc(1, sizeof (t_camera));
 	if (!camera)
 		return (NULL);
 	camera->origin = origin;

@@ -2,7 +2,8 @@
 NAME	=	miniRT
 
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -O3 -g# -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -O3
+#-g# -fsanitize=address
 RM		=	rm -rf
 
 LIBDIR = ./libft
