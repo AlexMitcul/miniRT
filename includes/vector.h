@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:36:02 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/06 19:18:12 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/08 08:05:36 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
-
-#include <stdbool.h>
 
 typedef enum s_vector_type
 {
@@ -42,7 +40,7 @@ void		vec_normalize(t_vector *vector);
 float		vec_product(t_vector *a, t_vector *b);
 
 /* vector_operations_1.c */
-t_vector 	*vec_dup(t_vector *v);
+t_vector	*vec_dup(t_vector *v);
 t_vector	*vec_multiply(float scalar, t_vector *v);
 t_vector	*vec_cross_product(t_vector *a, t_vector *b);
 t_vector	*vec_point(t_vector *origin, t_vector *directions, float t);
@@ -57,6 +55,6 @@ typedef enum s_coordinate
 	Z
 }	t_coordinate;
 
-void	update(t_vector *vector, t_coordinate coordinate, float by);
+void		update(t_vector *vector, t_coordinate coordinate, float by);
 
 #endif

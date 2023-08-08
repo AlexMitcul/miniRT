@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:40:07 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 18:35:00 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:04:49 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@
 
 # include "keys.h"
 
-// # include "test.h"
-
 float	ft_atof(const char *str);
 void	ft_free_strings(char **array);
 int		ft_isdecimal(const char *str);
@@ -54,6 +52,6 @@ int		close_win_with_cross(void *data);
 
 /* math_utils.c */
 float	f_abs(float a);
-int	rgb2int(t_color *color);
+int		rgb2int(t_color *color);
 
 #endif

@@ -59,7 +59,7 @@ SRCS += ft_atof.c ft_free_strings.c ft_isdecimal.c is_float.c is_color.c \
 SRCS += menu.c menu_info.c sphere_info.c plane_info.c \
 		cylinder_info.c light_info.c
 
-SRCS += hooks_test.c
+SRCS += hooks.c
 
 # Render
 SRCS += interceptor.c interceptor_hit_points.c math_utils.c  picasso.c \

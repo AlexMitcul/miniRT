@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/08/07 20:28:29 by amitcul          ###   ########.fr       */
+/*   Created: 2023/08/08 08:04:25 by amitcul           #+#    #+#             */
+/*   Updated: 2023/08/08 08:04:34 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef SCENE_H
 # define SCENE_H
@@ -44,8 +43,6 @@ typedef enum e_selected_type
 	PLANE,
 	CYLINDER,
 }	t_selected_type;
-
-
 
 typedef struct s_menu
 {
