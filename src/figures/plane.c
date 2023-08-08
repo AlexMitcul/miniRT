@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 20:09:18 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 20:09:47 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:10:26 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_plane	*new_plane(t_vector *origin, t_vector *direction, t_color *color)
 
 	plane = (t_plane *)malloc(sizeof(t_plane));
 	if (!plane)
-		handle_error(MEMORY_ERROR, NULL);
+		return (NULL);
 	plane->origin = origin;
 	plane->color = color;
 	plane->direction = direction;

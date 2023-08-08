@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:45:24 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/17 11:45:51 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:12:06 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 /*
  * Tested
  */
-static bool	is_valid_color_string(const char *str)
+bool	is_valid_color_string(const char *str)
 {
 	size_t	i;
 	size_t	commas;
 
-	if (!str || *str == '\0')
+	if (!str || *str == '\0' || ft_strlen(str) > 11)
 		return (false);
 	i = 0;
 	commas = 0;
@@ -61,14 +61,9 @@ t_color	*new_color_from_string(const char *data)
 		return (NULL);
 	color = (t_color *)malloc(sizeof(t_color));
 	if (!color)
-		return (ft_free_strings(splitted),
-			handle_error(MEMORY_ERROR, NULL),
-			NULL);
+		return (ft_free_strings(splitted), NULL);
 	if (is_unsigned_char_datatype(splitted) == false)
-		return (ft_free_strings(splitted),
-			handle_error(BAD_VALUE_ERROR, NULL),
-			free_color(color),
-			NULL);
+		return (ft_free_strings(splitted), free_color(color), NULL);
 	color->r = ft_atoi(splitted[0]);
 	color->g = ft_atoi(splitted[1]);
 	color->b = ft_atoi(splitted[2]);

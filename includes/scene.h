@@ -15,7 +15,7 @@
 
 # include "minirt.h"
 
-# define CANVAS_WIDTH			1920
+# define CANVAS_WIDTH			10
 # define CANVAS_HEIGHT			1080
 # define DISTANCE_TO_VIEWPORT	1
 

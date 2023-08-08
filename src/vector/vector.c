@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:35:55 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/06 19:16:38 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:12:33 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_vector	*new_vector(float x, float y, float z)
 
 	vector = (t_vector *) malloc(sizeof(t_vector));
 	if (!vector)
-		handle_error(MEMORY_ERROR, NULL);
+		return (NULL);
 	vector->x = x;
 	vector->y = y;
 	vector->z = z;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:20:52 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/01 01:50:11 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:18:19 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_camera
 	t_vector	*f;
 	t_vector	*u;
 	t_vector	*v;
-	float		matrix[3][3];
 }				t_camera;
 
 t_camera		*new_camera(t_vector *origin, t_vector *direction, float fov);

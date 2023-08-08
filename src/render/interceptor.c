@@ -95,7 +95,7 @@ static int	closest_cy(t_cylinder *cy, t_ray *ray)
 
 	hit = ray->intersection;
 	i = -1;
-	while (i++ < 4)
+	while (++i < 4)
 	{
 		if (hit->t[i] > ray->t_min && hit->t[i] < ray->t_max \
 			&& hit->t[i] < hit->t0)

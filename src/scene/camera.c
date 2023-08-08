@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amenses- <amenses-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:23:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/30 01:57:48 by amenses-         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:11:35 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_camera	*new_camera(t_vector *origin, t_vector *direction, float fov)
 {
 	t_camera	*camera;
 
-	camera = (t_camera *)malloc(sizeof(t_camera));
+//	camera = (t_camera *)malloc(sizeof(t_camera));
+  camera = ft_calloc(1, sizeof (t_camera));
 	if (!camera)
-		handle_error(MEMORY_ERROR, NULL);
+		return (NULL);
 	camera->origin = origin;
 	camera->direction = direction;
 	camera->fov = fov;
@@ -40,4 +41,5 @@ void	free_camera(t_camera *camera)
 	if (camera->v)
 		free_vector(camera->v);
 	free(camera);
+	camera = NULL;
 }

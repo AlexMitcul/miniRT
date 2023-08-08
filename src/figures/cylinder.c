@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 09:53:50 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 20:10:42 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:10:33 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ void	cylinder_add_to_scene(t_scene *scene, t_cylinder *cylinder)
 	}
 	scene->cylinders = cylinder;
 }
-
-// void	free_cylinder_caps(t_scene *scene)
-// {
-
-// }
 
 void	free_cylinder(t_cylinder *cylinder)
 {

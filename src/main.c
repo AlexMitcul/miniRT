@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:51:47 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/07 19:59:44 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:09:30 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ void	set_camera(t_camera *camera)
 	vec_normalize(camera->u);
 	camera->v = vec_cross_product(camera->f, camera->u);
 	free(up_guide);
-	printf("camera->f: %f, %f, %f\n", camera->f->x, camera->f->y, camera->f->z);
-	printf("camera->u: %f, %f, %f\n", camera->u->x, camera->u->y, camera->u->z);
-	printf("camera->v: %f, %f, %f\n", camera->v->x, camera->v->y, camera->v->z);
 }
 
 void	setup_scene(t_scene *scene)
 {
+	scene->window_data = malloc(sizeof(t_window_data));
 	scene->mlx = mlx_init();
 	scene->win = mlx_new_window(
 			scene->mlx, scene->width, scene->height, "miniRT");
@@ -54,10 +52,18 @@ int	main(int argc, char **argv)
 	t_scene	*scene;
 
 	if (argc != 2)
-		handle_error(ARGUMENTS_COUNT_ERROR, NULL);
+	{
+		printf("Error\n");
+		return (EXIT_FAILURE);
+	}
 	scene = parser(argv[1]);
 	if (!scene)
-		return (free_scene(scene), 1);
+	{
+		printf("Error\n");
+		return (EXIT_FAILURE);
+	}
+	if (!scene->camera || !scene->ambient_light || !scene->light)
+	  	return (free_scene(scene), EXIT_FAILURE);
 	setup_scene(scene);
 	mlx_hook(scene->win, 2, 1L << 0, close_win, scene);
 	mlx_hook(scene->win, 17, 0, close_win_with_cross, scene);

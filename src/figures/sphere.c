@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:08:34 by amitcul           #+#    #+#             */
-/*   Updated: 2023/08/03 14:48:16 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:10:17 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_sphere	*new_sphere(t_vector *center, float radius, t_color *color)
 
 	sphere = (t_sphere *)malloc(sizeof(t_sphere));
 	if (!sphere)
-		handle_error(MEMORY_ERROR, NULL);
+		return (NULL);
 	sphere->center = center;
 	sphere->radius = radius;
 	sphere->color = color;

@@ -54,4 +54,6 @@ int		close_win_with_cross(void *data);
 float	f_abs(float a);
 int		rgb2int(t_color *color);
 
+bool	is_valid_color_string(const char *str);
+
 #endif

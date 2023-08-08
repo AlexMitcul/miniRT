@@ -43,7 +43,7 @@ int	parse_camera(t_scene *scene, char **data)
 	t_vector	*direction;
 	float		fov;
 
-	if (validate_camera_line(data) == false || scene->camera)
+	if (scene->camera || validate_camera_line(data) == false)
 		return (EXIT_FAILURE);
 	fov = ft_atof(data[3]);
 	if (fov < 0 || fov > 180)

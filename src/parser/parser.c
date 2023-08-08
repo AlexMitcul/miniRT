@@ -6,7 +6,7 @@
 /*   By: amitcul <amitcul@student.42porto.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 16:55:58 by amitcul           #+#    #+#             */
-/*   Updated: 2023/07/25 12:31:06 by amitcul          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:11:27 by amitcul          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ bool	is_valid_line_items_count(char **data)
 	return (false);
 }
 
-int	parse_line(t_scene *scene, char *line, size_t line_index)
+int	parse_line(t_scene *scene, char *line)
 {
 	char	**splitted;
 	char	*type;
@@ -82,9 +82,9 @@ int	parse_line(t_scene *scene, char *line, size_t line_index)
 	status = 0;
 	splitted = ft_split(line, ' ');
 	if (!splitted || !(*splitted))
-		return (ft_free_strings(splitted), EXIT_SUCCESS);
+		return (ft_free_strings(splitted), EXIT_FAILURE);
 	if (is_valid_line_items_count(splitted) == false)
-		handle_error(PARSER_ERROR, &line_index);
+		return (ft_free_strings(splitted), EXIT_FAILURE);
 	type = splitted[0];
 	if (ft_strncmp(type, "A", ft_strlen(type)) == 0)
 		status = parse_ambient_light(scene, splitted);
@@ -116,7 +116,7 @@ int	parse_file(t_scene *scene, int fd)
 		tmp = ft_strtrim(line, " \n");
 		free(line);
 		line = tmp;
-		status = parse_line(scene, line, line_index);
+		status = parse_line(scene, line);
 		free(line);
 		if (status == EXIT_FAILURE)
 			return (EXIT_FAILURE);
@@ -134,14 +134,14 @@ t_scene	*parser(const char *filename)
 
 	scene = new_scene();
 	if (is_valid_file_extension(filename) == false)
-		handle_error(FILE_EXTENSION_ERROR, NULL);
+		return (free_scene(scene), NULL);
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
-		handle_error(FILE_NAME_ERROR, NULL);
+		return (free_scene(scene), NULL);
 	status = parse_file(scene, fd);
 	if (status == EXIT_FAILURE)
 	{
-		free(scene);
+		free_scene(scene);
 		scene = NULL;
 	}
 	close(fd);
